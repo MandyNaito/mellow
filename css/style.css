@@ -7523,6 +7523,7 @@ fieldset[disabled] .form-control {
       margin-right: 12px;
       display: inline-block; }
       .sidebar .user-info .image img {
+		  background-color: #fff;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         -ms-border-radius: 50%;
