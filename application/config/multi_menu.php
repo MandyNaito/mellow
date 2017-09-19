@@ -11,11 +11,11 @@ $config["nav_tag_open"]          = '<ul class="list">';
 $config["nav_tag_close"]         = '</ul>';
 $config["item_tag_open"]         = '<li>'; 
 $config["item_tag_close"]        = '</li>';	
-$config["parent_tag_open"]       = '<li class="dropdown">';	
+$config["parent_tag_open"]       = '<li>';	
 $config["parent_tag_close"]      = '</li>';	
-$config["parent_anchor_tag"]     = '<a href="%s" class="dropdown-toggle" data-toggle="dropdown">%s</a>';	
-$config["children_tag_open"]     = '<div class="dropdown-menu"><ul>';	
-$config["children_tag_close"]    = '</ul></div>';	
+$config["parent_anchor_tag"]     = '<a href="javascript:void(0);" class="menu-toggle ">%s</a>';	
+$config["children_tag_open"]     = '<ul class="ml-menu">';	
+$config["children_tag_close"]    = '</ul>';	
 $config['icon_position']		 = 'left'; // 'left' or 'right'
 $config["item_active_class"] 	 = 'active';  
 $config["item_active"] 	 		 = 'home';  

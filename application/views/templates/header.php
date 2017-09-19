@@ -24,6 +24,7 @@
 		<?=link_tag('assets/plugins/bootstrap/css/bootstrap.css')."\n";?>
 		<?=link_tag('assets/plugins/node-waves/waves.css')."\n";?>
 		<?=link_tag('assets/plugins/animate-css/animate.css')."\n";?>
+		<?=link_tag('assets/plugins/morrisjs/morris.css')."\n";?>
 		<?=link_tag('assets/css/style.css')."\n";?>
 		<?=link_tag('assets/css/themes/theme-black-custom.css')."\n";?>		
 		

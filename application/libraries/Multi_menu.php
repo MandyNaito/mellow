@@ -437,9 +437,6 @@ class Multi_menu {
 						$item_anchor = $this->parent_anchor;
 		        	}
 					
-					$icon = "<i class='caret'></i>";
-		        	$label = trim(($label . " " . $icon));
-
 					$href        = $this->href_parent ? site_url($slug) : '#';			
 		        }
 		        else 

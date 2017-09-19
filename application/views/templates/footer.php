@@ -6,11 +6,28 @@
 		<?=script_tag('assets/plugins/bootstrap-select/js/bootstrap-select.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-slimscroll/jquery.slimscroll.js')."\n";?>
 		<?=script_tag('assets/plugins/node-waves/waves.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-countto/jquery.countTo.js')."\n";?>
+		<?=script_tag('assets/plugins/raphael/raphael.min.js')."\n";?>
+		<?=script_tag('assets/plugins/morrisjs/morris.js')."\n";?>
+		<?=script_tag('assets/plugins/chartjs/Chart.bundle.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-mask/jquery.mask.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-maskmoney/jquery.maskMoney.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-validation/jquery.validate.js')."\n";?>
+		<!--
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.js')."\n";?>
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.resize.js')."\n";?>
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.pie.js')."\n";?>
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.categories.js')."\n";?>
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.time.js')."\n";?>
+		-->
+		<?=script_tag('assets/plugins/jquery-sparkline/jquery.sparkline.js')."\n";?>
+
 		<?=script_tag('assets/js/admin.js')."\n";?>
+		<?=script_tag('assets/js/pages/index.js')."\n";?>		
 		<?=script_tag('assets/js/main.js')."\n";?>		
+		<?=script_tag('assets/js/demo.js')."\n";?>		
+
+
 		<?php
 			if(null !== $this->session->flashdata('error_message'))
 				$error_message = $this->session->flashdata('error_message');
