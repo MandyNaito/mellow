@@ -13,6 +13,9 @@
 		<?=script_tag('assets/plugins/jquery-mask/jquery.mask.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-maskmoney/jquery.maskMoney.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-validation/jquery.validate.js')."\n";?>
+		<?=script_tag('assets/plugins/autosize/autosize.js')."\n";?>
+		<?=script_tag('assets/plugins/momentjs/moment.js')."\n";?>
+		<?=script_tag('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')."\n";?>
 		<!--
 		<?=script_tag('assets/plugins/flot-charts/jquery.flot.js')."\n";?>
 		<?=script_tag('assets/plugins/flot-charts/jquery.flot.resize.js')."\n";?>
@@ -24,7 +27,9 @@
 
 		<?=script_tag('assets/js/admin.js')."\n";?>
 		<?=script_tag('assets/js/pages/index.js')."\n";?>		
+		<?=script_tag('assets/js/pages/forms/basic-form-elements.js')."\n";?>
 		<?=script_tag('assets/js/main.js')."\n";?>		
+		<?=script_tag('assets/js/mod.js')."\n";?>		
 		<?=script_tag('assets/js/demo.js')."\n";?>		
 
 

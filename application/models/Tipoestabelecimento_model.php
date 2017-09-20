@@ -1,10 +1,10 @@
 <?php
 require_once("Crud_model.php");
 
-class Nivel_model extends Crud_Model {
+class Tipoestabelecimento_model extends Crud_Model {
 	
-	var $table 		= "nivel";
-	var $cdfield 	= "cdnivel";
+	var $table 		= "tipoestabelecimento";
+	var $cdfield 	= "cdtipoestabelecimento";
 
 	public function getListData($dados = array()) {
 		# Limite:
@@ -22,7 +22,7 @@ class Nivel_model extends Crud_Model {
 			$orderby = ' ORDER BY '.$dados['ordeby'];
 		
 		# Tabelas:
-		$from = ' nivel E ';
+		$from = ' tipoestabelecimento TE ';
 		if (array_key_exists('from',$dados)) 
 			$from = ' '.$dados['from'].' ';
 		
@@ -32,9 +32,9 @@ class Nivel_model extends Crud_Model {
 		{
 			switch(strtolower($field))
 			{
-				case 'cdnivel':		$where.= " AND E.{$field} = ".intval($value)." \n"; break;
-				case 'nmnivel':		$where.= " AND E.{$field} = '{$value}' \n"; break;
-				case 'buscarapida':	$where.= " AND (E.cdnivel = ".intval($value)." OR E.nmnivel LIKE '%{$value}%' \n"; break;
+				case 'cdtipoestabelecimento':		$where.= " AND TE.{$field} = ".intval($value)." \n"; break;
+				case 'nmtipoestabelecimento':		$where.= " AND TE.{$field} = '{$value}' \n"; break;
+				case 'buscarapida':	$where.= " AND (TE.cdtipoestabelecimento = ".intval($value)." OR TE.nmtipoestabelecimento LIKE '%{$value}%' \n"; break;
 			}
 		}
 		
@@ -63,8 +63,8 @@ class Nivel_model extends Crud_Model {
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdnivel' 	=> $this->lang->str(100027),
-			'nmnivel' 	=> $this->lang->str(100019)
+			'cdtipoestabelecimento' 	=> $this->lang->str(100027),
+			'nmtipoestabelecimento' 	=> $this->lang->str(100019)
 			);
 		
 		if(empty($fields))
@@ -74,12 +74,12 @@ class Nivel_model extends Crud_Model {
 		foreach ($fields as $values)
 		{
 			if (array_key_exists('list',$dados) && !empty($dados['list']))
-				$itens[$values['cdnivel']] = $values['nmnivel'];
+				$itens[$values['cdtipoestabelecimento']] = $values['nmtipoestabelecimento'];
 			else
 			{
-				$itens[$values['cdnivel']] = array(
-					'cdnivel' 	=> $values['cdnivel'],						
-					'nmnivel' 	=> $values['nmnivel']
+				$itens[$values['cdtipoestabelecimento']] = array(
+					'cdtipoestabelecimento' 	=> $values['cdtipoestabelecimento'],						
+					'nmtipoestabelecimento' 	=> $values['nmtipoestabelecimento']
 				);
 			}
 		}

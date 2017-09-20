@@ -4,7 +4,7 @@ require_once("Home.php");
 
 class Usuario extends Home {
 	
-	var $data 	= array();
+	var $data = array();
 	var $fields = array();
 	var $controller = 'usuario';
 	
@@ -13,10 +13,18 @@ class Usuario extends Home {
 		parent::__construct();
 		
         $this->load->model('usuario_model', 'usuario');
+        $this->load->model('tipoestabelecimento_model', 'tipoestabelecimento');
 		
-		$this->data['wintitle'] 	= $this->lang->str(100000)." | ".$this->lang->str(1000);
-		$this->data['item_active'] 	= '';
-		$this->data['controller'] 	= $this->controller;
+		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100004);
+		$this->data['item_active'] = 'usuario';
+		
+		$this->grid->show_action_column = true;
+		$this->grid->url_action_view = 'usuario/visualizar/';
+		$this->grid->url_action_edit = 'usuario/editar/';
+		
+		$this->data['controller'] 			= $this->controller;
+		
+		$this->data['list_tipoestabelecimento'] 	= $this->lista($this->tipoestabelecimento);
 		
 		$this->fields = array(	
 			'idlogin'			=> array('label'=> $this->lang->str(100047), 	'rule' => 'trim|required|max_length[100]|xss_clean', 					'msg' => array()),
@@ -27,14 +35,34 @@ class Usuario extends Home {
 	}
 	
 	public function index() {
+		$this->data['title'] 	= $this->lang->str(100004);
+		$this->data['urlnovo'] 	= site_url('usuario/novo');
+				
+		$this->load->template('list/usuario', $this->data);
+	}
+	
+	public function grid($model = ''){
+		parent::grid($this->usuario);
+	}
+	
+	public function childData($table, $model = '', $cdfield = -1){
+		parent::childData($table, $this->usuario, $this->input->post('cdusuario'));
+	}
+	
+	public function novo(){
+		$this->data['target'] 		= "inserir";
+		$this->data['title'] 		= $this->lang->replaceStringTags(100017, array(1 => array('text' => $this->lang->str(100086))));
+		$this->data['cdusuario'] 	= -1;
 		
-		$cdusuario = $this->session->userdata('logged_in')['cdusuario'];
-		
-		$this->data['target'] 	= "usuario/editar/".$cdusuario;
-		$this->data['title'] 	= $this->lang->replaceStringTags(100088, array(1 => array('text' => $this->lang->str(100086))));
-		
-		$_POST = array_replace($_POST, $this->usuario->getDataByCd($cdusuario));
 		$this->load->template('form/usuario', $this->data);
+	}
+	
+	public function inserir(){
+		$this->data['target'] 		= "inserir";
+		$this->data['title'] 		= $this->lang->replaceStringTags(100017, array(1 => array('text' => $this->lang->str(100086))));
+		$this->data['cdusuario'] 	= -1;
+		
+		$this->salvar();
 	}
 	
 	public function editar($cdusuario){
@@ -44,41 +72,65 @@ class Usuario extends Home {
 		$this->salvar($cdusuario);
 	}
 	
-	public function salvar($cdusuario){	
-		$fields = $this->fields;
+	public function visualizar($cdusuario){
+		$this->data['target'] = $cdusuario;
+		$this->data['title'] = $this->lang->replaceStringTags(100087, array(1 => array('text' => $this->lang->str(100086))));
+		$this->data['view'] = true;
+		
+		$_POST = array_merge($_POST, $this->usuario->getDataByCd($cdusuario));
+		
+		$this->load->template('view/usuario', $this->data);
+	}
+	
+	public function deletar($cdusuario){
+		$return = $this->usuario->delete($cdusuario);
 
+		$dados = array('status' => true, 'msg' => $this->lang->str(100091));
+		
+		echo json_encode($dados);
+	}
+	
+	public function salvar($cdusuario = ''){	
+		$fgedit = (!empty($cdusuario) || $cdusuario == -1);
+		
+		$fields = $this->fields;
+		
 		$this->form_validation->set_error_delimiters('<div class="error-label">', '</div>');
 		foreach($fields as $key => $field)
 			$this->form_validation->set_rules($key, $field['label'], $field['rule'], $field['msg']);
 
 		if ($this->form_validation->run() == FALSE) 
 		{
-			$_POST = array_replace($_POST, $this->usuario->getDataByCd($cdusuario));
+			if($fgedit)
+				$_POST = array_replace($_POST, $this->usuario->getDataByCd($cdusuario));
 			$this->load->template('form/usuario', $this->data);
 		} 
 		else 
 		{
 			$data = array();
 			foreach($fields as  $key => $field)
-				if(!in_array($key, array('cdusuario', 'idsenhaconfirm')))
-					$data[$key] = ($key == 'idsenha') ? md5($this->input->post($key)) : $this->input->post($key);
+				if($key != 'cdusuario')
+					$data[$key] = $this->input->post($key);
 
-			$this->usuario->update($cdusuario, $data);	
-			if(!empty($cdusuario) && $cdusuario != -1){
-				$session_data = array
-				(
-					'cdusuario' => $this->input->post('cdusuario'),
-					'idlogin' 	=> $this->input->post('idlogin'),
-					'nmusuario' => $this->input->post('nmusuario')
-				);
-				$this->session->set_userdata('logged_in', $session_data);
-				
-				$this->session->set_flashdata('success_message', $this->lang->str(100015));
-				redirect('home');
+			$str = '';
+			if($fgedit){
+				$this->usuario->update($cdusuario, $data);
+				$str = 100015;
+			}
+			else{
+				$data['dtcadastro'] = date("Y-m-d");
+				$cdusuario = $this->usuario->insert($data);
+				$str = 100014;
+			}
+
+			if(!empty($cdusuario) && $cdusuario != -1){				
+				$this->session->set_flashdata('success_message', $this->lang->str($str));
+				redirect('usuario');
 			} 
 			else 
 			{
-				$_POST = array_replace($_POST, $this->usuario->getDataByCd($cdusuario));
+				if($fgedit)
+					$_POST = array_replace($_POST, $this->usuario->getDataByCd($cdusuario));
 				$this->load->template('form/usuario', $this->data);
 			}
 		}
