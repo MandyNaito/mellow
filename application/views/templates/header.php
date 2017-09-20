@@ -18,6 +18,54 @@
 			var base_url = '<?=base_url();?>';
 		</script>
 		
+		<?=script_tag('assets/plugins/jquery/jquery.min.js')."\n";?>
+		<?=script_tag('assets/plugins/bootstrap/js/bootstrap.js')."\n";?>
+		<?=script_tag('assets/plugins/bootstrap-select/js/bootstrap-select.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-slimscroll/jquery.slimscroll.js')."\n";?>
+		<?=script_tag('assets/plugins/bootstrap-notify/bootstrap-notify.js')."\n";?>
+		
+		<?=script_tag('assets/plugins/node-waves/waves.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-countto/jquery.countTo.js')."\n";?>
+		<?=script_tag('assets/plugins/raphael/raphael.min.js')."\n";?>
+		<?=script_tag('assets/plugins/morrisjs/morris.js')."\n";?>
+		<?=script_tag('assets/plugins/chartjs/Chart.bundle.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-mask/jquery.mask.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-maskmoney/jquery.maskMoney.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-validation/jquery.validate.js')."\n";?>
+		<?=script_tag('assets/plugins/autosize/autosize.js')."\n";?>
+		<?=script_tag('assets/plugins/momentjs/moment.js')."\n";?>
+		<?=script_tag('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')."\n";?>
+		
+		
+		<!-- Jquery DataTable Plugin Js -->
+		<?=script_tag('assets/plugins/jquery-datatable/jquery.dataTables.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.jS')."\n";?>
+		<?=script_tag('assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-datatable/extensions/export/jszip.min.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js')."\n";?>
+				
+		<!--
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.js')."\n";?>
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.resize.js')."\n";?>
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.pie.js')."\n";?>
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.categories.js')."\n";?>
+		<?=script_tag('assets/plugins/flot-charts/jquery.flot.time.js')."\n";?>
+		-->
+		
+		<?=script_tag('assets/plugins/jquery-sparkline/jquery.sparkline.js')."\n";?>
+
+		<?=script_tag('assets/js/admin.js')."\n";?>
+		<?=script_tag('assets/js/pages/index.js')."\n";?>		
+		<?=script_tag('assets/js/pages/forms/basic-form-elements.js')."\n";?>
+		<?=script_tag('assets/js/main.js')."\n";?>		
+		<?=script_tag('assets/js/mod.js')."\n";?>		
+		<?=script_tag('assets/js/demo.js')."\n";?>		
+		
+		
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 		
@@ -26,6 +74,7 @@
 		<?=link_tag('assets/plugins/animate-css/animate.css')."\n";?>
 		<?=link_tag('assets/plugins/morrisjs/morris.css')."\n";?>
 		<?=link_tag('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')."\n";?>
+		<?=link_tag('assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')."\n";?>
 		<?=link_tag('assets/plugins/waitme/waitMe.css')."\n";?>
 		<?=link_tag('assets/css/style.css')."\n";?>
 		<?=link_tag('assets/css/themes/theme-black-custom.css')."\n";?>		
@@ -51,11 +100,20 @@
 		
 		<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
 		<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Montserrat:400,700'>-->
-		
+			
 	</head>
 	<body class="theme-black">
-	
-		<div id="alerts"></div>
+		<?php
+			if(null !== $this->session->flashdata('error_message'))
+				$error_message = $this->session->flashdata('error_message');
+			if (isset($error_message)) 
+				echo "<script>$(document).ready(function(){addErrorMsg('{$error_message}');});</script>";
+			
+			if(null !== $this->session->flashdata('success_message'))
+				$success_message = $this->session->flashdata('success_message');
+			if (isset($success_message)) 
+				echo "<script>$(document).ready(function(){addSuccessMsg('{$success_message}');});</script>";
+		?>
 		
 		<div class="page-loader-wrapper">
 			<div class="loader">
@@ -75,26 +133,12 @@
 		
 		<div class="overlay"></div>
 		
-		<div class="search-bar">
-			<div class="search-icon">
-				<i class="material-icons">search</i>
-			</div>
-			<input type="text" placeholder="Pesquisar...">
-			<div class="close-search">
-				<i class="material-icons">close</i>
-			</div>
-		</div>
 		<nav class="navbar">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
 					<a href="javascript:void(0);" class="bars"></a>
 					<a class="navbar-brand" href="<?=site_url('home');?>"><?=img('assets/images/logo/lg-branca.png', FALSE, array('height' => '35'))."\n";?></a>
-				</div>
-				<div class="collapse navbar-collapse" id="navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
-					</ul>
 				</div>
 			</div>
 		</nav>

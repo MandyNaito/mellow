@@ -15,7 +15,7 @@ class Usuario extends Home {
         $this->load->model('usuario_model', 'usuario');
         $this->load->model('tipoestabelecimento_model', 'tipoestabelecimento');
 		
-		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100004);
+		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100011);
 		$this->data['item_active'] = 'usuario';
 		
 		$this->grid->show_action_column = true;
@@ -35,7 +35,7 @@ class Usuario extends Home {
 	}
 	
 	public function index() {
-		$this->data['title'] 	= $this->lang->str(100004);
+		$this->data['title'] 	= $this->lang->str(100011);
 		$this->data['urlnovo'] 	= site_url('usuario/novo');
 				
 		$this->load->template('list/usuario', $this->data);

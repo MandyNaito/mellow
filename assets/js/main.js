@@ -276,23 +276,39 @@ function formValue($formulario, disabled)
 }
 
 function addErrorMsg(error_message) {
-	var html = '';
-	html += '<div class="alert alert-danger alert-dismissable">';
-	html += '	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
-	html += error_message;
-	html += '</div>';
-    $('#alerts').append(html);
+	$.notify({
+		message: error_message
+	},{
+		type: "danger",
+		allow_dismiss: true,
+		placement: {
+			from: "top",
+			align: "right"
+		},
+		delay: 5000,
+		animate: {
+			enter: 'animated bounceInDown',
+			exit: 'animated bounceOutUp'
+		}
+	});
 }
 
 function addSuccessMsg(success_message) {
-	
-	var html = '';
-	html += '<div class="alert alert-success alert-dismissable">';
-	html += '	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
-	html += success_message;
-	html += '</div>';
-	
-    $('#alerts').append(html);
+	$.notify({
+		message: success_message
+	},{
+		type: "success",
+		allow_dismiss: true,
+		placement: {
+			from: "top",
+			align: "right"
+		},
+		delay: 5000,
+		animate: {
+			enter: 'animated bounceInDown',
+			exit: 'animated bounceOutUp'
+		}
+	});
 }
 
 function loading() {

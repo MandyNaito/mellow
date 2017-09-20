@@ -247,6 +247,9 @@ class Multi_menu {
 	 */
 	private $href_parent             = false;
 	
+	
+	private $set_active_parent       = false;
+	
 
 	/**
 	 * load configuration on config/multi_menu.php
@@ -445,8 +448,15 @@ class Multi_menu {
 					$href        = site_url($slug);
 					$item_anchor = $this->item_anchor;
 		        }
+				
+				
+				$is_children_active = false;
+				foreach( $item['children'] as $k => $v){
+					if(!$is_children_active && $v[$this->menu_key] == $this->item_active)
+						$is_children_active = true;
+				}
 
-				$html .= $this->set_active($tag_open, $slug);	        	        
+				$html .= $this->set_active($tag_open, $slug, ($this->set_active_parent && $has_children && $is_children_active));	        	        
 
 				if (substr_count($item_anchor, '%s') == 2) {
 					$html .= sprintf($item_anchor, $href, $label);
@@ -511,11 +521,11 @@ class Multi_menu {
 	 * @param string $html html tag that would be injected
 	 * @param string $slug html tag that has injected with active class
 	 */
-	private function set_active($html, $slug)
+	private function set_active($html, $slug, $active_parent)
 	{
 		$segment = $this->ci->uri->segment($this->uri_segment);
 
-		if ( ($this->item_active != '' && $slug == $this->item_active && empty($segment)) || (!empty($slug) && $slug == $segment)) 
+		if ( ($this->item_active != '' && $slug == $this->item_active && empty($segment)) || (!empty($slug) && $slug == $segment) || $active_parent) 
 		{
 			$doc = new DOMDocument();
 			$doc->loadHTML($html);

@@ -5861,7 +5861,7 @@ fieldset[disabled] .form-control {
   color: #bbb; }
 
 .pagination li.active a {
-  background-color: #2196F3; }
+  background-color: #00BCD4; }
 
 .pagination li {
   -webkit-border-radius: 0;
@@ -7641,6 +7641,8 @@ fieldset[disabled] .form-control {
         list-style: none;
         display: none;
         padding-left: 0; }
+        .sidebar .menu .list .ml-menu i.material-icons {
+          margin-top: 0px; }
         .sidebar .menu .list .ml-menu span {
           font-weight: normal;
           font-size: 14px;

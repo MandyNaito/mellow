@@ -22,7 +22,6 @@ class Home extends Auth_Controller {
 	public function grid($model)
 	{
 		$arr = $model->getListData($_REQUEST);
-		
 		$this->grid->set_label_column($arr['data']['label']);
 		if($arr['status'])
 			$this->grid->set_query_itens($arr['data']['item']);

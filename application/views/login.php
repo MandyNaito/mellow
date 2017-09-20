@@ -28,11 +28,12 @@
 		
 		<?=script_tag('assets/plugins/jquery/jquery.min.js')."\n";?>
 		<?=script_tag('assets/plugins/bootstrap/js/bootstrap.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-slimscroll/jquery.slimscroll.js')."\n";?>
+		<?=script_tag('assets/plugins/bootstrap-notify/bootstrap-notify.js')."\n";?>
 		<?=script_tag('assets/plugins/node-waves/waves.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-mask/jquery.mask.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-maskmoney/jquery.maskMoney.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-validation/jquery.validate.js')."\n";?>
-		<?=script_tag('assets/js/admin.js')."\n";?>
 		<?=script_tag('assets/js/main.js')."\n";?>
 		<?=script_tag('assets/js/pages/examples/sign-in.js')."\n";?>
 		
@@ -79,7 +80,7 @@
 	<body class="login-page">
 		<div class="login-box">
 			<div class="logo">
-				<a href="javascript:void(0);"><?=img('assets/images/logo/lg-azul.png', FALSE, array('class' => 'm-b-10', 'height' => '50'))."\n";?></a>
+				<a href="javascript:void(0);"><?=img('assets/images/logo/lg-azul.png', FALSE, array('class' => 'm-b-10 m-t-50', 'height' => '50'))."\n";?></a>
 				<small>Admin</small>
 			</div>
 			<div class="card">

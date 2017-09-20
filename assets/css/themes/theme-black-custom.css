@@ -54,7 +54,7 @@
 }
 
 .theme-black .sidebar .menu .list li.active:hover > :first-child i, .theme-black .sidebar .menu .list li.active:hover > :first-child span {
-	color: #F50057;	
+	color: #C51162;	
 }
 
 .theme-black .sidebar .menu .list li:not(.active):hover > :first-child i, .theme-black .sidebar .menu .list li:not(.active):hover > :first-child span {
@@ -67,6 +67,15 @@
 
 .theme-black .sidebar .menu .list .ml-menu {
 	background-color: transparent; 
+}
+
+.sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle) i, 
+.sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle) span{
+	color: #FF9800; 
+}
+.sidebar .menu .list .ml-menu li.active a:hover.toggled:not(.menu-toggle) i,
+.sidebar .menu .list .ml-menu li.active a:hover.toggled:not(.menu-toggle) span{
+	color: #FF6D00; 
 }
 
 .theme-black .sidebar .legal {

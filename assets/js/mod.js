@@ -15,6 +15,36 @@ function renderGrid()
 			if(response.status)
 			{
 				$("#grid_table").html(response.data);
+				$('.grid_datatable').DataTable({
+					responsive: true,
+					columnDefs: [
+					   { orderable: false, targets: -1 }
+					],
+					"language": {
+						"sEmptyTable": s_100013,
+						"sInfo": s_100014,
+						"sInfoEmpty": s_100015,
+						"sInfoFiltered": s_100016,
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": s_100017,
+						"sLoadingRecords": s_100018,
+						"sProcessing": s_100019,
+						"sZeroRecords": s_100013,
+						"sSearch": s_100020,
+						"oPaginate": {
+							"sNext": s_100021,
+							"sPrevious": s_100022,
+							"sFirst": s_100023,
+							"sLast": s_100024
+						},
+						"oAria": {
+							"sSortAscending": s_100025,
+							"sSortDescending": s_100026
+						}
+					}
+				});
+				
 				btnGrid();
 			}
 		},

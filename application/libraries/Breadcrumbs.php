@@ -102,7 +102,7 @@ class Breadcrumbs {
 			// construct output
 			foreach ($this->breadcrumbs as $key => $crumb) {
 				$keys = array_keys($this->breadcrumbs);
-				$icon = (!empty($crumb['icon']) ? '<i class="fa fa-'.$crumb['icon'].'"></i>' : "") ;
+				$icon = (!empty($crumb['icon']) ? $crumb['icon'] : "") ;
 				if (end($keys) == $key) {
 					$output .= $this->crumb_last_open .'<a href="' . $crumb['href'] . '">' . $icon. $crumb['page'] . '</a> '. $this->crumb_close;
 				} else {

@@ -22,7 +22,9 @@ class Usuario_model extends Crud_Model {
 			$orderby = ' ORDER BY '.$dados['ordeby'];
 		
 		# Tabelas:
-		$from = ' usuario C ';
+		$from = ' 	usuario U 
+					INNER JOIN perfil P ON (U.cdperfil = P.cdperfil)
+				';
 		if (array_key_exists('from',$dados)) 
 			$from = ' '.$dados['from'].' ';
 		
@@ -32,14 +34,16 @@ class Usuario_model extends Crud_Model {
 		{
 			switch(strtolower($field))
 			{
-				case 'cdusuario':		$where.= " AND C.{$field} = ".intval($value)." \n"; break;
-				case 'nmusuario':		$where.= " AND C.{$field} = '{$value}' \n"; break;
-				case 'buscarapida':	 	$where.= " AND (cdusuario = ".intval($value)." OR C.nmusuario LIKE '%{$value}%')\n"; break;
+				case 'cdusuario':		$where.= " AND U.{$field} = ".intval($value)." \n"; break;
+				case 'cdperfil':		$where.= " AND U.{$field} = ".intval($value)." \n"; break;
+				case 'idlogin':			$where.= " AND U.{$field} = '{$value}' \n"; break;
+				case 'fgativo':			$where.= " AND U.{$field} = '{$value}' \n"; break;
+				case 'buscarapida':	 	$where.= " AND (U.cdusuario = ".intval($value)." OR U.idlogin LIKE '%{$value}%')\n"; break;
 			}
 		}
 		
 		# Campos:
-		$select = '*';
+		$select = ' U.*, P.nmperfil ';
 		if (array_key_exists('totalRecords',$dados)){
 			$select = ' COUNT(1) as totalRecords';
             $limit = $orderby = '';
@@ -54,7 +58,7 @@ class Usuario_model extends Crud_Model {
 				FROM
 					$from 
 				WHERE 1  
-					$where
+					$where 
 			) A
             $orderby 
                 $limit                     
@@ -63,8 +67,10 @@ class Usuario_model extends Crud_Model {
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdusuario' 	=> $this->lang->str(100027),
-			'nmusuario' 	=> $this->lang->str(100019)
+			'cdusuario' => $this->lang->str(100027),
+			'cdperfil' 	=> $this->lang->str(100008),
+			'idlogin' 	=> $this->lang->str(100012),
+			'fgativo' 	=> $this->lang->str(100028)
 			);
 		
 		if(empty($fields))
@@ -76,7 +82,9 @@ class Usuario_model extends Crud_Model {
 		{
 			$itens[$values['cdusuario']] = array(
 						'cdusuario' 		=> $values['cdusuario'],
-						'nmusuario' 		=> $values['nmusuario']
+						'cdperfil' 			=> $values['nmperfil'],
+						'idlogin' 			=> $values['idlogin'],
+						'fgativo' 			=> $values['fgativo']
 						);
 		}
 		
