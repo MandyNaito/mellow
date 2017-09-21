@@ -3,15 +3,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends Auth_Controller {
 	
-	var $data = array();
+	var $data 			= array();
+	var $fields 		= array();
+	var $controller 	= 'home';
+	var $item_active 	= 'home';
 	
 	public function __construct()
 	{
 		parent::__construct();
+		
 		$this->multi_menu->set_items($this->menu->getMenu());
-		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100001);
-		$this->data['nmusuario'] = $this->session->userdata('logged_in')['nmusuario'];
-		$this->data['item_active'] = 'home';
+		$this->data['wintitle'] 	= $this->lang->str(100000)." | ".$this->lang->str(100001);
+		$this->data['nmusuario'] 	= $this->session->userdata('logged_in')['nmusuario'];
+		$this->data['item_active'] 	= $this->item_active;
+		$this->data['controller'] 	= $this->controller;
+		
+		$this->breadcrumbs->reset();
+		$bread = $this->menu->getBreadcrumbs('home');
+		foreach($bread as $k => $v)
+			$this->breadcrumbs->push($v['cdmenu'], $this->lang->str($v['cdtermo']), $v['nmslug'], $v['idiconmenu']);
+			
+		$bread = $this->menu->getBreadcrumbs($this->data['item_active']);
+		foreach($bread as $k => $v)
+			$this->breadcrumbs->push($v['cdmenu'], $this->lang->str($v['cdtermo']), $v['nmslug'], $v['idiconmenu']);
 	}
 	
 	public function index()

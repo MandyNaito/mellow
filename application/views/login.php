@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="description" content="">
-		<meta name="keywords" content="">
-		<meta name="author" content="">
+		<meta name="description"	content="">
+		<meta name="keywords" 		content="">
+		<meta name="author" 		content="">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		
 		<title><?=$wintitle?></title>
@@ -38,7 +38,6 @@
 		<?=script_tag('assets/js/pages/examples/sign-in.js')."\n";?>
 		
 		
-		
 		<?=link_tag('assets/images/favicon/apple-icon-57x57.png',   'apple-touch-icon', 'image/png', '', '', '57x57');?>
 		<?=link_tag('assets/images/favicon/apple-icon-60x60.png',   'apple-touch-icon', 'image/png', '', '', '60x60');?>
 		<?=link_tag('assets/images/favicon/apple-icon-72x72.png',   'apple-touch-icon', 'image/png', '', '', '72x72');?>
@@ -61,8 +60,6 @@
 		<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
 		<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Montserrat:400,700'>-->
 		
-		
-						
 		<?php
 			if(null !== $this->session->flashdata('error_message'))
 				$error_message = $this->session->flashdata('error_message');
@@ -75,13 +72,12 @@
 				echo "<script>$(document).ready(function(){addSuccessMsg('{$success_message}');});</script>";
 		?>
 	</head>
-
-	<div id="alerts"></div>
+	
 	<body class="login-page">
 		<div class="login-box">
 			<div class="logo">
 				<a href="javascript:void(0);"><?=img('assets/images/logo/lg-azul.png', FALSE, array('class' => 'm-b-10 m-t-50', 'height' => '50'))."\n";?></a>
-				<small>Admin</small>
+				<small><?=$this->lang->str(100036);?></small>
 			</div>
 			<div class="card">
 				<div class="body">
@@ -97,7 +93,7 @@
 								<i class="material-icons">person</i>
 							</span>
 							<div class="form-line">
-								<?=form_input(array('name' => 'idlogin','id' => 'idlogin'), set_value('idlogin'), array('class' => 'form-control', 'placeholder' => $this->lang->str(100012), 'autofocus' => true, 'required' => true))?>
+								<?=form_input(array('name' => 'idlogin','id' => 'idlogin'), set_value('idlogin'), array('class' => 'form-control', 'placeholder' => $this->lang->str(100011), 'autofocus' => true, 'required' => true))?>
 							</div>
 						</div>
 						<div class="input-group">
@@ -105,16 +101,15 @@
 								<i class="material-icons">lock</i>
 							</span>
 							<div class="form-line">
-								<?=form_password(array('name' => 'idsenha', 'id' => 'idsenha'), set_value('idsenha'), array('class' => 'form-control','placeholder' => $this->lang->str(100034)))?>
+								<?=form_password(array('name' => 'idsenha', 'id' => 'idsenha'), set_value('idsenha'), array('class' => 'form-control','placeholder' => $this->lang->str(100032)))?>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
-								<?=form_submit('submit', $this->lang->str(100074), array('class' => 'btn btn-block bg-pink waves-effect')); ?>
+								<?=form_submit('submit', $this->lang->str(100031), array('class' => 'btn btn-block bg-pink waves-effect')); ?>
 							</div>
 						</div>
 					<?=form_close();?>
-					
 				</div>
 			</div>
 		</div>

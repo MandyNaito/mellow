@@ -4,9 +4,10 @@ require_once("Home.php");
 
 class Usuario extends Home {
 	
-	var $data = array();
-	var $fields = array();
-	var $controller = 'usuario';
+	var $data 			= array();
+	var $fields 		= array();
+	var $controller 	= 'usuario';
+	var $item_active 	= 'usuario';
 	
 	public function __construct()
 	{
@@ -15,18 +16,14 @@ class Usuario extends Home {
         $this->load->model('usuario_model', 'usuario');
         $this->load->model('tipoestabelecimento_model', 'tipoestabelecimento');
 		
-		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100011);
-		$this->data['item_active'] = 'usuario';
-		
 		$this->grid->show_action_column = true;
-		$this->grid->url_action_view = 'usuario/visualizar/';
-		$this->grid->url_action_edit = 'usuario/editar/';
+		$this->grid->url_action_view = $this->controller.'/visualizar/';
+		$this->grid->url_action_edit = $this->controller.'/editar/';
 		
-		$this->data['controller'] 			= $this->controller;
-		
+		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100011);
 		$this->data['list_tipoestabelecimento'] 	= $this->lista($this->tipoestabelecimento);
 		
-		$this->fields = array(	
+		$this->fields = array(
 			'idlogin'			=> array('label'=> $this->lang->str(100047), 	'rule' => 'trim|required|max_length[100]|xss_clean', 					'msg' => array()),
 			'idsenha'			=> array('label'=> $this->lang->str(100034), 	'rule' => 'trim|required|min_length[6]|max_length[100]|xss_clean', 		'msg' => array()),
 			'idsenhaconfirm'	=> array('label'=> $this->lang->str(100035), 	'rule' => 'trim|required|matches[idsenha]|xss_clean', 					'msg' => array()),

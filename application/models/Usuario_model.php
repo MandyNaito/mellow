@@ -70,7 +70,7 @@ class Usuario_model extends Crud_Model {
 			'cdusuario' => $this->lang->str(100027),
 			'cdperfil' 	=> $this->lang->str(100008),
 			'idlogin' 	=> $this->lang->str(100012),
-			'fgativo' 	=> $this->lang->str(100028)
+			'fgativo' 	=> $this->lang->str(100037)
 			);
 		
 		if(empty($fields))
@@ -84,7 +84,7 @@ class Usuario_model extends Crud_Model {
 						'cdusuario' 		=> $values['cdusuario'],
 						'cdperfil' 			=> $values['nmperfil'],
 						'idlogin' 			=> $values['idlogin'],
-						'fgativo' 			=> $values['fgativo']
+						'fgativo' 			=> ($values['fgativo'] == 1 ? "<i class='material-icons text-success'>check_circle</i>" : "<i class='material-icons text-danger'>cancel</i>")
 						);
 		}
 		

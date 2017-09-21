@@ -54,10 +54,11 @@ class Breadcrumbs {
 	function push($id, $page = "", $href = "#", $icon = null)
 	{
 		// no page or href provided
-		if (!$id OR !$href) return;
+		if (!$id) return;
 		
 		// Prepend site url
-		$href = site_url($href);
+		if(!empty($href))
+			$href = site_url($href);
 		
 		// push breadcrumb
 		$this->breadcrumbs[$id] = array('page' => $page, 'href' => $href,  'icon' => $icon);
@@ -85,6 +86,10 @@ class Breadcrumbs {
 		array_unshift($this->breadcrumbs, array('page' => $page, 'href' => $href,  'icon' => $icon));
 	}
 	
+	function reset(){
+		$this->breadcrumbs = array();
+	}
+	
 	// --------------------------------------------------------------------
 
 	/**
@@ -102,11 +107,13 @@ class Breadcrumbs {
 			// construct output
 			foreach ($this->breadcrumbs as $key => $crumb) {
 				$keys = array_keys($this->breadcrumbs);
-				$icon = (!empty($crumb['icon']) ? $crumb['icon'] : "") ;
+				$icon = (!empty($crumb['icon']) ? $crumb['icon']." " : "") ;
+				$href = (!empty($crumb['href']) ? 'href="' . $crumb['href'] . '"' : "") ;
+				
 				if (end($keys) == $key) {
-					$output .= $this->crumb_last_open .'<a href="' . $crumb['href'] . '">' . $icon. $crumb['page'] . '</a> '. $this->crumb_close;
+					$output .= $this->crumb_last_open .'<a ' . $href . '>' . $icon. $crumb['page'] . '</a> '. $this->crumb_close;
 				} else {
-					$output .= $this->crumb_open.'<a href="' . $crumb['href'] . '">' . $icon. $crumb['page'] . '</a> '.$this->crumb_divider.$this->crumb_close;
+					$output .= $this->crumb_open.'<a ' . $href . '>' . $icon. $crumb['page'] . '</a> '.$this->crumb_divider.$this->crumb_close;
 				}
 			}
 			

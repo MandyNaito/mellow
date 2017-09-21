@@ -9,7 +9,7 @@ Class Login extends CI_Controller
 
 		$this->multi_menu->set_items(array());
         $this->load->model('login_model', 'login');
-		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100047);
+		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100012);
 	}
 
 	public function index() 
@@ -21,11 +21,10 @@ Class Login extends CI_Controller
 		
 	}
 
-	// Check for user login process
 	public function login_process()
 	{
-		$this->form_validation->set_rules('idlogin', $this->lang->str(100012), 'trim|required|xss_clean');
-		$this->form_validation->set_rules('idsenha', $this->lang->str(100034), 'trim|required|xss_clean');
+		$this->form_validation->set_rules('idlogin', $this->lang->str(100011), 'trim|required|xss_clean');
+		$this->form_validation->set_rules('idsenha', $this->lang->str(100032), 'trim|required|xss_clean');
 
 		$run = $this->form_validation->run();
 		if ($run  == FALSE) 
@@ -60,35 +59,32 @@ Class Login extends CI_Controller
 					
 					if ($result != false) 
 					{
-						// Add user data in session
 						$this->session->set_userdata('logged_in', $session_data);
 						redirect('home');
 					}
 					else
 					{
-						$this->data['error_message'] = $this->lang->str(100077);
+						$this->data['error_message'] = $this->lang->str(100033);
 						$this->load->view('login', $this->data);
 					}
 						
 				}
 				else 
 				{
-					$this->data['error_message'] = $this->lang->str(100076);
+					$this->data['error_message'] = $this->lang->str(100034);
 					$this->load->view('login', $this->data);
 				}
 			} 
 			else 
 			{
-				$this->data['error_message'] = $this->lang->str(100076);
+				$this->data['error_message'] = $this->lang->str(100034);
 				$this->load->view('login', $this->data);
 			}
 		}
 	}
 
-	// Logout from admin page
 	public function logout() 
 	{
-		// Removing session data
 		$sess_array = 	array
 						(
 							'cdusuario' => '',
@@ -96,10 +92,9 @@ Class Login extends CI_Controller
 							'nmusuario' => ''
 						);
 		$this->session->unset_userdata('logged_in', $sess_array);
-		$this->data['success_message'] = $this->lang->str(100079);
+		$this->data['success_message'] = $this->lang->str(100035);
 		$this->load->view('login', $this->data);
 	}
-
 }
 
 ?>

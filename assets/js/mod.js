@@ -1,9 +1,6 @@
-var site_url = '';
-var request = '';
-var limit = '';
-var page = '';
-var order = '';
-var dir = '';
+var controller 	= '';
+var site_url	= '';
+var request 	= '';
 
 function renderGrid()
 {
@@ -56,7 +53,6 @@ function renderGrid()
 
 function btnGrid()
 {
-	
     $('.btn-delete').click(function(){
 		var id = $(this).attr('data-index');
 		$(".btn-modal-delete").attr("data-index" , id);
@@ -65,20 +61,6 @@ function btnGrid()
 	$(".btn-modal-delete").click(function(){
 		deleteRegister($(this).attr('data-index'));
 		$(this).attr('data-index', '');
-	});
-	
-    $('.btn-send').click(function(){
-		var id = $(this).attr('data-index');
-		$(".btn-modal-send").attr("data-index" , id);
-	});
-	
-	$(".btn-modal-send").click(function(){
-		sendRegister($(this).attr('data-index'));
-		$(this).attr('data-index', '');
-	});
-
-    $('.btn-link').click(function(){
-		linkRegister($(this).attr('data-index'));
 	});
 }
 
@@ -143,7 +125,6 @@ function linkRegister(id)
 }
 
 $(document).ready(function(){
-	
 	if($("#grid_table").length)
 		renderGrid();
 	
