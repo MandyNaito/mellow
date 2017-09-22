@@ -15,7 +15,10 @@ class Crud_Model extends CI_Model {
 	}
 	
 	public function delete($cdfield) {
-		return $this->db->delete($this->table, array($this->cdfield => $cdfield)); 
+		$this->db->delete($this->table, array($this->cdfield => $cdfield)); 
+		if (!$this->db->affected_rows()) 
+			return false;		
+		return true;
 	}
 	
 	public function update($cdfield, $data){

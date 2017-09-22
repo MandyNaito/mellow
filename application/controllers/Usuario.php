@@ -15,12 +15,14 @@ class Usuario extends Home {
 		
         $this->load->model('usuario_model', 'usuario');
         $this->load->model('tipoestabelecimento_model', 'tipoestabelecimento');
+        $this->load->model('perfil_model', 'perfil');
 		
 		$this->grid->show_action_column = true;
 		$this->grid->url_action_view = $this->controller.'/visualizar/';
 		$this->grid->url_action_edit = $this->controller.'/editar/';
 		
-		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100011);
+		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100012);
+		$this->data['list_perfil'] 					= $this->lista($this->perfil);
 		$this->data['list_tipoestabelecimento'] 	= $this->lista($this->tipoestabelecimento);
 		
 		$this->fields = array(
@@ -32,7 +34,7 @@ class Usuario extends Home {
 	}
 	
 	public function index() {
-		$this->data['title'] 	= $this->lang->str(100011);
+		$this->data['title'] 	= $this->lang->str(100012);
 		$this->data['urlnovo'] 	= site_url('usuario/novo');
 				
 		$this->load->template('list/usuario', $this->data);
@@ -81,8 +83,10 @@ class Usuario extends Home {
 	
 	public function deletar($cdusuario){
 		$return = $this->usuario->delete($cdusuario);
-
-		$dados = array('status' => true, 'msg' => $this->lang->str(100091));
+		if($return)
+			$dados = array('status' => true, 'msg' => $this->lang->str(100045));
+		else
+			$dados = array('status' => false, 'msg' => $this->lang->str(100046));
 		
 		echo json_encode($dados);
 	}

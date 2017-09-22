@@ -68,8 +68,8 @@ class Usuario_model extends Crud_Model {
 
 		$label = array(
 			'cdusuario' => $this->lang->str(100027),
-			'cdperfil' 	=> $this->lang->str(100008),
-			'idlogin' 	=> $this->lang->str(100012),
+			'cdperfil' 	=> $this->lang->str(100009),
+			'idlogin' 	=> $this->lang->str(100013),
 			'fgativo' 	=> $this->lang->str(100037)
 			);
 		

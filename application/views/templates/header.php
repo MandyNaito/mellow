@@ -35,7 +35,7 @@
 		<?=script_tag('assets/plugins/autosize/autosize.js')."\n";?>
 		<?=script_tag('assets/plugins/momentjs/moment.js')."\n";?>
 		<?=script_tag('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')."\n";?>
-		
+		<?=script_tag('assets/plugins/sweetalert/sweetalert.min.js')."\n";?>
 		
 		<!-- Jquery DataTable Plugin Js -->
 		<?=script_tag('assets/plugins/jquery-datatable/jquery.dataTables.js')."\n";?>
@@ -62,7 +62,7 @@
 		<?=script_tag('assets/js/pages/index.js')."\n";?>		
 		<?=script_tag('assets/js/pages/forms/basic-form-elements.js')."\n";?>
 		<?=script_tag('assets/js/main.js')."\n";?>		
-		<?=script_tag('assets/js/mod.js')."\n";?>		
+		<?=script_tag('assets/js/grid.js')."\n";?>		
 		<?=script_tag('assets/js/demo.js')."\n";?>		
 		
 		
@@ -76,6 +76,7 @@
 		<?=link_tag('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')."\n";?>
 		<?=link_tag('assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')."\n";?>
 		<?=link_tag('assets/plugins/waitme/waitMe.css')."\n";?>
+		<?=link_tag('assets/plugins/sweetalert/sweetalert.css')."\n";?>
 		<?=link_tag('assets/css/style.css')."\n";?>
 		<?=link_tag('assets/css/themes/theme-black-custom.css')."\n";?>		
 		

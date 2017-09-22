@@ -13,7 +13,7 @@ class Grid {
 	private $grid_close 		= '</div> ';
 	private $grid_size_open 	= '<div class="table-responsive">';
 	private $grid_size_close 	= '</div> ';
-	private $grid_table_open 	= '<table class="table table-bordered table-striped table-hover grid_datatable dataTable">';
+	private $grid_table_open 	= '<table class="table grid_datatable">';
 	private $grid_table_close 	= '</table> ';
 	public 	$url_action_print	= '';
 	public 	$url_action_view	= '';
@@ -81,16 +81,15 @@ class Grid {
 				{
 					$output .= '<td class="actions">';
 					if($this->show_action_view)
-						$output .= '<a class="btn btn-sm btn-success waves-effect btn-view" href="'.$this->url_action_view.$cod.'" data-index="'.$cod.'" title="'.$this->ci->lang->str(100038).'">'.$this->icon_view.'</a> ';
+						$output .= '<a class="btn btn-xs btn-success waves-effect btn-view" href="'.$this->url_action_view.$cod.'" 	data-index="'.$cod.'" title="'.$this->ci->lang->str(100038).'">'.$this->icon_view.'</a> ';
 					if($this->show_action_edit)
-						$output .= '<a class="btn btn-sm btn-warning waves-effect btn-edit" href="'.$this->url_action_edit.$cod.'" data-index="'.$cod.'" title="'.$this->ci->lang->str(100039).'">'.$this->icon_edit.'</a> ';
+						$output .= '<a class="btn btn-xs btn-warning waves-effect btn-edit" href="'.$this->url_action_edit.$cod.'" 	data-index="'.$cod.'" title="'.$this->ci->lang->str(100039).'">'.$this->icon_edit.'</a> ';
 					if($this->show_action_delete)					
-						$output .= '<a class="btn btn-sm btn-danger waves-effect btn-delete" data-index="'.$cod.'" data-toggle="modal" data-target="#delete-modal" title="'.$this->ci->lang->str(100040).'">'.$this->icon_delete.'</a> ';
+						$output .= '<a class="btn btn-xs btn-danger waves-effect  btn-delete" data-type="confirm"  					data-index="'.$cod.'" title="'.$this->ci->lang->str(100040).'">'.$this->icon_delete.'</a> ';
 					$output .= "</td>";
 				}
 				$output .= '</tr>';
 			}
-			
 		}
 		
 		$output .= '</tbody>';

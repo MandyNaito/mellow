@@ -21,7 +21,14 @@
 								<h2 class="card-inside-title"></h2>
 								
 								<form id="usuario-form" method="post" action="<?=$target;?>" role="form">	
-									<?=form_hidden('cdusuario', set_value('cdusuario', -1));?>
+									<?=form_hidden('cdusuario', 		set_value('cdusuario', -1));?>
+									<?=form_hidden('cdestabelecimento', set_value('cdestabelecimento'));?>
+									<?=form_hidden('cdcliente', 		set_value('cdcliente'));?>
+									<?=form_hidden('fgativo', 			set_value('fgativo', 1));?>
+									<!--
+										cdperfil
+										blfoto
+									-->
 										<div class="row clearfix">
 											<div class="col-sm-12">
 												<div class="form-group form-float">
