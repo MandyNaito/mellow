@@ -16,10 +16,12 @@ class Perfil extends Crud {
         $this->load->model('perfil_model', 'perfil');
 
 		$this->model = $this->perfil;
+		
+		$this->grid->show_action_view = false;
 	
 		$this->fields = array(
 			'cdperfil'     	=> array('label'=> $this->lang->str(100057), 	'rule' => 'trim|required|xss_clean', 'msg' => array(), 'isField' => true),
-			'nmperfil'     	=> array('label'=> $this->lang->str(100019), 	'rule' => 'trim|required|xss_clean', 'msg' => array(), 'isField' => true)
+			'nmperfil'     	=> array('label'=> $this->lang->str(100066), 	'rule' => 'trim|required|xss_clean', 'msg' => array(), 'isField' => true)
 		);
 	}
 }

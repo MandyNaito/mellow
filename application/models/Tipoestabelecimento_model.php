@@ -64,7 +64,8 @@ class Tipoestabelecimento_model extends Crud_Model {
 
 		$label = array(
 			'cdtipoestabelecimento' 	=> $this->lang->str(100027),
-			'nmtipoestabelecimento' 	=> $this->lang->str(100066)
+			'nmtipoestabelecimento' 	=> $this->lang->str(100066),
+			'fgstatus' 					=> $this->lang->str(100037)
 			);
 		
 		if(empty($fields))
@@ -79,7 +80,8 @@ class Tipoestabelecimento_model extends Crud_Model {
 			{
 				$itens[$values['cdtipoestabelecimento']] = array(
 					'cdtipoestabelecimento' 	=> $values['cdtipoestabelecimento'],						
-					'nmtipoestabelecimento' 	=> $values['nmtipoestabelecimento']
+					'nmtipoestabelecimento' 	=> $values['nmtipoestabelecimento'],
+					'fgstatus' 					=> $values['fgstatus']
 				);
 			}
 		}

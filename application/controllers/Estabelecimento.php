@@ -14,6 +14,8 @@ class Estabelecimento extends Crud {
 		parent::__construct();
 		
         $this->load->model('estabelecimento_model', 'estabelecimento');
+        $this->load->model('tipoestabelecimento_model', 'tipoestabelecimento');
+		$this->data['list_tipoestabelecimento'] = $this->lista($this->tipoestabelecimento);
 
 		$this->model = $this->estabelecimento;
 	
