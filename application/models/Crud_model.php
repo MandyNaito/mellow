@@ -3,6 +3,7 @@ class Crud_Model extends CI_Model {
 
 	var $table 		= "";
 	var $cdfield 	= "";
+	var $fgfield 	= "fgstatus";
 	
 	public function all()
 	{
@@ -16,6 +17,26 @@ class Crud_Model extends CI_Model {
 	
 	public function delete($cdfield) {
 		$this->db->delete($this->table, array($this->cdfield => $cdfield)); 
+		if (!$this->db->affected_rows()) 
+			return false;		
+		return true;
+	}
+	
+	public function enable($cdfield){
+		$this->db->set($this->fgfield, 1);
+		$this->db->where($this->cdfield, $cdfield);
+		$this->db->update($this->table);
+		
+		if (!$this->db->affected_rows()) 
+			return false;		
+		return true;
+	}
+	
+	public function disable($cdfield){
+		$this->db->set($this->fgfield, 0);
+		$this->db->where($this->cdfield, $cdfield);
+		$teste = $this->db->update($this->table);
+		
 		if (!$this->db->affected_rows()) 
 			return false;		
 		return true;

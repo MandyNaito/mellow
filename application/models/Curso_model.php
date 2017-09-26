@@ -65,7 +65,7 @@ class Curso_model extends Crud_Model {
 
 		$label = array(
 			'cdcurso' 	=> $this->lang->str(100027),
-			'nmcurso' 	=> $this->lang->str(100019)
+			'nmcurso' 	=> $this->lang->str(100066)
 			);
 		
 		if(empty($fields))

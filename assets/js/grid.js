@@ -52,8 +52,16 @@ function renderGrid()
 }
 
 function btnGrid(){
-    $('.btn-delete').click(function(){
+    $('.btn-delete').off().click(function(){
 		confirmDelete($(this).attr('data-index'));
+	});
+	
+    $('.btn-active').off().click(function(){
+		confirmActive($(this).attr('data-index'));
+	});
+	
+    $('.btn-inactive').off().click(function(){
+		confirmInactive($(this).attr('data-index'));
 	});
 }
 
@@ -71,9 +79,37 @@ function confirmDelete(id) {
     });
 }
 
+function confirmActive(id) {
+    swal({
+        title: s_100058,
+        text: '',
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#4CAF50",
+        confirmButtonText: s_100055,
+        closeOnConfirm: false
+    }, function () {
+		activeRegister(id)
+    });
+}
+
+function confirmInactive(id) {
+    swal({
+        title: s_100059,
+        text: '',
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#FB483A",
+        confirmButtonText: s_100056,
+        closeOnConfirm: false
+    }, function () {
+		inactiveRegister(id)
+    });
+}
+
 function deleteRegister(id){
 	$.ajax({
-		url : site_url+'/deletar/'+(parseInt(id)+1),
+		url : site_url+'/deletar/'+id,
 		dataType: 'json', 
 		data: request,
 		success: function (response) {
@@ -86,6 +122,44 @@ function deleteRegister(id){
 		},
 		error: function (response) {
 			swal(s_100049, s_100048, "error");
+		}
+   });    
+}
+
+function activeRegister(id){
+	$.ajax({
+		url : site_url+'/ativar/'+id,
+		dataType: 'json', 
+		data: request,
+		success: function (response) {
+			if(response.status){
+				swal(s_100060, response.msg, "success");
+				renderGrid();
+			}
+			else
+				swal(s_100061, response.msg, "error");
+		},
+		error: function (response) {
+			swal(s_100049, s_100061, "error");
+		}
+   });    
+}
+
+function inactiveRegister(id){
+	$.ajax({
+		url : site_url+'/inativar/'+id,
+		dataType: 'json', 
+		data: request,
+		success: function (response) {
+			if(response.status){
+				swal(s_100062, response.msg, "success");
+				renderGrid();
+			}
+			else
+				swal(s_100063, response.msg, "error");
+		},
+		error: function (response) {
+			swal(s_100049, s_100063, "error");
 		}
    });    
 }

@@ -64,7 +64,7 @@ class Tipoestabelecimento_model extends Crud_Model {
 
 		$label = array(
 			'cdtipoestabelecimento' 	=> $this->lang->str(100027),
-			'nmtipoestabelecimento' 	=> $this->lang->str(100019)
+			'nmtipoestabelecimento' 	=> $this->lang->str(100066)
 			);
 		
 		if(empty($fields))

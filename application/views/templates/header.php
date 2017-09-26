@@ -21,7 +21,9 @@
 		<?=script_tag('assets/plugins/jquery/jquery.min.js')."\n";?>
 		<?=script_tag('assets/plugins/bootstrap/js/bootstrap.js')."\n";?>
 		<?=script_tag('assets/plugins/bootstrap-select/js/bootstrap-select.js')."\n";?>
+		<?=script_tag('assets/plugins/bootstrap-select/js/i18n/defaults-pt_BR.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-slimscroll/jquery.slimscroll.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-validation/jquery.validate.js')."\n";?>
 		<?=script_tag('assets/plugins/bootstrap-notify/bootstrap-notify.js')."\n";?>
 		
 		<?=script_tag('assets/plugins/node-waves/waves.js')."\n";?>
@@ -70,6 +72,7 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 		
 		<?=link_tag('assets/plugins/bootstrap/css/bootstrap.css')."\n";?>
+		<?=link_tag('assets/plugins/bootstrap-select/css/bootstrap-select.css')."\n";?>
 		<?=link_tag('assets/plugins/node-waves/waves.css')."\n";?>
 		<?=link_tag('assets/plugins/animate-css/animate.css')."\n";?>
 		<?=link_tag('assets/plugins/morrisjs/morris.css')."\n";?>

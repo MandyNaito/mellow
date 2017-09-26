@@ -4,16 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends Auth_Controller {
 	
 	var $data 			= array();
-	var $fields 		= array();
 	var $controller 	= 'home';
 	var $item_active 	= 'home';
+	var $str 			= 100001;
+	var $model		 	= '';
 	
 	public function __construct()
 	{
 		parent::__construct();
 		
 		$this->multi_menu->set_items($this->menu->getMenu());
-		$this->data['wintitle'] 	= $this->lang->str(100000)." | ".$this->lang->str(100001);
+		$this->data['wintitle'] 	= $this->lang->str(100000)." | ".$this->lang->str($this->str);
 		$this->data['nmusuario'] 	= $this->session->userdata('logged_in')['nmusuario'];
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['controller'] 	= $this->controller;
@@ -33,9 +34,9 @@ class Home extends Auth_Controller {
 		$this->load->template('home', $this->data);
 	}
 	
-	public function grid($model)
+	public function grid()
 	{
-		$arr = $model->getListData($_REQUEST);
+		$arr = $this->model->getListData($_REQUEST);
 		$this->grid->set_label_column($arr['data']['label']);
 		if($arr['status'])
 			$this->grid->set_query_itens($arr['data']['item']);

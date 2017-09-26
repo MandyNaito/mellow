@@ -1,11 +1,11 @@
 <?php
 require_once("Crud_model.php");
 
-class Usuario_model extends Crud_Model {
+class Perfil_model extends Crud_Model {
 	
-	var $table 		= "usuario";
-	var $cdfield 	= "cdusuario";
-	
+	var $table 		= "perfil";
+	var $cdfield 	= "cdperfil";
+
 	public function getListData($dados = array()) {
 		# Limite:
 		$limit = '';
@@ -22,9 +22,7 @@ class Usuario_model extends Crud_Model {
 			$orderby = ' ORDER BY '.$dados['ordeby'];
 		
 		# Tabelas:
-		$from = ' 	usuario U 
-					INNER JOIN perfil P ON (U.cdperfil = P.cdperfil)
-				';
+		$from = ' perfil P ';
 		if (array_key_exists('from',$dados)) 
 			$from = ' '.$dados['from'].' ';
 		
@@ -34,16 +32,14 @@ class Usuario_model extends Crud_Model {
 		{
 			switch(strtolower($field))
 			{
-				case 'cdusuario':		$where.= " AND U.{$field} = ".intval($value)." \n"; break;
-				case 'cdperfil':		$where.= " AND U.{$field} = ".intval($value)." \n"; break;
-				case 'idlogin':			$where.= " AND U.{$field} = '{$value}' \n"; break;
-				case 'fgstatus':		$where.= " AND U.{$field} = '{$value}' \n"; break;
-				case 'buscarapida':	 	$where.= " AND (U.cdusuario = ".intval($value)." OR U.idlogin LIKE '%{$value}%')\n"; break;
+				case 'cdperfil':		$where.= " AND P.{$field} = ".intval($value)." \n"; break;
+				case 'nmperfil':		$where.= " AND P.{$field} = '{$value}' \n"; break;
+				case 'buscarapida':	$where.= " AND (P.cdperfil = ".intval($value)." OR P.nmperfil LIKE '%{$value}%' \n"; break;
 			}
 		}
 		
 		# Campos:
-		$select = ' U.*, P.nmperfil ';
+		$select = '*';
 		if (array_key_exists('totalRecords',$dados)){
 			$select = ' COUNT(1) as totalRecords';
             $limit = $orderby = '';
@@ -58,7 +54,7 @@ class Usuario_model extends Crud_Model {
 				FROM
 					$from 
 				WHERE 1  
-					$where 
+					$where
 			) A
             $orderby 
                 $limit                     
@@ -67,25 +63,27 @@ class Usuario_model extends Crud_Model {
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdusuario' => $this->lang->str(100027),
-			'cdperfil' 	=> $this->lang->str(100009),
-			'idlogin' 	=> $this->lang->str(100013),
+			'cdperfil' 	=> $this->lang->str(100027),
+			'nmperfil' 	=> $this->lang->str(100009),
 			'fgstatus' 	=> $this->lang->str(100037)
 			);
 		
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
 		
-		$itens = array();	
-		
+		$itens = array();		
 		foreach ($fields as $values)
 		{
-			$itens[$values['cdusuario']] = array(
-						'cdusuario' 		=> $values['cdusuario'],
-						'cdperfil' 			=> $values['nmperfil'],
-						'idlogin' 			=> $values['idlogin'],
-						'fgstatus' 			=> $values['fgstatus']
-						);
+			if (array_key_exists('list',$dados) && !empty($dados['list']))
+				$itens[$values['cdperfil']] = $values['nmperfil'];
+			else
+			{
+				$itens[$values['cdperfil']] = array(
+					'cdperfil' 	=> $values['cdperfil'],						
+					'nmperfil' 	=> $values['nmperfil'],
+					'fgstatus' 			=> $values['fgstatus']
+				);
+			}
 		}
 		
 		return array('status' => true, 'data' => array('label' => $label, 'item' => $itens));

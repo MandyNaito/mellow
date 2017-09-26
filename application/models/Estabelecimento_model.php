@@ -1,10 +1,10 @@
 <?php
 require_once("Crud_model.php");
 
-class Usuario_model extends Crud_Model {
+class Estabelecimento_model extends Crud_Model {
 	
-	var $table 		= "usuario";
-	var $cdfield 	= "cdusuario";
+	var $table 		= "estabelecimento";
+	var $cdfield 	= "cdestabelecimento";
 	
 	public function getListData($dados = array()) {
 		# Limite:
@@ -22,8 +22,8 @@ class Usuario_model extends Crud_Model {
 			$orderby = ' ORDER BY '.$dados['ordeby'];
 		
 		# Tabelas:
-		$from = ' 	usuario U 
-					INNER JOIN perfil P ON (U.cdperfil = P.cdperfil)
+		$from = ' 	estabelecimento E 
+					INNER JOIN tipoestabelecimento TE ON (E.cdtipoestabelecimento = TE.cdtipoestabelecimento)
 				';
 		if (array_key_exists('from',$dados)) 
 			$from = ' '.$dados['from'].' ';
@@ -34,16 +34,18 @@ class Usuario_model extends Crud_Model {
 		{
 			switch(strtolower($field))
 			{
-				case 'cdusuario':		$where.= " AND U.{$field} = ".intval($value)." \n"; break;
-				case 'cdperfil':		$where.= " AND U.{$field} = ".intval($value)." \n"; break;
-				case 'idlogin':			$where.= " AND U.{$field} = '{$value}' \n"; break;
-				case 'fgstatus':		$where.= " AND U.{$field} = '{$value}' \n"; break;
-				case 'buscarapida':	 	$where.= " AND (U.cdusuario = ".intval($value)." OR U.idlogin LIKE '%{$value}%')\n"; break;
+				case 'cdestabelecimento':		$where.= " AND E.{$field} = ".intval($value)." \n"; break;
+				case 'cdtipoestabelecimento':	$where.= " AND E.{$field} = ".intval($value)." \n"; break;
+				case 'nmfantasia':				$where.= " AND E.{$field} LIKE '%{$value}%' \n"; break;
+				case 'nmrazaosocial':			$where.= " AND E.{$field} LIKE '%{$value}%' \n"; break;
+				case 'dsestabelecimento':		$where.= " AND E.{$field} LIKE '%{$value}%' \n"; break;
+				case 'fgstatus':				$where.= " AND E.{$field} = '{$value}' \n"; break;
+				case 'buscarapida':	 			$where.= " AND (E.cdestabelecimento = ".intval($value)." OR E.nmfantasia LIKE '%{$value}%' OR E.nmrazaosocial LIKE '%{$value}%')\n"; break;
 			}
 		}
 		
 		# Campos:
-		$select = ' U.*, P.nmperfil ';
+		$select = ' E.*, TE.nmtipoestabelecimento ';
 		if (array_key_exists('totalRecords',$dados)){
 			$select = ' COUNT(1) as totalRecords';
             $limit = $orderby = '';
@@ -67,10 +69,10 @@ class Usuario_model extends Crud_Model {
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdusuario' => $this->lang->str(100027),
-			'cdperfil' 	=> $this->lang->str(100009),
-			'idlogin' 	=> $this->lang->str(100013),
-			'fgstatus' 	=> $this->lang->str(100037)
+			'cdestabelecimento' 	=> $this->lang->str(100027),
+			'cdtipoestabelecimento' => $this->lang->str(100077),
+			'nmfantasia' 			=> $this->lang->str(100079),
+			'fgstatus' 				=> $this->lang->str(100037)
 			);
 		
 		if(empty($fields))
@@ -80,11 +82,11 @@ class Usuario_model extends Crud_Model {
 		
 		foreach ($fields as $values)
 		{
-			$itens[$values['cdusuario']] = array(
-						'cdusuario' 		=> $values['cdusuario'],
-						'cdperfil' 			=> $values['nmperfil'],
-						'idlogin' 			=> $values['idlogin'],
-						'fgstatus' 			=> $values['fgstatus']
+			$itens[$values['cdestabelecimento']] = array(
+						'cdestabelecimento' 		=> $values['cdestabelecimento'],
+						'cdtipoestabelecimento' 	=> $values['nmtipoestabelecimento'],
+						'nmfantasia' 				=> $values['nmfantasia'],
+						'fgstatus' 					=> $values['fgstatus']
 						);
 		}
 		

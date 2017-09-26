@@ -48,7 +48,7 @@ Class Login_model extends CI_Model
 	{
 		$this->db->select('1');
 		$this->db->from('usuario');
-		$this->db->where("cdusuario = ".$cdusuario ." AND fgativo = 1");
+		$this->db->where("cdusuario = ".$cdusuario ." AND fgstatus = 1");
 		$this->db->limit(1);
 		$query = $this->db->get();
 

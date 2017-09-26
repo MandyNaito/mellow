@@ -1,140 +1,32 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require_once("Home.php");
+require_once("Crud.php");
 
-class Usuario extends Home {
+class Usuario extends Crud {
 	
-	var $data 			= array();
-	var $fields 		= array();
 	var $controller 	= 'usuario';
 	var $item_active 	= 'usuario';
+	var $cdfield 		= 'cdusuario';
+	var $str 			= 100012;
 	
 	public function __construct()
 	{
 		parent::__construct();
 		
         $this->load->model('usuario_model', 'usuario');
-        $this->load->model('tipoestabelecimento_model', 'tipoestabelecimento');
         $this->load->model('perfil_model', 'perfil');
-		
-		$this->grid->show_action_column = true;
-		$this->grid->url_action_view = $this->controller.'/visualizar/';
-		$this->grid->url_action_edit = $this->controller.'/editar/';
-		
-		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100012);
-		$this->data['list_perfil'] 					= $this->lista($this->perfil);
-		$this->data['list_tipoestabelecimento'] 	= $this->lista($this->tipoestabelecimento);
+
+		$this->model = $this->usuario;
+	
+		$this->data['list_perfil'] 				= $this->lista($this->perfil);
 		
 		$this->fields = array(
-			'idlogin'			=> array('label'=> $this->lang->str(100047), 	'rule' => 'trim|required|max_length[100]|xss_clean', 					'msg' => array()),
-			'idsenha'			=> array('label'=> $this->lang->str(100034), 	'rule' => 'trim|required|min_length[6]|max_length[100]|xss_clean', 		'msg' => array()),
-			'idsenhaconfirm'	=> array('label'=> $this->lang->str(100035), 	'rule' => 'trim|required|matches[idsenha]|xss_clean', 					'msg' => array()),
-			'nmusuario'     	=> array('label'=> $this->lang->str(100019), 	'rule' => 'trim|required|xss_clean', 									'msg' => array())
+			'idlogin'			=> array('label'=> $this->lang->str(100013), 	'rule' => 'trim|required|max_length[100]|xss_clean', 					'msg' => array(), 'isField' => true),
+			'idsenha'			=> array('label'=> $this->lang->str(100032), 	'rule' => 'trim|required|min_length[6]|max_length[100]|xss_clean', 		'msg' => array(), 'isField' => true),
+			'idsenhaconfirm'	=> array('label'=> $this->lang->str(100067), 	'rule' => 'trim|required|matches[idsenha]|xss_clean', 					'msg' => array(), 'isField' => false),
+			'nmusuario'     	=> array('label'=> $this->lang->str(100066), 	'rule' => 'trim|required|xss_clean', 									'msg' => array(), 'isField' => true),
+			'cdperfil'   		=> array('label'=> $this->lang->str(100009), 	'rule' => 'trim|required|greater_than[0]', 								'msg' => array('greater_than' => $this->lang->str(100075).'%s'.$this->lang->str(100076)), 'isField' => true)
 		);
-	}
-	
-	public function index() {
-		$this->data['title'] 	= $this->lang->str(100012);
-		$this->data['urlnovo'] 	= site_url('usuario/novo');
-				
-		$this->load->template('list/usuario', $this->data);
-	}
-	
-	public function grid($model = ''){
-		parent::grid($this->usuario);
-	}
-	
-	public function childData($table, $model = '', $cdfield = -1){
-		parent::childData($table, $this->usuario, $this->input->post('cdusuario'));
-	}
-	
-	public function novo(){
-		$this->data['target'] 		= "inserir";
-		$this->data['title'] 		= $this->lang->replaceStringTags(100017, array(1 => array('text' => $this->lang->str(100086))));
-		$this->data['cdusuario'] 	= -1;
-		
-		$this->load->template('form/usuario', $this->data);
-	}
-	
-	public function inserir(){
-		$this->data['target'] 		= "inserir";
-		$this->data['title'] 		= $this->lang->replaceStringTags(100017, array(1 => array('text' => $this->lang->str(100086))));
-		$this->data['cdusuario'] 	= -1;
-		
-		$this->salvar();
-	}
-	
-	public function editar($cdusuario){
-		$this->data['target'] = $cdusuario;
-		$this->data['title'] = $this->lang->replaceStringTags(100088, array(1 => array('text' => $this->lang->str(100086))));
-
-		$this->salvar($cdusuario);
-	}
-	
-	public function visualizar($cdusuario){
-		$this->data['target'] = $cdusuario;
-		$this->data['title'] = $this->lang->replaceStringTags(100087, array(1 => array('text' => $this->lang->str(100086))));
-		$this->data['view'] = true;
-		
-		$_POST = array_merge($_POST, $this->usuario->getDataByCd($cdusuario));
-		
-		$this->load->template('view/usuario', $this->data);
-	}
-	
-	public function deletar($cdusuario){
-		$return = $this->usuario->delete($cdusuario);
-		if($return)
-			$dados = array('status' => true, 'msg' => $this->lang->str(100045));
-		else
-			$dados = array('status' => false, 'msg' => $this->lang->str(100046));
-		
-		echo json_encode($dados);
-	}
-	
-	public function salvar($cdusuario = ''){	
-		$fgedit = (!empty($cdusuario) || $cdusuario == -1);
-		
-		$fields = $this->fields;
-		
-		$this->form_validation->set_error_delimiters('<div class="error-label">', '</div>');
-		foreach($fields as $key => $field)
-			$this->form_validation->set_rules($key, $field['label'], $field['rule'], $field['msg']);
-
-		if ($this->form_validation->run() == FALSE) 
-		{
-			if($fgedit)
-				$_POST = array_replace($_POST, $this->usuario->getDataByCd($cdusuario));
-			$this->load->template('form/usuario', $this->data);
-		} 
-		else 
-		{
-			$data = array();
-			foreach($fields as  $key => $field)
-				if($key != 'cdusuario')
-					$data[$key] = $this->input->post($key);
-
-			$str = '';
-			if($fgedit){
-				$this->usuario->update($cdusuario, $data);
-				$str = 100015;
-			}
-			else{
-				$data['dtcadastro'] = date("Y-m-d");
-				$cdusuario = $this->usuario->insert($data);
-				$str = 100014;
-			}
-
-			if(!empty($cdusuario) && $cdusuario != -1){				
-				$this->session->set_flashdata('success_message', $this->lang->str($str));
-				redirect('usuario');
-			} 
-			else 
-			{
-				if($fgedit)
-					$_POST = array_replace($_POST, $this->usuario->getDataByCd($cdusuario));
-				$this->load->template('form/usuario', $this->data);
-			}
-		}
 	}
 }
 ?>
