@@ -133,7 +133,7 @@
 									<div class="row clearfix">
 										<div id="actions" class="pull-right">
 											<div id="btn_actions" class="col-sm-12">
-												<?=form_reset('cancel', $this->lang->str(100044), array('class' => 'btn btn-default btn-cancel waves-effect', 'onclick' => 'window.location.replace(\''.site_url('home').'\')')); ?>
+												<?=form_reset('cancel', $this->lang->str(100044), array('class' => 'btn btn-default btn-cancel waves-effect', 'onclick' => 'window.location.replace(\''.site_url($controller).'\')')); ?>
 												<?=form_button('btn_submit', $this->lang->str(100068), array('class' => 'btn btn-success waves-effect')); ?>
 											</div>
 										</div>	

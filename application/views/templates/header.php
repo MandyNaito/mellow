@@ -151,7 +151,7 @@
 			<aside id="leftsidebar" class="sidebar">
 				<div class="user-info">
 					<div class="image">
-						<?=img('assets/images/user.png', FALSE, array('width' => '48', 'height' => '48'))."\n";?>
+						<?=img($txfoto, FALSE, array('width' => '48', 'height' => '48'))."\n";?>
 					</div>
 					<div class="info-container">
 						<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?=$nmusuario;?></div>
@@ -159,7 +159,7 @@
 						<div class="btn-group user-helper-dropdown">
 							<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 							<ul class="dropdown-menu pull-right">
-								<li><a href="javascript:void(0);"><i class="material-icons">person</i><?=$this->lang->str(100089);?></a></li>
+								<li><a href="<?=site_url('usuario/visualizar/'.$cdusuario);?>"><i class="material-icons">person</i><?=$this->lang->str(100089);?></a></li>
 								<li role="seperator" class="divider"></li>
 								<li><a href="<?=site_url('login/logout');?>"><i class="material-icons">input</i><?=$this->lang->str(100090);?></a></li>
 							</ul>

@@ -241,7 +241,7 @@
 										<div class="col-sm-12 hidden-print fadeInDown">
 											<div id="actions" class="row  pull-right">
 												<div id="btn_actions" class="col-sm-12">
-													<?=form_reset( 'cancel', $this->lang->str(100056), array('class' => 'btn btn-default btn-cancel', 'onclick' => 'window.location.replace(\''.site_url('candidato').'\')')); ?>
+													<?=form_reset( 'cancel', $this->lang->str(100056), array('class' => 'btn btn-default btn-cancel', 'onclick' => 'window.location.replace(\''.site_url($controller).'\')')); ?>
 													<?=form_button( 'btn_submit', $this->lang->str(100055), array('class' => 'btn btn-success')); ?>
 												</div>
 											</div>

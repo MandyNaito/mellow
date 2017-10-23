@@ -15,7 +15,9 @@ class Home extends Auth_Controller {
 		
 		$this->multi_menu->set_items($this->menu->getMenu());
 		$this->data['wintitle'] 	= $this->lang->str(100000)." | ".$this->lang->str($this->str);
+		$this->data['cdusuario'] 	= $this->session->userdata('logged_in')['cdusuario'];
 		$this->data['nmusuario'] 	= $this->session->userdata('logged_in')['nmusuario'];
+		$this->data['txfoto'] 		= $this->session->userdata('logged_in')['txfoto'];
 		$this->data['nmtipo'] 		= $this->session->userdata('logged_in')['nmtipo'];
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['controller'] 	= $this->controller;

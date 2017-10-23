@@ -19,7 +19,7 @@
 								<div class="row clearfix">
 									<div class="col-sm-12">
 										<div class="form-group form-float">
-											<?=img($src = "assets/images/user-default.png", false, array('id' => 'img_bbfoto', 'class' => 'user-profile-photo img-thumbnail zoom-in', 'title' => $this->lang->str(100087)));?>
+											<?=img(set_value('txfoto', 'assets/images/user-default.png'), false, array('id' => 'img_txfoto', 'class' => 'user-profile-photo img-thumbnail zoom-in', 'title' => $this->lang->str(100087)));?>
 										</div>
 									</div>
 								</div>

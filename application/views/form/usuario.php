@@ -21,9 +21,9 @@
 									<div class="row clearfix">
 										<div class="col-sm-12">
 											<div class="form-group form-float">
-												<?=form_upload(array('name' => 'bbfoto', 'id' => 'bbfoto'),set_value('bbfoto'), array('placeholder' => $this->lang->str(100087),'class' => 'hidden', 'enabled' => true, 'accept' => 'image/*', 'onchange' => 'readURL(this);'));?>
-												<?=img($src = "assets/images/user-default.png", false, array('id' => 'img_bbfoto', 'class' => 'user-profile-photo img-thumbnail zoom-in', 'title' => $this->lang->str(100087)));?>
-												<?=form_error('bbfoto');?>
+												<?=form_upload(array('name' => 'txfoto', 'id' => 'txfoto'),set_value('txfoto'), array('placeholder' => $this->lang->str(100087),'class' => 'hidden', 'enabled' => true, 'accept' => 'image/*', 'onchange' => 'readURL(this);'));?>
+												<?=img(set_value('txfoto', 'assets/images/user-default.png'), false, array('id' => 'img_txfoto', 'class' => 'user-profile-photo img-thumbnail zoom-in', 'title' => $this->lang->str(100087)));?>
+												<?=form_error('txfoto');?>
 											</div>
 										</div>
 									</div>
@@ -42,7 +42,7 @@
 										<div class="col-sm-6">
 											<div class="form-group form-float">
 												<div class="form-line">
-													<?=form_label($this->lang->str(100013), 'nmusuario', array('class'=> 'form-label'))?>
+													<?=form_label($this->lang->str(100013), 'idlogin', array('class'=> 'form-label'))?>
 													<?=form_input('idlogin', set_value('idlogin'), array('class' => 'form-control', 'required'=>''))?>
 												</div>
 												<?=form_error('idlogin');?>
@@ -53,8 +53,8 @@
 										<div class="col-sm-6">
 											<div class="form-group form-float">
 												<div class="form-line">
-													<?=form_label($this->lang->str(100032), 'nmusuario', array('class'=> 'form-label'))?>
-													<?=form_password('idsenha', set_value('idsenha'), array('class' => 'form-control', 'required'=>''))?>
+													<?=form_label($this->lang->str(100032), 'idsenha', array('class'=> 'form-label'))?>
+													<?=form_password('idsenha', '', array('class' => 'form-control', 'required'=>''))?>
 												</div>
 												<?=form_error('idsenha');?>
 											</div>
@@ -62,8 +62,8 @@
 										<div class="col-sm-6">
 											<div class="form-group form-float">
 												<div class="form-line">	
-													<?=form_label($this->lang->str(100067), 'nmusuario', array('class'=> 'form-label'))?>
-													<?=form_password('idsenhaconfirm', set_value('idsenhaconfirm'), array('class' => 'form-control', 'required'=>''))?>
+													<?=form_label($this->lang->str(100067), 'idsenhaconfirm', array('class'=> 'form-label'))?>
+													<?=form_password('idsenhaconfirm','', array('class' => 'form-control', 'required'=>''))?>
 												</div>
 												<?=form_error('idsenhaconfirm');?>
 											</div>
@@ -81,7 +81,7 @@
 									<div class="row clearfix">
 										<div id="actions" class="pull-right">
 											<div id="btn_actions" class="col-sm-12">
-												<?=form_reset('cancel', $this->lang->str(100044), array('class' => 'btn btn-default btn-cancel waves-effect', 'onclick' => 'window.location.replace(\''.site_url('home').'\')')); ?>
+												<?=form_reset('cancel', $this->lang->str(100044), array('class' => 'btn btn-default btn-cancel waves-effect', 'onclick' => 'window.location.replace(\''.site_url($controller).'\')')); ?>
 												<?=form_button( 'btn_submit', $this->lang->str(100068), array('class' => 'btn btn-success waves-effect')); ?>
 											</div>
 										</div>	
@@ -98,8 +98,8 @@
 			var site_url = '<?=site_url($controller);?>';
 			
 			$(document).ready(function(){
-				$('#img_bbfoto').on('click', function() {
-					$('#bbfoto').click();
+				$('#img_txfoto').on('click', function() {
+					$('#txfoto').click();
 				});
 				
 				$( "#usuario-form" ).find("button[name='btn_submit']").on('click', function (e) {
@@ -134,7 +134,7 @@
 					var reader = new FileReader();
 
 					reader.onload = function (e) {
-						$('#img_bbfoto').attr('src', e.target.result);
+						$('#img_txfoto').attr('src', e.target.result);
 					};
 
 					reader.readAsDataURL(input.files[0]);

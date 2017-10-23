@@ -37,7 +37,7 @@ Class Login_model extends CI_Model
 		$SQL = "SELECT 
 					U.*,
 					CASE 
-						WHEN E.cdtipoestabelecimento IS NOT NULL THEN (SELECT nmtipoestabelecimento FROM tipoestabelecimento WHERE cdtipoestabelecimento = E.cdtipoestabelecimento)
+						WHEN E.cdestabelecimento IS NOT NULL THEN E.nmestabelecimento
 						WHEN U.cdcliente IS NOT NULL THEN C.nmemail
 						ELSE P.nmperfil
 					END AS nmtipo

@@ -29,7 +29,7 @@ class Crud extends Home {
 	}
 	
 	public function novo(){
-		$this->data['target'] 		= $this->controller.'/inserir';
+		$this->data['target'] 		= 'inserir';
 		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => $this->lang->str($this->str))));
 		$this->data[$this->cdfield] = -1;
 		
@@ -37,7 +37,7 @@ class Crud extends Home {
 	}
 	
 	public function inserir(){
-		$this->data['target'] 		= $this->controller.'/inserir';
+		$this->data['target'] 		= 'inserir';
 		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => $this->lang->str($this->str))));
 		$this->data[$this->cdfield] = -1;
 		
@@ -45,14 +45,14 @@ class Crud extends Home {
 	}
 	
 	public function editar($cdfield){
-		$this->data['target'] 		= $this->controller.'/editar/'.$cdfield;
+		$this->data['target'] 		= $cdfield;
 		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => $this->lang->str($this->str))));
 
 		$this->salvar($cdfield);
 	}
 	
 	public function visualizar($cdfield){
-		$this->data['target'] 		= $this->controller.'/visualizar/'.$cdfield;
+		$this->data['target'] 		= $cdfield;
 		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => $this->lang->str($this->str))));
 		$this->data['view'] 		= true;
 		
@@ -104,20 +104,22 @@ class Crud extends Home {
 		{
 			if($fgedit)
 				$_POST = array_replace($_POST, $this->model->getDataByCd($cdfield));
+			
 			$this->load->template('form/'.$this->controller, $this->data);
 		} 
 		else 
 		{
 			$data = array();
+			$data_files = array();
 			foreach($fields as  $key => $field){
 				if($key != $this->cdfield && !empty($field['isField'])){
 					if(empty($field['isFile']))
 						$data[$key] = $this->input->post($key);
-					//else
-					//	$data[$key] = $this->input->post(file_get_contents($_FILES[$key]['tmp_name']));
+					else
+						$data[$key] = $this->uploadImage($key);
 				}    
 			}
-			 
+			
 			$str = '';
 			if($fgedit){
 				$this->model->update($cdfield, $data);
@@ -139,6 +141,17 @@ class Crud extends Home {
 				$this->load->template('form/'.$this->controller, $this->data);
 			}
 		}
-	}	
+	}
+	
+	function uploadImage($id){
+		$config['upload_path']	 = './upload/'.$this->controller.'/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		
+		$this->load->library('upload', $config);
+		
+		if($this->upload->do_upload($id))
+			return  'upload/'.$this->controller.'/'.$this->upload->data()['file_name'];
+		return false;
+	}
 }
 ?>

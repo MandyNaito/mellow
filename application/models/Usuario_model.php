@@ -6,6 +6,18 @@ class Usuario_model extends Crud_Model {
 	var $table 		= "usuario";
 	var $cdfield 	= "cdusuario";
 	
+	public function update($cdfield, $data){
+		if(!empty($data['idsenha']))
+			$data['idsenha'] = md5($data['idsenha']);
+		
+		$updated = parent::update($cdfield, $data);
+		
+		if($updated && ($cdfield == $this->session->userdata('logged_in')['cdusuario']))
+			$this->session->set_userdata('logged_in', array_replace($this->session->userdata('logged_in'), $data));
+
+		return $updated;
+	}
+	
 	public function getListData($dados = array()) {
 		# Limite:
 		$limit = '';
