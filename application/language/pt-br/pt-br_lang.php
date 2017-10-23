@@ -1,5 +1,5 @@
 ﻿<?php
-$lang["s_100000"] = "Mellow Admin";
+$lang["s_100000"] = "MellowAdmin";
 $lang["s_100001"] = "Home";
 $lang["s_100002"] = "Estabelecimento";
 $lang["s_100003"] = "Cliente";
@@ -87,9 +87,9 @@ $lang["s_100084"] = "E-mail";
 $lang["s_100085"] = "Site";
 $lang["s_100086"] = "Capacidade Máxima";
 $lang["s_100087"] = "Foto";
-$lang["s_100088"] = "s_100088";
-$lang["s_100089"] = "s_100089";
-$lang["s_100090"] = "s_100090";
+$lang["s_100088"] = "Aguarde...";
+$lang["s_100089"] = "Minha conta";
+$lang["s_100090"] = "Sair";
 $lang["s_100091"] = "s_100091";
 $lang["s_100092"] = "s_100092";
 $lang["s_100093"] = "s_100093";

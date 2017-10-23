@@ -34,11 +34,22 @@ Class Login_model extends CI_Model
 	// Read data from database to show data in admin page
 	public function getUserData($idlogin) 
 	{
-		$this->db->select('*');
-		$this->db->from('usuario');
-		$this->db->where("idlogin LIKE ('".$idlogin ."')");
-		$this->db->limit(1);
-		$query = $this->db->get();
+		$SQL = "SELECT 
+					U.*,
+					CASE 
+						WHEN E.cdtipoestabelecimento IS NOT NULL THEN (SELECT nmtipoestabelecimento FROM tipoestabelecimento WHERE cdtipoestabelecimento = E.cdtipoestabelecimento)
+						WHEN U.cdcliente IS NOT NULL THEN C.nmemail
+						ELSE P.nmperfil
+					END AS nmtipo
+				FROM 
+					usuario U
+					INNER JOIN perfil 				P ON (P.cdperfil = U.cdperfil)
+					LEFT OUTER JOIN estabelecimento E ON (E.cdestabelecimento = U.cdestabelecimento)
+					LEFT OUTER JOIN cliente 		C ON (C.cdcliente = U.cdcliente)
+				WHERE 
+					U.idlogin LIKE ('".$idlogin ."')
+				LIMIT 1";
+		$query = $this->db->query($SQL);
 
 		return ($query->num_rows() == 1) ? $query->result() : false;
 	}

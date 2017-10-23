@@ -52,7 +52,8 @@ Class Login extends CI_Controller
 									(
 										'cdusuario' => $result[0]->cdusuario,
 										'idlogin' 	=> $result[0]->idlogin,
-										'nmusuario' => $result[0]->nmusuario
+										'nmusuario' => $result[0]->nmusuario,
+										'nmtipo' 	=> $result[0]->nmtipo
 									);
 									
 					$result = $this->login->getEnabledUser($session_data['cdusuario']);

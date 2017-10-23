@@ -131,7 +131,7 @@
 						</div>
 					</div>
 				</div>
-				<p>Aguarde...</p>
+				<p><?=$this->lang->str(100088);?></p>
 			</div>
 		</div>
 		
@@ -154,14 +154,14 @@
 						<?=img('assets/images/user.png', FALSE, array('width' => '48', 'height' => '48'))."\n";?>
 					</div>
 					<div class="info-container">
-						<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Verdant</div>
-						<div class="email">Casa noturna</div>
+						<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?=$nmusuario;?></div>
+						<div class="email"><?=$nmtipo;?></div>
 						<div class="btn-group user-helper-dropdown">
 							<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 							<ul class="dropdown-menu pull-right">
-								<li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
+								<li><a href="javascript:void(0);"><i class="material-icons">person</i><?=$this->lang->str(100089);?></a></li>
 								<li role="seperator" class="divider"></li>
-								<li><a href="<?=site_url('login/logout');?>"><i class="material-icons">input</i>Sair</a></li>
+								<li><a href="<?=site_url('login/logout');?>"><i class="material-icons">input</i><?=$this->lang->str(100090);?></a></li>
 							</ul>
 						</div>
 					</div>
@@ -173,7 +173,7 @@
 				
 				<div class="legal">
 					<div class="copyright">
-						<a href="javascript:void(0);">MellowTeam</a> &copy; 2017.
+						<a href="javascript:void(0);"><?=$this->lang->str(100000);?></a> &copy; 2017.
 					</div>
 				</div>
 			</aside>

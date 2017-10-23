@@ -17,6 +17,7 @@ class Grid {
 	private $grid_size_close 		= '</div> ';
 	private $grid_table_open 		= '<table class="table grid_datatable">';
 	private $grid_table_close 		= '</table> ';
+	public 	$script					= '<script>$(".data-tooltip").tooltip({container: \'body\'}); </script>';
 	public 	$url_action_print		= '';
 	public 	$url_action_view		= '';
 	public 	$url_action_edit		= '';
@@ -96,15 +97,15 @@ class Grid {
 				{
 					$output .= '<td class="actions">';
 					if($this->show_action_view)
-						$output .= '<a class="btn btn-xs btn-info waves-effect btn-view" href="'.$this->url_action_view.$cod.'" 	data-index="'.$cod.'" title="'.$this->ci->lang->str(100038).'">'.$this->icon_view.'</a> ';
+						$output .= '<a class="data-tooltip btn btn-xs btn-info waves-effect btn-view" href="'.$this->url_action_view.$cod.'" 		data-index="'.$cod.'" title="'.$this->ci->lang->str(100038).'">'.$this->icon_view.'</a> ';
 					if($this->show_action_edit)
-						$output .= '<a class="btn btn-xs btn-warning waves-effect btn-edit" href="'.$this->url_action_edit.$cod.'" 	data-index="'.$cod.'" title="'.$this->ci->lang->str(100039).'">'.$this->icon_edit.'</a> ';
+						$output .= '<a class="data-tooltip btn btn-xs btn-warning waves-effect btn-edit" href="'.$this->url_action_edit.$cod.'" 	data-index="'.$cod.'" title="'.$this->ci->lang->str(100039).'">'.$this->icon_edit.'</a> ';
 					if($this->show_action_active && !$isactive)					
-						$output .= '<a class="btn btn-xs btn-success waves-effect btn-active" 	data-type="confirm"  				data-index="'.$cod.'" title="'.$this->ci->lang->str(100055).'">'.$this->icon_active.'</a> ';
+						$output .= '<a class="data-tooltip btn btn-xs btn-success waves-effect btn-active" 	data-type="confirm"  					data-index="'.$cod.'" title="'.$this->ci->lang->str(100055).'">'.$this->icon_active.'</a> ';
 					if($this->show_action_inactive  && $isactive)					
-						$output .= '<a class="btn btn-xs btn-danger waves-effect  btn-inactive" data-type="confirm"  				data-index="'.$cod.'" title="'.$this->ci->lang->str(100056).'">'.$this->icon_inactive.'</a> ';
+						$output .= '<a class="data-tooltip btn btn-xs btn-danger waves-effect  btn-inactive" data-type="confirm"  					data-index="'.$cod.'" title="'.$this->ci->lang->str(100056).'">'.$this->icon_inactive.'</a> ';
 					if($this->show_action_delete)					
-						$output .= '<a class="btn btn-xs btn-danger waves-effect  btn-delete" 	data-type="confirm"  				data-index="'.$cod.'" title="'.$this->ci->lang->str(100040).'">'.$this->icon_delete.'</a> ';
+						$output .= '<a class="data-tooltip btn btn-xs btn-danger waves-effect  btn-delete" 	data-type="confirm"  					data-index="'.$cod.'" title="'.$this->ci->lang->str(100040).'"">'.$this->icon_delete.'</a> ';
 					$output .= "</td>";
 				}
 				$output .= '</tr>';
@@ -116,6 +117,7 @@ class Grid {
 		$output .= $this->grid_table_close;
 		$output .= $this->grid_size_close;
 		$output .= $this->grid_close;
+		$output .= $this->script;
 		
 		return $output;
 	}
