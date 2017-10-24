@@ -7,7 +7,7 @@ class Usuario extends Crud {
 	var $controller 	= 'usuario';
 	var $item_active 	= 'usuario';
 	var $cdfield 		= 'cdusuario';
-	var $str 			= 100012;
+	var $str 			= 100013;
 	
 	public function __construct()
 	{
@@ -22,7 +22,7 @@ class Usuario extends Crud {
 		
 		$this->fields = array(
 			'txfoto'			=> array('label'=> $this->lang->str(100087), 	'rule' => 'trim|xss_clean', 											'msg' => array(), 'isField' => true, 	'isFile' => true),
-			'idlogin'			=> array('label'=> $this->lang->str(100013), 	'rule' => 'trim|required|max_length[100]|xss_clean', 					'msg' => array(), 'isField' => true, 	'isFile' => false),
+			'idlogin'			=> array('label'=> $this->lang->str(100093), 	'rule' => 'trim|required|max_length[100]|xss_clean', 					'msg' => array(), 'isField' => true, 	'isFile' => false),
 			'idsenha'			=> array('label'=> $this->lang->str(100032), 	'rule' => 'trim|required|min_length[6]|max_length[100]|xss_clean', 		'msg' => array(), 'isField' => true, 	'isFile' => false),
 			'idsenhaconfirm'	=> array('label'=> $this->lang->str(100067), 	'rule' => 'trim|required|matches[idsenha]|xss_clean', 					'msg' => array(), 'isField' => false, 	'isFile' => false),
 			'nmusuario'     	=> array('label'=> $this->lang->str(100066), 	'rule' => 'trim|required|xss_clean', 									'msg' => array(), 'isField' => true, 	'isFile' => false),

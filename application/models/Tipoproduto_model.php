@@ -1,23 +1,11 @@
 <?php
 require_once("Crud_model.php");
 
-class Usuario_model extends Crud_Model {
+class Tipoproduto_model extends Crud_Model {
 	
-	var $table 		= "usuario";
-	var $cdfield 	= "cdusuario";
-	
-	public function update($cdfield, $data){
-		if(!empty($data['idsenha']))
-			$data['idsenha'] = md5($data['idsenha']);
-		
-		$updated = parent::update($cdfield, $data);
-		
-		if($updated && ($cdfield == $this->session->userdata('logged_in')['cdusuario']))
-			$this->session->set_userdata('logged_in', array_replace($this->session->userdata('logged_in'), $data));
+	var $table 		= "tipoproduto";
+	var $cdfield 	= "cdtipoproduto";
 
-		return $updated;
-	}
-	
 	public function getListData($dados = array()) {
 		# Limite:
 		$limit = '';
@@ -34,9 +22,7 @@ class Usuario_model extends Crud_Model {
 			$orderby = ' ORDER BY '.$dados['ordeby'];
 		
 		# Tabelas:
-		$from = ' 	usuario U 
-					INNER JOIN perfil P ON (U.cdperfil = P.cdperfil)
-				';
+		$from = ' tipoproduto TP ';
 		if (array_key_exists('from',$dados)) 
 			$from = ' '.$dados['from'].' ';
 		
@@ -46,16 +32,15 @@ class Usuario_model extends Crud_Model {
 		{
 			switch(strtolower($field))
 			{
-				case 'cdusuario':		$where.= " AND U.{$field} = ".intval($value)." \n"; break;
-				case 'cdperfil':		$where.= " AND U.{$field} = ".intval($value)." \n"; break;
-				case 'idlogin':			$where.= " AND U.{$field} = '{$value}' \n"; break;
-				case 'fgstatus':		$where.= " AND U.{$field} = '{$value}' \n"; break;
-				case 'buscarapida':	 	$where.= " AND (U.cdusuario = ".intval($value)." OR U.idlogin LIKE '%{$value}%')\n"; break;
+				case 'cdtipoproduto':		$where.= " AND TP.{$field} = ".intval($value)." \n"; break;
+				case 'nmtipoproduto':		$where.= " AND TP.{$field} = '{$value}' \n"; break;
+				case 'dstipoproduto':		$where.= " AND TP.{$field} LIKE '%{$value}%' \n"; break;
+				case 'buscarapida':			$where.= " AND (TP.cdtipoproduto = ".intval($value)." OR TP.nmtipoproduto LIKE '%{$value}%' \n"; break;
 			}
 		}
 		
 		# Campos:
-		$select = ' U.*, P.nmperfil ';
+		$select = '*';
 		if (array_key_exists('totalRecords',$dados)){
 			$select = ' COUNT(1) as totalRecords';
             $limit = $orderby = '';
@@ -70,7 +55,7 @@ class Usuario_model extends Crud_Model {
 				FROM
 					$from 
 				WHERE 1  
-					$where 
+					$where
 			) A
             $orderby 
                 $limit                     
@@ -79,25 +64,27 @@ class Usuario_model extends Crud_Model {
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdusuario' => $this->lang->str(100027),
-			'cdperfil' 	=> $this->lang->str(100009),
-			'idlogin' 	=> $this->lang->str(100093),
-			'fgstatus' 	=> $this->lang->str(100037)
+			'cdtipoproduto' 	=> $this->lang->str(100027),
+			'nmtipoproduto' 	=> $this->lang->str(100066),
+			'fgstatus' 			=> $this->lang->str(100037)
 			);
 		
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
 		
-		$itens = array();	
-		
+		$itens = array();		
 		foreach ($fields as $values)
 		{
-			$itens[$values['cdusuario']] = array(
-						'cdusuario' 		=> $values['cdusuario'],
-						'cdperfil' 			=> $values['nmperfil'],
-						'idlogin' 			=> $values['idlogin'],
-						'fgstatus' 			=> $values['fgstatus']
-						);
+			if (array_key_exists('list',$dados) && !empty($dados['list']))
+				$itens[$values['cdtipoproduto']] = $values['nmtipoproduto'];
+			else
+			{
+				$itens[$values['cdtipoproduto']] = array(
+					'cdtipoproduto' 	=> $values['cdtipoproduto'],						
+					'nmtipoproduto' 	=> $values['nmtipoproduto'],
+					'fgstatus' 			=> $values['fgstatus']
+				);
+			}
 		}
 		
 		return array('status' => true, 'data' => array('label' => $label, 'item' => $itens));

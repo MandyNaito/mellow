@@ -93,7 +93,7 @@
 								<i class="material-icons">person</i>
 							</span>
 							<div class="form-line">
-								<?=form_input(array('name' => 'idlogin','id' => 'idlogin'), set_value('idlogin'), array('class' => 'form-control', 'placeholder' => $this->lang->str(100012), 'autofocus' => true, 'required' => true))?>
+								<?=form_input(array('name' => 'idlogin','id' => 'idlogin'), set_value('idlogin'), array('class' => 'form-control', 'placeholder' => $this->lang->str(100013), 'autofocus' => true, 'required' => true))?>
 							</div>
 						</div>
 						<div class="input-group">

@@ -29,31 +29,31 @@ class Crud extends Home {
 	}
 	
 	public function novo(){
-		$this->data['target'] 		= 'inserir';
-		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => $this->lang->str($this->str))));
+		$this->data['target'] 		= $this->controller.'/inserir';
+		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 		$this->data[$this->cdfield] = -1;
 		
 		$this->load->template('form/'.$this->controller, $this->data);
 	}
 	
 	public function inserir(){
-		$this->data['target'] 		= 'inserir';
-		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => $this->lang->str($this->str))));
+		$this->data['target'] 		= $this->controller.'/inserir';
+		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 		$this->data[$this->cdfield] = -1;
 		
 		$this->salvar();
 	}
 	
 	public function editar($cdfield){
-		$this->data['target'] 		= $cdfield;
-		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => $this->lang->str($this->str))));
+		$this->data['target'] 		= $this->controller.'/editar/'.$cdfield;
+		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 
 		$this->salvar($cdfield);
 	}
 	
 	public function visualizar($cdfield){
-		$this->data['target'] 		= $cdfield;
-		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => $this->lang->str($this->str))));
+		$this->data['target'] 		= $this->controller.'/visualizar/'.$cdfield;
+		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 		$this->data['view'] 		= true;
 		
 		$_POST = array_merge($_POST, $this->model->getDataByCd($cdfield));

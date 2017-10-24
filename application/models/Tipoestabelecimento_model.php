@@ -34,7 +34,8 @@ class Tipoestabelecimento_model extends Crud_Model {
 			{
 				case 'cdtipoestabelecimento':		$where.= " AND TE.{$field} = ".intval($value)." \n"; break;
 				case 'nmtipoestabelecimento':		$where.= " AND TE.{$field} = '{$value}' \n"; break;
-				case 'buscarapida':	$where.= " AND (TE.cdtipoestabelecimento = ".intval($value)." OR TE.nmtipoestabelecimento LIKE '%{$value}%' \n"; break;
+				case 'dstipoestabelecimento':		$where.= " AND TE.{$field} LIKE '%{$value}%' \n"; break;
+				case 'buscarapida':					$where.= " AND (TE.cdtipoestabelecimento = ".intval($value)." OR TE.nmtipoestabelecimento LIKE '%{$value}%' \n"; break;
 			}
 		}
 		

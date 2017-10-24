@@ -16,7 +16,7 @@
 							</div>
 							<div class="body">
 								<h2 class="card-inside-title"></h2>
-								<form action="<?=$target;?>" id="usuario-form" method="post" role="form" enctype="multipart/form-data" accept-charset="utf-8">
+								<?=form_open_multipart($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
 									<?=form_hidden('cdusuario', set_value('cdusuario', -1));?>
 									<div class="row clearfix">
 										<div class="col-sm-12">
@@ -42,7 +42,7 @@
 										<div class="col-sm-6">
 											<div class="form-group form-float">
 												<div class="form-line">
-													<?=form_label($this->lang->str(100013), 'idlogin', array('class'=> 'form-label'))?>
+													<?=form_label($this->lang->str(100093), 'idlogin', array('class'=> 'form-label'))?>
 													<?=form_input('idlogin', set_value('idlogin'), array('class' => 'form-control', 'required'=>''))?>
 												</div>
 												<?=form_error('idlogin');?>

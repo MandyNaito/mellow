@@ -37,7 +37,7 @@
 									<div class="col-sm-6">
 										<div class="form-group form-float">
 											<div class="form-line">
-												<?=form_label($this->lang->str(100013), 'nmusuario', array('class'=> 'form-label'))?>
+												<?=form_label($this->lang->str(100093), 'nmusuario', array('class'=> 'form-label'))?>
 												<?=form_input('idlogin', set_value('idlogin'), array('class' => 'form-control', 'readonly'=>''))?>
 											</div>
 										</div>

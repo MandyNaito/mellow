@@ -17,15 +17,15 @@
 							<div class="body">
 								<h2 class="card-inside-title"></h2>
 								<?=form_open($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
-									<?=form_hidden('cdtipoestabelecimento', set_value('cdtipoestabelecimento', -1));?>
+									<?=form_hidden('cdtipoproduto', set_value('cdtipoproduto', -1));?>
 									<div class="row clearfix">
 										<div class="col-sm-12">
 											<div class="form-group form-float">
 												<div class="form-line">
-													<?=form_label($this->lang->str(100066), 'nmtipoestabelecimento', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'nmtipoestabelecimento','id' => 'nmtipoestabelecimento'), set_value('nmtipoestabelecimento'), array('class' => 'form-control', 'required'=>''))?>
+													<?=form_label($this->lang->str(100066), 'nmtipoproduto', array('class'=> 'form-label'))?>
+													<?=form_input(array('name' => 'nmtipoproduto','id' => 'nmtipoproduto'), set_value('nmtipoproduto'), array('class' => 'form-control', 'required'=>''))?>
 												</div>
-												<?=form_error('nmtipoestabelecimento');?>
+												<?=form_error('nmtipoproduto');?>
 											</div>
 										</div>
 									</div>
@@ -33,10 +33,10 @@
 										<div class="col-sm-12">
 											<div class="form-group form-float">
 												<div class="form-line">
-													<?=form_label($this->lang->str(100080), 'dstipoestabelecimento', array('class'=> 'form-label'))?>
-													<?=form_textarea(array('name' => 'dstipoestabelecimento','id' => 'dstipoestabelecimento'), set_value('dstipoestabelecimento'), array('class' => 'form-control no-resize'))?>
+													<?=form_label($this->lang->str(100080), 'dstipoproduto', array('class'=> 'form-label'))?>
+													<?=form_textarea(array('name' => 'dstipoproduto','id' => 'dstipoproduto'), set_value('dstipoproduto'), array('class' => 'form-control no-resize'))?>
 												</div>
-												<?=form_error('dstipoestabelecimento');?>
+												<?=form_error('dstipoproduto');?>
 											</div>
 										</div>
 									</div>
