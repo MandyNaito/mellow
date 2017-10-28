@@ -58,9 +58,12 @@ class Home extends Auth_Controller {
 			$options =  array_replace($options, $params);
 
 		$result = $model->getListData($options);
-		if($result['status'])
-			$item = array_replace(array('0' => ''), $result['data']['item']);
-
+		if($result['status']){
+			if(empty($params['denyEmpty']))
+				array_unshift($result['data']['item'], '');
+			$item = $result['data']['item'];
+		}
+		
 		return $item;
 	}
 	

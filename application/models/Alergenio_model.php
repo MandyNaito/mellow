@@ -7,6 +7,7 @@ class Alergenio_model extends Crud_Model {
 	var $cdfield 	= "cdalergenio";
 
 	public function getListData($dados = array()) {
+
 		# Limite:
 		$limit = '';
 		if (array_key_exists('limit',$dados) && !empty($dados['limit']) && array_key_exists('page',$dados)) 
@@ -18,8 +19,8 @@ class Alergenio_model extends Crud_Model {
         
 		# Ordenação:
 		$orderby = "";
-        if (isset($dados['ordeby']) && !empty($dados['ordeby']))
-			$orderby = ' ORDER BY '.$dados['ordeby'];
+        if (isset($dados['orderby']) && !empty($dados['orderby']))
+			$orderby = ' ORDER BY '.$dados['orderby'];
 		
 		# Tabelas:
 		$from = ' alergenio A ';

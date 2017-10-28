@@ -18,7 +18,7 @@ class Produto extends Crud {
         $this->load->model('alergenio_model', 	'alergenio');
 		
 		$this->data['list_tipoproduto'] = $this->lista($this->tipoproduto);
-		$this->data['list_alergenio'] 	= $this->lista($this->alergenio);
+		$this->data['list_alergenio'] 	= $this->lista($this->alergenio, array('denyEmpty' => true, 'orderby' => 'nmalergenio ASC'));
 
 		$this->model = $this->produto;
 	
