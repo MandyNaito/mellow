@@ -5838,7 +5838,27 @@ fieldset[disabled] .form-control {
     background-color: #ffffff;
     color: #fff;
     opacity: 0.8; }
+	
+.list-group .pl-none {
+  stroke: #ffffff; }
 
+.list-group .list-group-bg-none {
+	  background-color: transparent;
+	  border: none;
+ }
+.list-group .list-group-bg-none:hover, .list-group .list-group-bg-none:focus {
+	background-color: transparent;
+}
+
+.list-tree {
+	border: none !important;
+	padding-left: 20px;
+    padding-top: 10px;
+}
+
+.list-tree li:not(.expanded):hover{
+	color: #00BCD4
+}
 /* Pagination & Pager ========================== */
 .pager li > a {
   -webkit-border-radius: 0;

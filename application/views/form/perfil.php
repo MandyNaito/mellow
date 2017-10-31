@@ -10,9 +10,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="card">
 							<div class="header">
-								<h2>
-									<?=$title;?>
-								</h2>
+								<h2><?=$title;?></h2>
 							</div>
 							<div class="body">
 								<h2 class="card-inside-title"></h2>
@@ -31,6 +29,39 @@
 									</div>
 									
 									<div class="row clearfix">
+										<div class="col-sm-12">
+											<?=form_label($this->lang->str(100013), 'fgpermissao', array('class'=> 'form-label'))?>
+											<ul id="fgpermissao" class="list-tree">
+											<?php
+												if(!empty($list_menu)){
+													foreach($list_menu as $cdmenupai => $menupai){
+														$id = 'fgmenu_'.$cdmenupai;			
+														
+														echo '<li>';												
+														echo form_checkbox($id, 1, set_checkbox($id, 1, !empty(set_value($id))), array('class' => 'filled-in chk-col-pink'));
+														echo form_label($menupai['nmmenu'], $id, array('class'=> 'form-label'));														
+														if(!empty($menupai['childs'])){
+															echo '<ul>';
+															foreach($menupai['childs'] as $cdmenu => $menu){
+																$id = 'fgmenu_'.$cdmenu;			
+																
+																echo '<li>';													
+																echo form_checkbox($id, 1, set_checkbox($id, 1, !empty(set_value($id))), array('class' => 'filled-in chk-col-orange'));
+																echo form_label($menu['nmmenu'], $id, array('class'=> 'form-label'));														
+																echo '</li>';
+															}
+															echo '</ul>';
+														}
+														
+														echo '</li>';
+													}
+												}
+											?>
+											</ul>
+										</div>
+									</div>
+									
+									<div class="row clearfix">
 										<div id="actions" class="pull-right">
 											<div id="btn_actions" class="col-sm-12">
 												<?=form_reset('cancel', $this->lang->str(100044), array('class' => 'btn btn-default btn-cancel waves-effect', 'onclick' => 'window.location.replace(\''.site_url($controller).'\')')); ?>
@@ -38,6 +69,7 @@
 											</div>
 										</div>	
 									</div>
+									
 								<?=form_close();?>
 							</div>
 						</div>
@@ -50,7 +82,9 @@
 			var site_url = '<?=site_url($controller);?>';
 			var controller = '<?=$controller;?>';
 			
-			$(document).ready(function(){				
+			$(document).ready(function(){			
+
+				$(".list-tree").tree({});
 				$( "#"+controller+"-form" ).find("button[name='btn_submit']").on('click', function (e) {
 					$.validator.addMethod("valueNotEquals", function(value, element, arg){
 						return arg !== value;

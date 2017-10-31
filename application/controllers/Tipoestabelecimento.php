@@ -7,7 +7,7 @@ class Tipoestabelecimento extends Crud {
 	var $controller 	= 'tipoestabelecimento';
 	var $item_active 	= 'tipoestabelecimento';
 	var $cdfield 		= 'cdtipoestabelecimento';
-	var $str 			= 100011;
+	var $str 			= 100010;
 	
 	public function __construct()
 	{

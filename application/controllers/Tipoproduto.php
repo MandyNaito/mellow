@@ -7,7 +7,7 @@ class Tipoproduto extends Crud {
 	var $controller 	= 'tipoproduto';
 	var $item_active 	= 'tipoproduto';
 	var $cdfield 		= 'cdtipoproduto';
-	var $str 			= 100012;
+	var $str 			= 100011;
 	
 	public function __construct()
 	{

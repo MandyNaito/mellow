@@ -59,7 +59,25 @@ class Home extends Auth_Controller {
 
 		$result = $model->getListData($options);
 		if($result['status']){
-			if(empty($params['denyEmpty']))
+			if(empty($options['denyEmpty']))
+				array_unshift($result['data']['item'], '');
+			$item = $result['data']['item'];
+		}
+		
+		return $item;
+	}
+	
+	public function treelist($model, $params = array())
+	{
+		$item = array();
+		
+		$options = array('denyEmpty' => true, 'noparent' => true);
+		if(!empty($params))
+			$options =  array_replace($options, $params);
+
+		$result = $model->getListData($options);
+		if($result['status']){
+			if(empty($options['denyEmpty']))
 				array_unshift($result['data']['item'], '');
 			$item = $result['data']['item'];
 		}

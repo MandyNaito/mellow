@@ -23,7 +23,7 @@ Class Login extends CI_Controller
 
 	public function login_process()
 	{
-		$this->form_validation->set_rules('idlogin', $this->lang->str(100013), 'trim|required|xss_clean');
+		$this->form_validation->set_rules('idlogin', $this->lang->str(100012), 'trim|required|xss_clean');
 		$this->form_validation->set_rules('idsenha', $this->lang->str(100032), 'trim|required|xss_clean');
 
 		$run = $this->form_validation->run();

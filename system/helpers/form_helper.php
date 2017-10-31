@@ -257,6 +257,7 @@ if ( ! function_exists('form_input'))
 	{
 		$defaults = array(
 			'type' => 'text',
+			'id' => is_array($data) ? '' : $data,
 			'name' => is_array($data) ? '' : $data,
 			'value' => $value
 		);
@@ -281,6 +282,7 @@ if ( ! function_exists('form_date'))
 	{
 		$defaults = array(
 			'type' => 'date',
+			'id' => is_array($data) ? '' : $data,
 			'name' => is_array($data) ? '' : $data,
 			'value' => $value
 		);
@@ -305,6 +307,7 @@ if ( ! function_exists('form_email'))
 	{
 		$defaults = array(
 			'type' => 'email',
+			'id' => is_array($data) ? '' : $data,
 			'name' => is_array($data) ? '' : $data,
 			'value' => $value
 		);
@@ -374,6 +377,7 @@ if ( ! function_exists('form_textarea'))
 	function form_textarea($data = '', $value = '', $extra = '')
 	{
 		$defaults = array(
+			'id'   => is_array($data) ? '' : $data,
 			'name' => is_array($data) ? '' : $data,
 			'cols' => '40',
 			'rows' => '5'
@@ -453,7 +457,7 @@ if ( ! function_exists('form_dropdown'))
 		}
 		else
 		{
-			$defaults = array('name' => $data);
+			$defaults = array('id' => $data, 'name' => $data);
 		}
 
 		is_array($selected) OR $selected = array($selected);
@@ -530,7 +534,7 @@ if ( ! function_exists('form_checkbox'))
 	 */
 	function form_checkbox($data = '', $value = '', $checked = FALSE, $extra = '')
 	{
-		$defaults = array('type' => 'checkbox', 'name' => ( ! is_array($data) ? $data : ''), 'value' => $value);
+		$defaults = array('type' => 'checkbox', 'id' => ( ! is_array($data) ? $data : ''), 'name' => ( ! is_array($data) ? $data : ''), 'value' => $value);
 
 		if (is_array($data) && array_key_exists('checked', $data))
 		{

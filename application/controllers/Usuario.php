@@ -7,7 +7,7 @@ class Usuario extends Crud {
 	var $controller 	= 'usuario';
 	var $item_active 	= 'usuario';
 	var $cdfield 		= 'cdusuario';
-	var $str 			= 100013;
+	var $str 			= 100012;
 	
 	public function __construct()
 	{

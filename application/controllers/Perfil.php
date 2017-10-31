@@ -14,11 +14,12 @@ class Perfil extends Crud {
 		parent::__construct();
 		
         $this->load->model('perfil_model', 'perfil');
+        $this->load->model('menu_model', 'menu');
+				
+		$this->data['list_menu'] = $this->treelist($this->menu, array('orderby' => 'cdpai, cdordem ASC'));
 
 		$this->model = $this->perfil;
 		
-		$this->grid->show_action_view = false;
-	
 		$this->fields = array(
 			'cdperfil'     	=> array('label'=> $this->lang->str(100057), 	'rule' => 'trim|required|xss_clean', 'msg' => array(), 'isField' => true),
 			'nmperfil'     	=> array('label'=> $this->lang->str(100066), 	'rule' => 'trim|required|xss_clean', 'msg' => array(), 'isField' => true)

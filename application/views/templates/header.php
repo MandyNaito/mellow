@@ -60,6 +60,8 @@
 		-->
 		
 		<?=script_tag('assets/plugins/jquery-sparkline/jquery.sparkline.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-ui/jquery-ui.min.js')."\n";?>
+		<?=script_tag('assets/plugins/jquery-tree/jquery.tree.min.js')."\n";?>
 
 		<?=script_tag('assets/js/admin.js')."\n";?>
 		<?=script_tag('assets/js/pages/index.js')."\n";?>		
@@ -68,7 +70,7 @@
 		<?=script_tag('assets/js/grid.js')."\n";?>		
 		<?=script_tag('assets/js/demo.js')."\n";?>		
 		
-		
+
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 		
@@ -82,6 +84,8 @@
 		<?=link_tag('assets/plugins/waitme/waitMe.css')."\n";?>
 		<?=link_tag('assets/plugins/sweetalert/sweetalert.css')."\n";?>
 		<?=link_tag('assets/plugins/multi-select/css/multi-select.css')."\n";?>
+		<?=link_tag('assets/plugins/jquery-ui/jquery-ui.min.css')."\n";?>
+		<?=link_tag('assets/plugins/jquery-tree/jquery.tree.min.css')."\n";?>
 		<?=link_tag('assets/css/style.css')."\n";?>
 		<?=link_tag('assets/css/themes/theme-black-custom.css')."\n";?>		
 		

@@ -91,5 +91,97 @@ class Menu_model extends CI_Model {
 		
 		return $itens;
 	}
+	
+	public function getListData($dados = array()) {
+		# Limite:
+		$limit = '';
+		if (array_key_exists('limit',$dados) && !empty($dados['limit']) && array_key_exists('page',$dados)) 
+            $limit = ' LIMIT '.($dados['limit'] * $dados['page']).','.$dados['limit'].' ';
+        elseif (array_key_exists('limit',$dados) && !empty($dados['limit']) && array_key_exists('start',$dados))
+            $limit = ' LIMIT '.$dados['limit'].','.$dados['start'].' ';
+        elseif (array_key_exists('limit',$dados) && !empty($dados['limit']))
+            $limit = ' LIMIT '.$dados['limit'];
+        
+		# Ordenação:
+		$orderby = "";
+        if (isset($dados['orderby']) && !empty($dados['orderby']))
+			$orderby = ' ORDER BY '.$dados['orderby'];
+		
+		# Tabelas:
+		$from = ' menu M ';
+		if (array_key_exists('from',$dados)) 
+			$from = ' '.$dados['from'].' ';
+		
+		# Filtros:
+		$where = "";
+		foreach($dados as $field => $value)
+		{
+			switch(strtolower($field))
+			{
+				case 'cdmenu':			$where.= " AND M.{$field} = ".intval($value)." \n"; break;
+				case 'nmslug':			$where.= " AND M.{$field} = '{$value}' \n"; break;
+				case 'noparent':		$where.= " AND (M.cdpai IS NULL OR M.cdpai = '') \n"; break;
+				case 'buscarapida':	 	$where.= " AND (M.cdmenu = ".intval($value)." OR M.nmslug LIKE '%{$value}%' \n"; break;
+			}
+		}
+		
+		# Campos:
+		$select = '*';
+		if (array_key_exists('totalRecords',$dados)){
+			$select = ' COUNT(1) as totalRecords';
+            $limit = $orderby = '';
+        }
+		elseif (array_key_exists('select',$dados)) 
+			$select = ' '.$dados['select'].' ';
+		
+		$SQL = "
+			SELECT * FROM (
+				SELECT 
+					$select
+				FROM
+					$from 
+				WHERE 1  
+					$where
+			) A
+            $orderby 
+                $limit                     
+        ";
+		
+		$fields = $this->db->query($SQL)->result_array();
+
+		$label = array(
+			'cdmenu' 	=> $this->lang->str(100027),
+			'nmmenu' 	=> $this->lang->str(100066)
+			);
+		
+		if(empty($fields))
+			return array('status' => false, 'data' => array('label' => $label));
+
+		$itens = array();		
+		foreach ($fields as $values)
+		{
+			if (array_key_exists('list',$dados) && !empty($dados['list']))
+				$itens[$values['cdmenu']] = $this->lang->str($values['cdtermo']);	
+			else
+			{
+				$itens[$values['cdmenu']] = array(
+					'cdmenu' 	=> $values['cdmenu'],						
+					'nmmenu' 	=> $this->lang->str($values['cdtermo'])
+				);
+				
+				$childs = $this->childs($values['cdmenu']);
+				if(!empty($childs)){
+					foreach($childs as $k => $v){
+						$itens[$values['cdmenu']]['childs'][$v['cdmenu']] = array(
+							'cdmenu' 	=> $v['cdmenu'],						
+							'nmmenu' 	=> $this->lang->str($v['cdtermo'])
+						);
+					}
+				}
+			}
+		}
+		
+		return array('status' => true, 'data' => array('label' => $label, 'item' => $itens));
+	}
 
 }
