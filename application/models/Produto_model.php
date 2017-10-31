@@ -18,8 +18,8 @@ class Produto_model extends Crud_Model {
         
 		# Ordenação:
 		$orderby = "";
-        if (isset($dados['ordeby']) && !empty($dados['ordeby']))
-			$orderby = ' ORDER BY '.$dados['ordeby'];
+        if (isset($dados['orderby']) && !empty($dados['orderby']))
+			$orderby = ' ORDER BY '.$dados['orderby'];
 		
 		# Tabelas:
 		$from = ' 	produto P 
