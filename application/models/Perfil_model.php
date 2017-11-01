@@ -5,7 +5,49 @@ class Perfil_model extends Crud_Model {
 	
 	var $table 		= "perfil";
 	var $cdfield 	= "cdperfil";
+	
+	public function update($cdfield, $data){
+		
+		$fgpermissao = array();
+		if(!empty($data['fgpermissao'])){
+			$fgpermissao = $data['fgpermissao'];
+			unset($data['fgpermissao']);
+		}
+			
+		$updated = parent::update($cdfield, $data);
+		
+		if($updated){
+			$this->deleteChild('cdperfil', 'menu_perfil', $cdfield);
+			foreach($fgpermissao as $cdmenu => $value){
+				$this->insertChild('menu_perfil', array('cdperfil' => $cdfield, 'cdmenu' => $cdmenu));
+			}
+		}
 
+		return $updated;
+	}
+	
+	public function getChildData($table, $cdfield = -1) {
+		
+		$SQL = '';
+		switch($table){
+			case 'menu_perfil':
+				$SQL = '
+					SELECT 
+						*
+					FROM 
+						menu M 
+						INNER JOIN menu_perfil 	MP ON (MP.cdmenu = M.cdmenu)
+					WHERE 
+						MP.cdperfil = '.$cdfield;
+				break;
+		}
+		
+		if(!empty($SQL))
+			return $this->getChildTableData($SQL);
+		
+		return false;
+	}	
+	
 	public function getListData($dados = array()) {
 		# Limite:
 		$limit = '';

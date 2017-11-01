@@ -23,11 +23,7 @@ class Crud extends Home {
 				
 		$this->load->template('list/'.$this->controller, $this->data);
 	}
-	
-	public function childData($table, $model = '', $cdfield = -1){
-		parent::childData($table, $this->model, $this->input->post($this->cdfield));
-	}
-	
+		
 	public function novo(){
 		$this->data['target'] 		= $this->controller.'/inserir';
 		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
@@ -110,14 +106,13 @@ class Crud extends Home {
 		else 
 		{
 			$data = array();
-			$data_files = array();
 			foreach($fields as  $key => $field){
 				if($key != $this->cdfield && !empty($field['isField'])){
 					if(empty($field['isFile']))
 						$data[$key] = $this->input->post($key);
 					else
 						$data[$key] = $this->uploadImage($key);
-				}    
+				} 
 			}
 			
 			$str = '';
@@ -130,7 +125,7 @@ class Crud extends Home {
 				$str = 100071;
 			}
 
-			if(!empty($cdfield) && $cdfield != -1){				
+			if(!empty($cdfield) && $cdfield != -1){
 				$this->session->set_flashdata('success_message', $this->lang->str($str));
 				redirect($this->controller);
 			} 

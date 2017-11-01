@@ -35,18 +35,20 @@
 											<?php
 												if(!empty($list_menu)){
 													foreach($list_menu as $cdmenupai => $menupai){
-														$id = 'fgmenu_'.$cdmenupai;			
+														$id 	= 'fgpermissao_'.$cdmenupai;			
+														$name 	= 'fgpermissao['.$cdmenupai.']';			
 														
 														echo '<li>';												
-														echo form_checkbox($id, 1, set_checkbox($id, 1, !empty(set_value($id))), array('class' => 'filled-in chk-col-pink'));
+														echo form_checkbox(array('id' => $id, 'name' => $name), 1, set_checkbox($id, 1, !empty(set_value($id))), array('class' => 'filled-in chk-col-pink'));
 														echo form_label($menupai['nmmenu'], $id, array('class'=> 'form-label'));														
 														if(!empty($menupai['childs'])){
 															echo '<ul>';
 															foreach($menupai['childs'] as $cdmenu => $menu){
-																$id = 'fgmenu_'.$cdmenu;			
+																$id		 = 'fgpermissao_'.$cdmenu;	
+																$name	 = 'fgpermissao['.$cdmenu.']';			
 																
 																echo '<li>';													
-																echo form_checkbox($id, 1, set_checkbox($id, 1, !empty(set_value($id))), array('class' => 'filled-in chk-col-orange'));
+																echo form_checkbox(array('id' => $id, 'name' => $name), 1, set_checkbox($id, 1, !empty(set_value($id))), array('class' => 'filled-in chk-col-orange'));
 																echo form_label($menu['nmmenu'], $id, array('class'=> 'form-label'));														
 																echo '</li>';
 															}

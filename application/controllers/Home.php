@@ -96,8 +96,8 @@ class Home extends Auth_Controller {
 		echo json_encode($result);
 	}
 	
-	public function childData($table, $model, $cdfield){
-		$dados = $model->getChildData($table, $cdfield);
+	public function childData($table, $cdfield){
+		$dados = $this->model->getChildData($table, $cdfield);
 		if(!empty($dados))
 			$result = array('status' => true, 'records' => $dados);
 		else
