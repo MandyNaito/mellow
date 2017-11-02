@@ -32,5 +32,30 @@ class Produto extends Crud {
 			'fgalergenio'     			=> array('label'=> $this->lang->str(100091), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true)
 		);
 	}
-}
+	
+	public function editar($cdfield){
+		$alergenio = $this->model->getChildData('produto_alergenio', $cdfield);
+		foreach($alergenio as $k => $v)
+			$_POST['cdalergenio'][] = $v['cdalergenio'];
+
+		parent::editar($cdfield);
+	}
+	
+	public function visualizar($cdfield){
+		$alergenio = $this->model->getChildData('produto_alergenio', $cdfield);
+		foreach($alergenio as $k => $v)
+			$_POST['cdalergenio'][] = $v['cdalergenio'];
+			
+		parent::visualizar($cdfield);
+	}
+	
+	public function salvar($fields, $cdfield = ''){	
+	
+		/*if(!empty($this->input->post('fgalergenio'))){
+			$fields['cdalergenio']['rule'] .= "|required";
+		}*/
+		
+		return parent::salvar($fields, $cdfield);
+	}
+}	
 ?>

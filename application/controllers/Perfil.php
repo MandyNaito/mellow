@@ -40,7 +40,6 @@ class Perfil extends Crud {
 		foreach($permissao as $k => $v)
 			$_POST['fgpermissao_'.$v['cdmenu']] = 1;
 			
-		$this->data['fgmenu'] = $this->childlist('menu_perfil', $cdfield);
 		parent::visualizar($cdfield);
 	}
 }

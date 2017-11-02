@@ -6,6 +6,47 @@ class Produto_model extends Crud_Model {
 	var $table 		= "produto";
 	var $cdfield 	= "cdproduto";
 	
+	public function update($cdfield, $data){
+		
+		$cdalergenio = array();
+		if(!empty($data['cdalergenio'])){
+			$cdalergenio = $data['cdalergenio'];
+			unset($data['cdalergenio']);
+		}
+			
+		$updated = parent::update($cdfield, $data);
+		
+		/*if($updated){
+			$this->deleteChild('cdperfil', 'menu_perfil', $cdfield);
+			foreach($cdalergenio as $cd => $value){
+				$this->insertChild('menu_perfil', array('cdperfil' => $cdfield, 'cdmenu' => $cdmenu));
+			}
+		}*/
+
+		return $updated;
+	}
+	
+	public function getChildData($table, $cdfield = -1) {
+		
+		$SQL = '';
+		switch($table){
+			case 'produto_alergenio':
+				$SQL = '
+					SELECT 
+						*
+					FROM 
+						produto P 
+						INNER JOIN produto_alergenio 	PA ON (PA.cdproduto = P.cdproduto)
+					WHERE 
+						PA.cdproduto = '.$cdfield;
+				break;
+		}
+		
+		if(!empty($SQL))
+			return $this->getChildTableData($SQL);
+		
+		return false;
+	}
 	public function getListData($dados = array()) {
 		# Limite:
 		$limit = '';

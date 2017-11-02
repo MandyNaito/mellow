@@ -61,7 +61,7 @@
 													<?=form_label('', 'fgalergenio', array('class'=> 'form-label'))?>
 												</span>
 												<?=form_label($this->lang->str(100008), 'cdalergenio', array('class'=> 'form-label'))?>
-												<?=form_multiselect(array('name' => 'cdalergenio','id' => 'cdalergenio', 'selected' => set_value('cdalergenio'), 'data-value'=>set_value('cdalergenio')), $list_alergenio, array(), array('class' => 'ms'));?>
+												<?=form_multiselect(array('name' => 'cdalergenio[]', 'id' => 'cdalergenio', 'selected' => set_value('cdalergenio[]', $list_alergenio)), $list_alergenio, array(), array('class' => 'ms'));?>
 											
 												<?=form_error('fgalergenio');?>
 												<?=form_error('cdalergenio');?>

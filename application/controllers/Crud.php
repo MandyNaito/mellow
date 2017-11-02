@@ -37,14 +37,14 @@ class Crud extends Home {
 		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 		$this->data[$this->cdfield] = -1;
 		
-		$this->salvar();
+		$this->salvar($this->fields);
 	}
 	
 	public function editar($cdfield){
 		$this->data['target'] 		= $this->controller.'/editar/'.$cdfield;
 		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 
-		$this->salvar($cdfield);
+		$this->salvar($this->fields, $cdfield);
 	}
 	
 	public function visualizar($cdfield){
@@ -87,11 +87,9 @@ class Crud extends Home {
 		echo json_encode($dados);
 	}
 	
-	public function salvar($cdfield = ''){	
+	public function salvar($fields, $cdfield = ''){	
 		$fgedit = (!empty($cdfield) || $cdfield == -1);
-		
-		$fields = $this->fields;
-		
+				
 		$this->form_validation->set_error_delimiters('<div ><label class="error">', '</label></div>');
 		foreach($fields as $key => $field)
 			$this->form_validation->set_rules($key, $field['label'], $field['rule'], $field['msg']);
