@@ -13,17 +13,21 @@ class Produto extends Crud {
 	{
 		parent::__construct();
 		
-        $this->load->model('produto_model', 	'produto');
-        $this->load->model('tipoproduto_model', 'tipoproduto');
-        $this->load->model('alergenio_model', 	'alergenio');
+        $this->load->model('produto_model', 		'produto');
+        $this->load->model('tipoproduto_model', 	'tipoproduto');
+        $this->load->model('alergenio_model', 		'alergenio');
+        $this->load->model('estabelecimento_model', 'estabelecimento');
 		
-		$this->data['list_tipoproduto'] = $this->lista($this->tipoproduto);
-		$this->data['list_alergenio'] 	= $this->lista($this->alergenio, array('denyEmpty' => true, 'orderby' => 'nmalergenio ASC'));
+		$this->data['list_estabelecimento'] = $this->combolist($this->estabelecimento);
+		
+		$this->data['list_tipoproduto'] 	= $this->combolist($this->tipoproduto);
+		$this->data['list_alergenio'] 		= $this->combolist($this->alergenio, array('denyEmpty' => true, 'orderby' => 'nmalergenio ASC'));
 
 		$this->model = $this->produto;
 	
 		$this->fields = array(
 			'cdproduto'     			=> array('label'=> $this->lang->str(100057), 	'rule' => 'trim|required|xss_clean', 		'msg' => array(), 'isField' => true),
+			'cdestabelecimento'			=> array('label'=> $this->lang->str(100002), 	'rule' => 'trim|required|greater_than[0]', 	'msg' => array('greater_than' => $this->lang->str(100075).'%s'.$this->lang->str(100076)), 'isField' => true),
 			'cdtipoproduto'   			=> array('label'=> $this->lang->str(100077), 	'rule' => 'trim|required|greater_than[0]', 	'msg' => array('greater_than' => $this->lang->str(100075).'%s'.$this->lang->str(100076)), 'isField' => true),
 			'cdalergenio'   			=> array('label'=> $this->lang->str(100008), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
 			'nmproduto'     			=> array('label'=> $this->lang->str(100066), 	'rule' => 'trim|required|xss_clean', 		'msg' => array(), 'isField' => true),
@@ -37,6 +41,8 @@ class Produto extends Crud {
 		$alergenio = $this->model->getChildData('produto_alergenio', $cdfield);
 		foreach($alergenio as $k => $v)
 			$_POST['cdalergenio'][] = $v['cdalergenio'];
+			
+		$this->data['cdfield'] = $cdfield;
 
 		parent::editar($cdfield);
 	}
@@ -46,16 +52,9 @@ class Produto extends Crud {
 		foreach($alergenio as $k => $v)
 			$_POST['cdalergenio'][] = $v['cdalergenio'];
 			
+		$this->data['cdfield'] = $cdfield;
+			
 		parent::visualizar($cdfield);
-	}
-	
-	public function salvar($fields, $cdfield = ''){	
-	
-		/*if(!empty($this->input->post('fgalergenio'))){
-			$fields['cdalergenio']['rule'] .= "|required";
-		}*/
-		
-		return parent::salvar($fields, $cdfield);
 	}
 }	
 ?>

@@ -64,8 +64,11 @@ class Crud_Model extends CI_Model {
 		return $this->db->update($table, $data);
 	}
 	
-	public function deleteChild($field, $table, $cdfield){
-		return $this->db->delete($table, array($field => $cdfield)); 
+	public function deleteChild($field, $table, $cdfield){		
+		$this->db->delete($table, array($field => $cdfield)); 
+		if (!$this->db->affected_rows()) 
+			return false;		
+		return true;
 	}
 	
 	public function insertChild($table, $data){

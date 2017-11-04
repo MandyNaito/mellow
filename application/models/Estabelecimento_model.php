@@ -88,6 +88,17 @@ class Estabelecimento_model extends Crud_Model {
 						'nmfantasia' 				=> $values['nmfantasia'],
 						'fgstatus' 					=> $values['fgstatus']
 						);
+			if (array_key_exists('list',$dados) && !empty($dados['list']))
+				$itens[$values['cdestabelecimento']] = $values['nmfantasia'];
+			else
+			{
+				$itens[$values['cdestabelecimento']] = array(
+						'cdestabelecimento' 		=> $values['cdestabelecimento'],
+						'cdtipoestabelecimento' 	=> $values['nmtipoestabelecimento'],
+						'nmfantasia' 				=> $values['nmfantasia'],
+						'fgstatus' 					=> $values['fgstatus']
+						);
+			}
 		}
 		
 		return array('status' => true, 'data' => array('label' => $label, 'item' => $itens));

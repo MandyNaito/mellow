@@ -17,6 +17,7 @@ class Crud extends Home {
 		$this->grid->url_action_edit = $this->controller.'/editar/';
 	}
 	
+		
 	public function index() {
 		$this->data['title'] 	= $this->lang->str($this->str);
 		$this->data['urlnovo'] 	= site_url($this->controller.'/novo');

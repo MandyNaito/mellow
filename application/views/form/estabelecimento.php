@@ -123,7 +123,7 @@
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100086), 'nrcapacidade', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'nrcapacidade','id' => 'nrcapacidade'), set_value('nrcapacidade'), array('class' => 'form-control', 'required'=>''))?>
+													<?=form_input(array('name' => 'nrcapacidade','id' => 'nrcapacidade'), set_value('nrcapacidade'), array('class' => 'form-control number', 'required'=>''))?>
 												</div>
 												<?=form_error('nrcapacidade');?>
 											</div>

@@ -22,20 +22,41 @@
 										<div class="col-sm-6">
 											<div class="form-group">
 												<?=form_label($this->lang->str(100077), 'cdtipoproduto', array('class'=> 'form-label'))?>
-												<?=form_dropdown(array('name' => 'cdtipoproduto','id' => 'cdtipoproduto', 'selected' => set_value('cdtipoproduto'), 'data-value'=>set_value('cdtipoproduto')), $list_tipoproduto, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
+												<?=form_dropdown(array('name' => 'cdtipoproduto','id' => 'cdtipoproduto', 'selected' => set_value('cdtipoproduto')), $list_tipoproduto, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
 												<?=form_error('cdtipoproduto');?>
 											</div>
 										</div>
+										
+										<?php if(empty($cdestabelecimento)) { ?>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<?=form_label($this->lang->str(100002), 'cdestabelecimento', array('class'=> 'form-label'))?>
+												<?=form_dropdown(array('name' => 'cdestabelecimento','id' => 'cdestabelecimento', 'selected' => set_value('cdestabelecimento')), $list_estabelecimento, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
+												<?=form_error('cdestabelecimento');?>
+											</div>
+										</div>
+										<?php } else { ?>
+											<?=form_hidden('cdestabelecimento', set_value('cdestabelecimento'));?>
+										<?php } ?>
 									</div>
 
 									<div class="row clearfix">
-										<div class="col-sm-12">
+										<div class="col-sm-8">
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100066), 'nmproduto', array('class'=> 'form-label'))?>
 													<?=form_input(array('name' => 'nmproduto','id' => 'nmproduto'), set_value('nmproduto'), array('class' => 'form-control', 'required'=>''))?>
 												</div>
 												<?=form_error('nmproduto');?>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-float">
+												<div class="form-line">
+													<?=form_label($this->lang->str(100092), 'vlproduto', array('class'=> 'form-label'))?>
+													<?=form_input(array('name' => 'vlproduto','id' => 'vlproduto'), set_value('vlproduto'), array('class' => 'form-control moneyZero', 'required'=>''))?>
+												</div>
+												<?=form_error('vlproduto');?>
 											</div>
 										</div>
 									</div>
@@ -89,16 +110,13 @@
 			var site_url = '<?=site_url($controller);?>';
 			var controller = '<?=$controller;?>';
 			
-			$(document).ready(function(){			
-				
-				$('#cdalergenio').multiSelect({ selectableOptgroup: true });
-				
+			$(document).ready(function(){
 				$("#fgalergenio").change(function () {
 					var checked = $(this).is(":checked");
 					$('#cdalergenio').prop('disabled', (!checked));
 					
-					/*if(!checked)
-						$('#cdalergenio').val('');*/
+					if(!checked)
+						$('#cdalergenio').val('');
 						
 					$('#cdalergenio').multiSelect('refresh');
 				}).change();
@@ -107,7 +125,7 @@
 					$.validator.addMethod("valueNotEquals", function(value, element, arg){
 						return arg !== value;
 					}, s_100074);
-					 
+					
 					$( "#"+controller+"-form" ).validate({
 						rules: {
 							'cdtipoproduto': {
@@ -123,6 +141,11 @@
 						errorPlacement: function (error, element) {
 							$(element).parents('.form-group').append(error);
 						}
+					});
+					
+					$.each($(".moneyZero"), function(){
+						var value = $(this).maskMoney('unmasked')[0];
+						$(this).val(value);
 					});
 					 
 					$( "#"+controller+"-form" ).submit(); 

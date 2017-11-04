@@ -18,7 +18,7 @@ class Usuario extends Crud {
 
 		$this->model = $this->usuario;		
 	
-		$this->data['list_perfil'] 				= $this->lista($this->perfil);
+		$this->data['list_perfil'] 				= $this->combolist($this->perfil);
 		
 		$this->fields = array(
 			'txfoto'			=> array('label'=> $this->lang->str(100087), 	'rule' => 'trim|xss_clean', 											'msg' => array(), 'isField' => true, 	'isFile' => true),

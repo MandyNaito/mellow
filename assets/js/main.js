@@ -366,11 +366,60 @@ function loadDefault(){
 	});
 }
 
-function loadMasks(obj){
-	
+function loadMasks(obj){	
+	$(obj).find(".ms").multiSelect({ selectableOptgroup: true });
+
 	$(obj).find(".cpf").mask("999.999.999-99");
-	$(obj).find(".phone").mask("(99) 9999-9999");
-	$(obj).find(".cellphone").mask("(99) 99999-999?9");
+	$(obj).find(".cnpj").mask("99.999.999/9999-99");
+		
+	$(obj).find(".number").mask( "0#" );
+	$(obj).find(".interger").mask( "9?999" );
+
+	$(obj).find(".float").maskMoney({prefix:'', thousands:'.', decimal:',', affixesStay: false});
+	$(obj).find(".floatZero").maskMoney({prefix:'', thousands:'.', decimal:',', affixesStay: false, allowZero: true});
+	
+	$(obj).find(".money").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: true, selectAllOnFocus : true});
+	$(obj).find(".moneyZero").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: true, allowZero: true, selectAllOnFocus : true});
+	$(obj).find(".moneyZeroNegative").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: true, allowZero: true, allowNegative: true, selectAllOnFocus : true});
+	
+	$(obj).find(".percent").maskMoney({suffix:' %', thousands:'.', decimal:',', affixesStay: false});
+	$(obj).find(".percentZero").maskMoney({suffix:' %', thousands:'.', decimal:',', affixesStay: false, allowZero: true});
+
+	$.each($(obj).find(".float, .floatZero, .percent, .percentZero, .money, .moneyZero, .moneyZeroNegative"), function(){
+		var value = $(this).val();
+		$(this).maskMoney('mask', Number(value));
+	});
+	
+	$(obj).find(".phone").mask("(99)9999-9999");
+	$(obj).find(".cellphone").mask("(99)99999-9999");
+	
+	$(obj).find(".day").mask("9?9");
+	$(obj).find(".month").mask("9?9");
+	$(obj).find(".year").mask( "9999" );	
+	$(obj).find(".dateMonth").mask("99/9999");
+	$(obj).find(".datetime").mask("99/99/9999 99:99");
+	
+	$(obj).find(".date").mask("99/99/9999", {
+		completed: function() {
+			if (empty(verificaDataValida($(this).val()))) {
+				addErrorMsg("Data inválida!");
+				$(this).val('');
+			}
+		}
+	});
+	
+	$(obj).find(".hour").mask("99:99", {
+		completed: function() {
+			var valor_array = $(this).val().split(":");
+			var horas 	= valor_array[0];
+			var minutos = valor_array[1];
+			if ((horas > 24) || (minutos > 59)) {
+				addErrorMsg("Hora inválida!");
+				$(this).val('');
+			}
+		}
+	});
+	
 	
 	$.each($(obj).find('.span-date'), function() {
 		var value = $(this).html();
@@ -440,9 +489,6 @@ function loadMasks(obj){
 			$('#'+ id+ '-display').attr('value', $.datepicker.formatDate("MM/yy", date));
 		}
 	});
-	
-	$(obj).find(".date").mask("99/99/9999");
-	$(obj).find(".dateMonth").mask("99/9999");
 }
 
 $(document).ready(function(){

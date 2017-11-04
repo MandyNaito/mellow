@@ -15,7 +15,7 @@ class Estabelecimento extends Crud {
 		
         $this->load->model('estabelecimento_model', 'estabelecimento');
         $this->load->model('tipoestabelecimento_model', 'tipoestabelecimento');
-		$this->data['list_tipoestabelecimento'] = $this->lista($this->tipoestabelecimento);
+		$this->data['list_tipoestabelecimento'] = $this->combolist($this->tipoestabelecimento);
 
 		$this->model = $this->estabelecimento;
 	

@@ -6,22 +6,45 @@ class Produto_model extends Crud_Model {
 	var $table 		= "produto";
 	var $cdfield 	= "cdproduto";
 	
-	public function update($cdfield, $data){
+	public function insert($data){
 		
 		$cdalergenio = array();
 		if(!empty($data['cdalergenio'])){
 			$cdalergenio = $data['cdalergenio'];
 			unset($data['cdalergenio']);
 		}
-			
+		
+		$this->db->insert($this->table, $data);
+		$cdfield = $this->db->insert_id();
+		
+		if(!empty($cdfield)){
+			foreach($cdalergenio as $key => $value){
+				$this->insertChild('produto_alergenio', array('cdproduto' => $cdfield, 'cdalergenio' => $value));
+			}
+		}
+		
+		return $cdfield;
+	}
+	
+	public function update($cdfield, $data){
+		
+		$cdalergenio = array();
+		if(!empty($data['cdalergenio'])){
+			$cdalergenio = array_unique($data['cdalergenio']);
+			unset($data['cdalergenio']);
+		}
+		
 		$updated = parent::update($cdfield, $data);
 		
-		/*if($updated){
-			$this->deleteChild('cdperfil', 'menu_perfil', $cdfield);
-			foreach($cdalergenio as $cd => $value){
-				$this->insertChild('menu_perfil', array('cdperfil' => $cdfield, 'cdmenu' => $cdmenu));
+		if($updated){
+			$deleted = $this->deleteChild('cdproduto', 'produto_alergenio', $cdfield);
+
+			if($deleted){
+				foreach($cdalergenio as $key => $value)
+					$this->insertChild('produto_alergenio', array('cdproduto' => $cdfield, 'cdalergenio' => $value));
 			}
-		}*/
+			
+		}
 
 		return $updated;
 	}
@@ -125,13 +148,18 @@ class Produto_model extends Crud_Model {
 		
 		foreach ($fields as $values)
 		{
-			$itens[$values['cdproduto']] = array(
+			if (array_key_exists('list',$dados) && !empty($dados['list']))
+				$itens[$values['cdproduto']] = $values['nmproduto'];
+			else
+			{
+				$itens[$values['cdproduto']] = array(
 						'cdproduto' 		=> $values['cdproduto'],
 						'cdtipoproduto' 	=> $values['nmtipoproduto'],
 						'nmproduto' 		=> $values['nmproduto'],
 						'vlproduto' 		=> $values['vlproduto'],
 						'fgstatus' 			=> $values['fgstatus']
 						);
+			}
 		}
 		
 		return array('status' => true, 'data' => array('label' => $label, 'item' => $itens));

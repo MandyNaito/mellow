@@ -49,7 +49,7 @@ class Home extends Auth_Controller {
 		echo json_encode($dados);
 	}
 	
-	public function lista($model, $params = array())
+	public function combolist($model, $params = array())
 	{
 		$item = array();
 		
@@ -85,9 +85,9 @@ class Home extends Auth_Controller {
 		return $item;
 	}
 	
-	public function combolist($mod){
+	public function combolist2($mod){
 		$this->load->model($mod.'_model', $mod);
-		$dados = $this->lista($this->{$mod}, $_REQUEST);
+		$dados = $this->combolist($this->{$mod}, $_REQUEST);
 		if(!empty($dados))
 			$result = array('status' => true, 'records' => $dados);
 		else
