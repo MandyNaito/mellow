@@ -17,6 +17,13 @@
 							<div class="body">
 								<h2 class="card-inside-title"></h2>
 								<div class="row clearfix">
+									<div class="col-sm-12">
+										<div class="form-group form-float">
+											<?=img(set_value('txfoto', 'assets/images/business-default.png'), false, array('id' => 'img_txfoto', 'class' => 'user-profile-photo img-thumbnail zoom-in', 'title' => $this->lang->str(100087)));?>
+										</div>
+									</div>
+								</div>
+								<div class="row clearfix">
 									<div class="col-sm-6">
 										<div class="form-group">
 											<?=form_label($this->lang->str(100077), 'cdtipoestabelecimento', array('class'=> 'form-label'))?>

@@ -16,8 +16,17 @@
 							</div>
 							<div class="body">
 								<h2 class="card-inside-title"></h2>
-								<?=form_open($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
+								<?=form_open_multipart($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
 									<?=form_hidden('cdestabelecimento', set_value('cdestabelecimento', -1));?>
+									<div class="row clearfix">
+										<div class="col-sm-12">
+											<div class="form-group form-float">
+												<?=form_upload(array('name' => 'txfoto', 'id' => 'txfoto'),set_value('txfoto'), array('placeholder' => $this->lang->str(100087),'class' => 'hidden', 'enabled' => true, 'accept' => 'image/*', 'onchange' => 'readURL(this);'));?>
+												<?=img(set_value('txfoto', 'assets/images/business-default.png'), false, array('id' => 'img_txfoto', 'class' => 'user-profile-photo img-thumbnail zoom-in', 'title' => $this->lang->str(100087)));?>
+												<?=form_error('txfoto');?>
+											</div>
+										</div>
+									</div>
 									<div class="row clearfix">
 										<div class="col-sm-6">
 											<div class="form-group">
@@ -150,7 +159,10 @@
 			var site_url = '<?=site_url($controller);?>';
 			var controller = '<?=$controller;?>';
 			
-			$(document).ready(function(){				
+			$(document).ready(function(){			
+				$('#img_txfoto').on('click', function() {
+					$('#txfoto').click();
+				});	
 				$( "#"+controller+"-form" ).find("button[name='btn_submit']").on('click', function (e) {
 					$.validator.addMethod("valueNotEquals", function(value, element, arg){
 						return arg !== value;
@@ -176,6 +188,18 @@
 					$( "#"+controller+"-form" ).submit(); 
 				});
 			});	
+			
+			function readURL(input){
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+
+					reader.onload = function (e) {
+						$('#img_txfoto').attr('src', e.target.result);
+					};
+
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
 		</script>
 	</body>
 </html>

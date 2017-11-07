@@ -201,7 +201,7 @@
 
 				<div class="row">
 					<div class="col-md-4"> 
-						<a class="portfolio-item" href="<?=site_url('login/app');?>">
+						<a class="portfolio-item" href="<?=site_url('app');?>">
 							<div class="portfolio-item info-box-3 bg-pink hover-zoom-effect">
 								<div class="icon">
 									<i class="material-icons">face</i>
@@ -214,7 +214,7 @@
 						</a>
 					</div>
 					<div class="col-md-4"> 
-						<a class="portfolio-item" href="<?=site_url('login/business');?>">
+						<a class="portfolio-item" href="<?=site_url('business');?>">
 							<div class="portfolio-item info-box-3 bg-cyan hover-zoom-effect">
 								<div class="icon">
 									<i class="material-icons">location_city</i>
@@ -227,7 +227,7 @@
 						</a>
 					</div>
 					<div class="col-md-4"> 
-						<a class="portfolio-item" href="<?=site_url('login/admin');?>">
+						<a class="portfolio-item" href="<?=site_url('admin');?>">
 							<div class="portfolio-item info-box-3 bg-orange hover-zoom-effect">
 								<div class="icon">
 									<i class="material-icons">settings</i>

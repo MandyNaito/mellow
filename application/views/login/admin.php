@@ -73,7 +73,7 @@
 		?>
 	</head>
 	
-	<body class="login-page">
+	<body class="login-page login-admin">
 		<div class="login-box">
 			<div class="logo">
 				<a href="javascript:void(0);"><?=img('assets/images/logo/lg-azul.png', FALSE, array('class' => 'm-b-10 m-t-50', 'height' => '50'))."\n";?></a>

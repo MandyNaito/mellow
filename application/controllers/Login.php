@@ -2,10 +2,12 @@
 Class Login extends CI_Controller 
 {
 	var $data = array();
+	var $type = 'app';
 	
 	public function __construct()
 	{
 		parent::__construct();
+		$this->data['wintitle'] = $this->lang->str(100097);
 
 		$this->multi_menu->set_items(array());
         $this->load->model('login_model', 'login');
@@ -13,7 +15,6 @@ Class Login extends CI_Controller
 	
 	public function index() 
 	{
-		$this->data['wintitle'] = $this->lang->str(100097);
 		$this->load->view('portal', $this->data);
 		
 		if(!empty($this->session->userdata['logged_in']))
@@ -24,6 +25,7 @@ Class Login extends CI_Controller
 	{
 		$this->data['wintitle'] = $this->lang->str(100094)." | ".$this->lang->str(100093);
 		$this->load->view('login/admin', $this->data);
+		$this->type = 'admin';
 		
 		if(!empty($this->session->userdata['logged_in']))
 			redirect('home');
@@ -34,6 +36,7 @@ Class Login extends CI_Controller
 	{
 		$this->data['wintitle'] = $this->lang->str(100095)." | ".$this->lang->str(100093);
 		$this->load->view('login/business', $this->data);
+		$this->type = 'business';
 		
 		if(!empty($this->session->userdata['logged_in']))
 			redirect('home');
@@ -44,10 +47,16 @@ Class Login extends CI_Controller
 	{
 		$this->data['wintitle'] = $this->lang->str(100096)." | ".$this->lang->str(100093);
 		$this->load->view('login/app', $this->data);
+		$this->type = 'app';
 		
 		if(!empty($this->session->userdata['logged_in']))
 			redirect('home');
 		
+	}
+	
+	public function cadastro($type){
+		$this->type = $type;
+		$this->load->view('sign-up/'.$this->type, $this->data);
 	}
 
 	public function login_process()
@@ -61,7 +70,7 @@ Class Login extends CI_Controller
 			if(!empty($this->session->userdata['logged_in']))
 				redirect('home');
 			else
-				redirect('login');
+				redirect('login/'.$this->type);
 		} 
 		else 
 		{
@@ -96,20 +105,20 @@ Class Login extends CI_Controller
 					else
 					{
 						$this->data['error_message'] = $this->lang->str(100033);
-						$this->load->view('login', $this->data);
+						$this->load->view('login/'.$this->type, $this->data);
 					}
 						
 				}
 				else 
 				{
 					$this->data['error_message'] = $this->lang->str(100034);
-					$this->load->view('login', $this->data);
+					$this->load->view('login/'.$this->type, $this->data);
 				}
 			} 
 			else 
 			{
 				$this->data['error_message'] = $this->lang->str(100034);
-				$this->load->view('login', $this->data);
+				$this->load->view('login/'.$this->type, $this->data);
 			}
 		}
 	}
@@ -124,7 +133,7 @@ Class Login extends CI_Controller
 						);
 		$this->session->unset_userdata('logged_in', $sess_array);
 		$this->data['success_message'] = $this->lang->str(100035);
-		$this->load->view('login', $this->data);
+		$this->load->view('login/'.$this->type, $this->data);
 	}
 }
 

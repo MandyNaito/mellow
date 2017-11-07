@@ -7747,12 +7747,32 @@ fieldset[disabled] .form-control {
   color: #2196F3; }
 
 /* Login Page ================================== */
+html, body {
+    height:100%;
+} 
+.login-app {
+	background-image: url('../images/background/app.jpg');
+}
+
+.login-business {
+	background-image: url('../images/background/business.jpg');
+}
+
+.login-admin {
+	background-image: url('../images/background/admin.jpg');
+}
+
 .login-page {
-  background-color: black;
-  padding-left: 0;
-  max-width: 360px;
-  margin: 5% auto;
-  overflow-x: hidden; }
+	background-color: black;
+	padding-left: 0;
+	max-width: 360px;
+	margin: 5% auto;
+	overflow-x: hidden; 
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: left top;
+	overflow: hidden; 
+ }
   .login-page .login-box .msg {
     color: #555;
     margin-bottom: 30px;

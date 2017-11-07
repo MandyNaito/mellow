@@ -22,6 +22,7 @@ class Estabelecimento extends Crud {
 		$this->fields = array(
 			'cdestabelecimento'     	=> array('label'=> $this->lang->str(100057), 	'rule' => 'trim|required|xss_clean', 		'msg' => array(), 'isField' => true),
 			'cdtipoestabelecimento'   	=> array('label'=> $this->lang->str(100077), 	'rule' => 'trim|required|greater_than[0]', 	'msg' => array('greater_than' => $this->lang->str(100075).'%s'.$this->lang->str(100076)), 'isField' => true),
+			'txfoto'					=> array('label'=> $this->lang->str(100087), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true, 	'isFile' => true),
 			'nmrazaosocial'     		=> array('label'=> $this->lang->str(100078), 	'rule' => 'trim|required|xss_clean', 		'msg' => array(), 'isField' => true),
 			'nmfantasia'     			=> array('label'=> $this->lang->str(100079), 	'rule' => 'trim|required|xss_clean', 		'msg' => array(), 'isField' => true),
 			'dsestabelecimento'     	=> array('label'=> $this->lang->str(100080), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
