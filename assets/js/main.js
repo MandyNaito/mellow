@@ -367,7 +367,7 @@ function loadDefault(){
 }
 
 function loadMasks(obj){	
-	$(obj).find(".ms").multiSelect({ selectableOptgroup: true });
+	try{$(obj).find(".ms").multiSelect({ selectableOptgroup: true });} catch(e){};
 
 	$(obj).find(".cpf").mask("999.999.999-99");
 	$(obj).find(".cnpj").mask("99.999.999/9999-99");

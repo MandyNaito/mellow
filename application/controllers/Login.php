@@ -13,6 +13,7 @@ Class Login extends CI_Controller
 	
 	public function index() 
 	{
+		$this->data['wintitle'] = $this->lang->str(100097);
 		$this->load->view('portal', $this->data);
 		
 		if(!empty($this->session->userdata['logged_in']))

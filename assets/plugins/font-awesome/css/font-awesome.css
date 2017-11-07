@@ -2197,3 +2197,5 @@
   overflow: visible;
   clip: auto;
 }
+
+.fa-lattes:before{content:"\f2b5"}
