@@ -9,12 +9,40 @@ Class Login extends CI_Controller
 
 		$this->multi_menu->set_items(array());
         $this->load->model('login_model', 'login');
-		$this->data['wintitle'] = $this->lang->str(100000)." | ".$this->lang->str(100093);
 	}
-
+	
 	public function index() 
 	{
-		$this->load->view('login', $this->data);
+		$this->load->view('portal', $this->data);
+		
+		if(!empty($this->session->userdata['logged_in']))
+			redirect('home');
+	}
+	
+	public function admin() 
+	{
+		$this->data['wintitle'] = $this->lang->str(100094)." | ".$this->lang->str(100093);
+		$this->load->view('login/admin', $this->data);
+		
+		if(!empty($this->session->userdata['logged_in']))
+			redirect('home');
+		
+	}
+	
+	public function business() 
+	{
+		$this->data['wintitle'] = $this->lang->str(100095)." | ".$this->lang->str(100093);
+		$this->load->view('login/business', $this->data);
+		
+		if(!empty($this->session->userdata['logged_in']))
+			redirect('home');
+		
+	}
+
+	public function app() 
+	{
+		$this->data['wintitle'] = $this->lang->str(100096)." | ".$this->lang->str(100093);
+		$this->load->view('login/app', $this->data);
 		
 		if(!empty($this->session->userdata['logged_in']))
 			redirect('home');

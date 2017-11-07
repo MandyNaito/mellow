@@ -7771,6 +7771,22 @@ fieldset[disabled] .form-control {
       color: #fff;
       margin-top: -5px; }
 
+	  
+	  .portal-page .portal-box .logo {
+    margin-bottom: 50px; }
+    .portal-page .portal-box .logo a {
+      font-size: 36px;
+      display: block;
+      width: 100%;
+      text-align: center;
+      color: #fff; }
+    .portal-page .portal-box .logo small {
+      display: block;
+      width: 100%;
+      text-align: center;
+      color: #eee;
+      margin-top: -5px; }
+	  
 /* Sign Up Page ================================ */
 .signup-page {
   background-color: #00BCD4;

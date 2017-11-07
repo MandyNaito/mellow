@@ -8,6 +8,6 @@ class Auth_Controller extends CI_Controller {
         parent::__construct();
 		
         if (empty($this->session->userdata['NOSESSION']) && !isset($this->session->userdata['logged_in'])) 
-			redirect('login/login_process/');
+			redirect('login/admin/login_process/');
     }
 }
