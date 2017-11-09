@@ -73,7 +73,7 @@
 		?>
 	</head>
 	
-	<body class="login-page login-app">
+	<body class="login-page login-business">
 		<div class="login-box">
 			<div class="logo">
 				<a href="javascript:void(0);"><?=img('assets/images/logo/sm-preta.png', FALSE, array('class' => 'm-b-10 m-t-50', 'height' => '250'))."\n";?></a>
@@ -111,7 +111,7 @@
 						
 						<div class="row m-t-15 m-b--20">
 							<div class="col-xs-12">
-								<a href="<?=site_url('login/cadastro/app');?>"><?=$this->lang->str(100098);?></a>
+								<a href="<?=site_url('login/cadastro');?>"><?=$this->lang->str(100098);?></a>
 							</div>
 						</div>
 					<?=form_close();?>

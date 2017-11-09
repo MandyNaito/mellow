@@ -10,3 +10,38 @@ DEBUG - 2017-11-09 03:38:06 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2017-11-09 03:38:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
 DEBUG - 2017-11-09 03:38:06 --> Config file loaded: C:\wamp64\www\gestor\application\app\config/breadcrumbs.php
 DEBUG - 2017-11-09 03:38:06 --> Breadcrumbs Class Initialized
+DEBUG - 2017-11-09 10:18:24 --> UTF-8 Support Enabled
+DEBUG - 2017-11-09 10:18:24 --> No URI present. Default controller set.
+DEBUG - 2017-11-09 10:18:24 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2017-11-09 10:18:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2017-11-09 10:18:24 --> Config file loaded: C:\wamp64\www\gestor\application\app\config/breadcrumbs.php
+DEBUG - 2017-11-09 10:18:24 --> Breadcrumbs Class Initialized
+DEBUG - 2017-11-09 10:18:24 --> Total execution time: 0.1023
+DEBUG - 2017-11-09 10:21:49 --> UTF-8 Support Enabled
+DEBUG - 2017-11-09 10:21:49 --> No URI present. Default controller set.
+DEBUG - 2017-11-09 10:21:49 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2017-11-09 10:21:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2017-11-09 10:21:49 --> Config file loaded: C:\wamp64\www\gestor\application\app\config/breadcrumbs.php
+DEBUG - 2017-11-09 10:21:49 --> Breadcrumbs Class Initialized
+DEBUG - 2017-11-09 10:21:49 --> Total execution time: 0.1705
+DEBUG - 2017-11-09 10:22:28 --> UTF-8 Support Enabled
+DEBUG - 2017-11-09 10:22:28 --> No URI present. Default controller set.
+DEBUG - 2017-11-09 10:22:28 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2017-11-09 10:22:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2017-11-09 10:22:28 --> Config file loaded: C:\wamp64\www\gestor\application\app\config/breadcrumbs.php
+DEBUG - 2017-11-09 10:22:28 --> Breadcrumbs Class Initialized
+DEBUG - 2017-11-09 10:22:28 --> Total execution time: 0.0858
+DEBUG - 2017-11-09 10:22:30 --> UTF-8 Support Enabled
+DEBUG - 2017-11-09 10:22:30 --> No URI present. Default controller set.
+DEBUG - 2017-11-09 10:22:30 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2017-11-09 10:22:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2017-11-09 10:22:30 --> Config file loaded: C:\wamp64\www\gestor\application\app\config/breadcrumbs.php
+DEBUG - 2017-11-09 10:22:30 --> Breadcrumbs Class Initialized
+DEBUG - 2017-11-09 10:22:30 --> Total execution time: 0.0767
+DEBUG - 2017-11-09 10:24:41 --> UTF-8 Support Enabled
+DEBUG - 2017-11-09 10:24:41 --> No URI present. Default controller set.
+DEBUG - 2017-11-09 10:24:41 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2017-11-09 10:24:41 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2017-11-09 10:24:41 --> Config file loaded: C:\wamp64\www\gestor\application\app\config/breadcrumbs.php
+DEBUG - 2017-11-09 10:24:41 --> Breadcrumbs Class Initialized
+DEBUG - 2017-11-09 10:24:41 --> Total execution time: 0.0793

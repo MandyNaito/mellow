@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-defined('CURRENT_APP') OR define('CURRENT_APP', 'admin');
+defined('CURRENT_APP') OR define('CURRENT_APP', 'app');
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
