@@ -76,16 +76,12 @@
 	<body class="login-page login-admin">
 		<div class="login-box">
 			<div class="logo">
-				<a href="javascript:void(0);"><?=img('assets/images/logo/sm-preta.png', FALSE, array('class' => 'm-b-10 m-t-50', 'height' => '250'))."\n";?></a>
+				<a href="javascript:void(0);"><?=img('assets/images/logo/lg-azul.png', FALSE, array('class' => 'm-b-10 m-t-50', 'height' => '75'))."\n";?></a>
+				<small><?=$this->lang->str(100036)?></small>
 			</div>
 			<div class="card">
 				<div class="body">
-				<?php
-					$url_action = "login/login_process/";
-					$attributes = array('id' => 'form', 'class'=>'login-form', 'role'=> 'form', 'method'=> 'post');
-					$hidden = array();
-				?>
-				<?=form_open($url_action, $attributes, $hidden)?>
+					<?=form_open("login/login_process/", array('id' => 'form', 'class'=>'login-form', 'role'=> 'form', 'method'=> 'post'), array())?>
 						<div class="msg"></div>
 						<div class="input-group">
 							<span class="input-group-addon">

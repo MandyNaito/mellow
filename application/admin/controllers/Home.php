@@ -21,6 +21,7 @@ class Home extends Auth_Controller {
 		$this->data['nmtipo'] 		= $this->session->userdata('logged_in')['nmtipo'];
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['controller'] 	= $this->controller;
+		$this->data['welcome'] 		= $this->lang->replaceStringTags(100102, array(1 => array('text' => $this->lang->str(100094))));
 		
 		$this->breadcrumbs->reset();
 		$bread = $this->menu->getBreadcrumbs('home');
