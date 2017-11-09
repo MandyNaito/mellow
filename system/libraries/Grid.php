@@ -2,7 +2,7 @@
 /**
  * @package		Grid
  */
-class Grid {
+class CI_Grid {
 	
 	private $itens_grid 			= array();
 	private $label_grid 			= array();

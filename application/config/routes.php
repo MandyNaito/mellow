@@ -55,4 +55,5 @@ $route['500_override'] 			= 'errors/internal_error';
 $route['app'] 					= 'login/app';
 $route['business'] 				= 'login/business';
 $route['admin'] 				= 'login/admin';
+$route['logout'] 				= 'login/logout';
 $route['translate_uri_dashes'] 	= FALSE;

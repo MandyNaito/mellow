@@ -167,7 +167,7 @@
 							<ul class="dropdown-menu pull-right">
 								<li><a href="<?=site_url('usuario/visualizar/'.$cdusuario);?>"><i class="material-icons">person</i><?=$this->lang->str(100089);?></a></li>
 								<li role="seperator" class="divider"></li>
-								<li><a href="<?=site_url('login/logout');?>"><i class="material-icons">input</i><?=$this->lang->str(100090);?></a></li>
+								<li><a href="<?=site_url('logout');?>"><i class="material-icons">input</i><?=$this->lang->str(100090);?></a></li>
 							</ul>
 						</div>
 					</div>

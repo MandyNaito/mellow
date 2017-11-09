@@ -10,7 +10,7 @@
  * @author			Eding Muhamad Saprudin 
  * @link    		https://github.com/edomaru/codeigniter_multilevel_menu
  */
-class Multi_menu {
+class CI_Multi_menu {
 
 	/**
 	 * Tag opener of the navigation menu

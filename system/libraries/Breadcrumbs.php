@@ -10,7 +10,7 @@
  * @copyright 	Copyright (c) 2012, Buti
  * @link		https://github.com/nobuti/codeigniter-breadcrumb
  */
-class Breadcrumbs {
+class CI_Breadcrumbs {
 	
 	/**
 	 * Breadcrumbs stack
