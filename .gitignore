@@ -8,22 +8,6 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
-application/admin/logs/*
-!application/admin/logs/index.html
-!application/admin/logs/.htaccess
-
-application/business/logs/*
-!application/business/logs/index.html
-!application/business/logs/.htaccess
-
-application/app/logs/*
-!application/app/logs/index.html
-!application/app/logs/.htaccess
-
-application/portal/logs/*
-!application/portal/logs/index.html
-!application/portal/logs/.htaccess
-
 composer.lock
 
 user_guide_src/build/*
@@ -47,3 +31,20 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 upload/usuario/*
 upload/estabelecimento/*
+
+
+application/admin/logs/*
+!application/admin/logs/index.html
+!application/admin/logs/.htaccess
+
+application/business/logs/*
+!application/business/logs/index.html
+!application/business/logs/.htaccess
+
+application/app/logs/*
+!application/app/logs/index.html
+!application/app/logs/.htaccess
+
+application/portal/logs/*
+!application/portal/logs/index.html
+!application/portal/logs/.htaccess
