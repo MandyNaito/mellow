@@ -76,7 +76,7 @@
 	<body class="login-page login-app">
 		<div class="login-box">
 			<div class="logo">
-				<a href="javascript:void(0);"><?=img('assets/images/logo/sm-preta.png', FALSE, array('class' => 'm-b-10 m-t-50', 'height' => '250'))."\n";?></a>
+				<a href="javascript:void(0);"><?=img('assets/images/logo/sm-preta.png', FALSE, array('class' => 'm-b-10 m-t-10', 'height' => '250'))."\n";?></a>
 			</div>
 			<div class="card">
 				<div class="body">

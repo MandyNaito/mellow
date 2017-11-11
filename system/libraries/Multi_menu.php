@@ -250,6 +250,9 @@ class CI_Multi_menu {
 	
 	private $set_active_parent       = false;
 	
+	private $icon_material	     	 = false;	
+	private $icon_fontawesome    	 = false;
+	
 
 	/**
 	 * load configuration on config/multi_menu.php
@@ -411,9 +414,15 @@ class CI_Multi_menu {
 		        $icon  = empty($item[$this->menu_icon]) ? '' : $item[$this->menu_icon];
 		        if ( isset($this->menu_icons_list[($item[$this->menu_key])]) )
 		        	$icon = $this->menu_icons_list[($item[$this->menu_key])];
-
-		        if ($icon) 
+				
+		        if ($icon) {
+					if($this->icon_fontawesome)
+						$icon = '<i class="fa fa-'.$icon.'" aria-hidden="true"></i>';
+					if($this->icon_material)
+						$icon = '<i class="material-icons">'.$icon.'</i>';
+					
 		        	$label = trim( $this->icon_position == 'right' ? ($label . " " . $icon ) : ($icon . " " . $label) );
+				}
 		
 
 		        // menu slug

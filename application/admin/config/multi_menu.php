@@ -22,5 +22,6 @@ $config["item_active"] 	 		 = 'home';
 $config["set_active_parent"] 	 = true;  
 $config["href_parent"] 	 		 = false;  
 $config['menu_icons_list']		 = array();
+$config['icon_material']		 = true;
 // these for the future version
 $config['icon_img_base_url']	 = ''; 

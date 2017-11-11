@@ -17,6 +17,9 @@ class CI_Breadcrumbs {
 	 *
      */
 	private $breadcrumbs = array();
+	
+	private $icon_material	     	 = false;	
+	private $icon_fontawesome    	 = false;
 	 	
 	 /**
 	  * Constructor
@@ -30,13 +33,15 @@ class CI_Breadcrumbs {
 		// Load config file
 		$this->ci->load->config('breadcrumbs');
 		// Get breadcrumbs display options
-		$this->tag_open = $this->ci->config->item('tag_open');
-		$this->tag_close = $this->ci->config->item('tag_close');
-		$this->divider = $this->ci->config->item('divider');
-		$this->crumb_open = $this->ci->config->item('crumb_open');
-		$this->crumb_close = $this->ci->config->item('crumb_close');
-		$this->crumb_last_open = $this->ci->config->item('crumb_last_open');
-		$this->crumb_divider = $this->ci->config->item('crumb_divider');
+		$this->tag_open 		= $this->ci->config->item('tag_open');
+		$this->tag_close 		= $this->ci->config->item('tag_close');
+		$this->divider 			= $this->ci->config->item('divider');
+		$this->crumb_open 		= $this->ci->config->item('crumb_open');
+		$this->crumb_close 		= $this->ci->config->item('crumb_close');
+		$this->crumb_last_open 	= $this->ci->config->item('crumb_last_open');
+		$this->crumb_divider 	= $this->ci->config->item('crumb_divider');
+		$this->icon_material 	= $this->ci->config->item('icon_material');
+		$this->icon_fontawesome = $this->ci->config->item('icon_fontawesome');
 		
 		log_message('debug', "Breadcrumbs Class Initialized");
 	}
@@ -108,6 +113,13 @@ class CI_Breadcrumbs {
 			foreach ($this->breadcrumbs as $key => $crumb) {
 				$keys = array_keys($this->breadcrumbs);
 				$icon = (!empty($crumb['icon']) ? $crumb['icon']." " : "") ;
+				
+				if($icon){
+					if($this->icon_fontawesome)
+						$icon = '<i class="fa fa-'.$icon.'" aria-hidden="true"></i>';
+					if($this->icon_material)
+						$icon = '<i class="material-icons">'.$icon.'</i>';
+				}
 				$href = (!empty($crumb['href']) ? 'href="' . $crumb['href'] . '"' : "") ;
 				
 				if (end($keys) == $key) {

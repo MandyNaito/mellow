@@ -75,7 +75,7 @@ class Menu_model extends CI_Model {
 		$itens = array();		
 		foreach ($fields as $values)
 		{
-			$termo = $this->lang->str($values['cdtermo']);
+			$termo = $this->lang->menu($values['cdtermo']);
 			if(substr_count($termo, '<%') > 0)
 				$termo = $this->session->userdata('logged_in')[strtolower(explode("%>",explode("<%", $termo)[1])[0])];
 

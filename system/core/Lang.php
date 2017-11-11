@@ -200,6 +200,11 @@ class CI_Lang {
 		return $value;
 	}
 	
+	function menu($line, $log_errors = TRUE)
+	{
+		return $this->line("m_".$line, $log_errors);
+	}
+	
 	function str($line, $log_errors = TRUE)
 	{
 		return $this->line("s_".$line, $log_errors);
