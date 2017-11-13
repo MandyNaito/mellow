@@ -7750,17 +7750,6 @@ fieldset[disabled] .form-control {
 html, body {
     height:100%;
 } 
-.login-app {
-	background-image: url('../images/background/app.jpg');
-}
-
-.login-business {
-	background-image: url('../images/background/business.jpg');
-}
-
-.login-admin {
-	background-image: url('../images/background/admin.jpg');
-}
 
 .login-page {
 	background-color: black;

@@ -77,19 +77,15 @@
 		?>
 	</head>
 	
-	<body class="login-page">
+	<body class="login-page login-admin">
 		<div class="login-box">
 			<div class="logo">
-				<a href="javascript:void(0);"><?=img('assets/images/logo/sm-preta.png', FALSE, array('class' => 'p-b-10 p-t-10', 'height' => '250'))."\n";?></a>
+				<a href="javascript:void(0);"><?=img('assets/images/logo/lg-azul.png', FALSE, array('class' => 'm-b-10 m-t-50', 'height' => '75'))."\n";?></a>
+				<small><?=$this->lang->str(100036)?></small>
 			</div>
 			<div class="card">
 				<div class="body">
-				<?php
-					$url_action = "login/login_process/";
-					$attributes = array('id' => 'form', 'class'=>'login-form', 'role'=> 'form', 'method'=> 'post');
-					$hidden = array();
-				?>
-				<?=form_open($url_action, $attributes, $hidden)?>
+					<?=form_open("login/login_process/", array('id' => 'form', 'class'=>'login-form', 'role'=> 'form', 'method'=> 'post'), array())?>
 						<div class="msg"></div>
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -112,44 +108,9 @@
 								<?=form_submit('submit', $this->lang->str(100031), array('class' => 'btn btn-block bg-pink waves-effect')); ?>
 							</div>
 						</div>
-						
-						<div class="row m-t-15 m-b--20">
-							<div class="col-xs-12">
-								<a href="<?=site_url('login/cadastro/app');?>"><?=$this->lang->str(100098);?></a>
-							</div>
-						</div>
 					<?=form_close();?>
 				</div>
 			</div>
 		</div>
-		<script>
-			$(document).ready(function(){
-				'use strict';
-	
-				var $slides = $('.login-page');
-				var images = [
-					"../assets/images/background/slide_1.jpg", 
-					"../assets/images/background/slide_2.jpg", 
-					"../assets/images/background/slide_3.jpg",
-					"../assets/images/background/slide_4.jpg",
-					"../assets/images/background/slide_5.jpg",
-					"../assets/images/background/slide_6.jpg",
-					"../assets/images/background/slide_7.jpg",
-					"../assets/images/background/slide_8.jpg",
-					"../assets/images/background/slide_9.jpg"
-				];
-				var count = images.length;
-				
-				var slideshow = function() {
-					$slides
-						.css('background-image', 'url("' + images[Math.floor(Math.random() * count)] + '")')
-						.show(0, function() {
-							setTimeout(slideshow, 5000);
-						});
-				};
-				
-				slideshow();
-			});	
-		</script>
 	</body>
 </html>

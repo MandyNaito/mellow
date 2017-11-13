@@ -35,7 +35,7 @@ $config['base_url'] = '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index_'.CURRENT_APP.'.php';
+$config['index_page'] = 'mellow.php';
 
 /*
 |--------------------------------------------------------------------------

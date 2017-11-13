@@ -38,14 +38,13 @@ Class Login_model extends CI_Model
 					U.*,
 					CASE 
 						WHEN U.cdestabelecimento IS NOT NULL THEN E.nmfantasia
-						WHEN U.cdcliente IS NOT NULL THEN C.nmemail
+						WHEN U.nmemail IS NOT NULL THEN U.nmemail
 						ELSE P.nmperfil
 					END AS nmtipo
 				FROM 
 					usuario U
 					INNER JOIN perfil 				P ON (P.cdperfil = U.cdperfil)
 					LEFT OUTER JOIN estabelecimento E ON (E.cdestabelecimento = U.cdestabelecimento)
-					LEFT OUTER JOIN cliente 		C ON (C.cdcliente = U.cdcliente)
 				WHERE 
 					U.idlogin LIKE ('".$idlogin ."')
 				LIMIT 1";

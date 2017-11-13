@@ -35,8 +35,6 @@
 		<?=script_tag('assets/plugins/jquery-maskmoney/jquery.maskMoney.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-validation/jquery.validate.js')."\n";?>
 		<?=script_tag('assets/plugins/autosize/autosize.js')."\n";?>
-		<?=script_tag('assets/plugins/momentjs/moment.js')."\n";?>
-		<?=script_tag('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')."\n";?>
 		<?=script_tag('assets/plugins/sweetalert/sweetalert.min.js')."\n";?>
 		<?=script_tag('assets/plugins/multi-select/js/jquery.multi-select.js')."\n";?>
 		
@@ -90,7 +88,6 @@
 		<?=link_tag('assets/plugins/multi-select/css/multi-select.css')."\n";?>
 		<?=link_tag('assets/plugins/jquery-ui/jquery-ui.min.css')."\n";?>
 		<?=link_tag('assets/plugins/jquery-tree/jquery.tree.min.css')."\n";?>
-		<?=link_tag('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')."\n";?>
 		<?=link_tag('assets/css/style.css')."\n";?>
 		<?=link_tag('assets/css/themes/theme-black-custom.css')."\n";?>		
 		
