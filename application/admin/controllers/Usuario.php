@@ -15,10 +15,12 @@ class Usuario extends Crud {
 		
         $this->load->model('usuario_model', 'usuario');
         $this->load->model('perfil_model', 'perfil');
+        $this->load->model('estabelecimento_model', 'estabelecimento');
 
 		$this->model = $this->usuario;		
 	
-		$this->data['list_perfil'] 				= $this->combolist($this->perfil);
+		$this->data['list_perfil'] 					= $this->combolist($this->perfil);
+		$this->data['list_estabelecimento'] 		= $this->combolist($this->estabelecimento);
 		
 		$this->fields = array(
 			'txfoto'			=> array('label'=> $this->lang->str(100087), 	'rule' => 'trim|xss_clean', 											'msg' => array(), 'isField' => true, 	'isFile' => true),
@@ -29,5 +31,29 @@ class Usuario extends Crud {
 			'cdperfil'   		=> array('label'=> $this->lang->str(100009), 	'rule' => 'trim|required|greater_than[0]', 								'msg' => array('greater_than' => $this->lang->str(100075).'%s'.$this->lang->str(100076)), 'isField' => true, 'isFile' => false)
 		);
 	}
+	
+	public function conta($cdfield){		
+		$this->data['cdfield'] 		= $cdfield;
+		$this->data['target'] 		= $this->controller.'/conta/'.$cdfield;
+		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
+		$this->data['view'] 		= true;
+		
+		$this->redir = 'home';
+		
+		$_POST = array_merge($_POST, $this->model->getDataByCd($cdfield));
+		
+		$this->load->template('view/'.$this->controller, $this->data);
+	}
+	
+	public function alterar($cdfield){
+		$this->data['target'] 		= $this->controller.'/alterar/'.$cdfield;
+		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
+		$this->data['alterar'] 		= true;
+		$this->redir = 'home';
+
+		$this->salvar($this->fields, $cdfield);
+	}
+	
+	
 }
 ?>

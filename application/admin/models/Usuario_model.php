@@ -5,6 +5,13 @@ class Usuario_model extends Crud_Model {
 	
 	var $table 		= "usuario";
 	var $cdfield 	= "cdusuario";
+		
+	public function insert($data){		
+		if(!empty($data['idsenha']))
+			$data['idsenha'] = md5($data['idsenha']);
+		
+		return parent::insert($data);
+	}
 	
 	public function update($cdfield, $data){
 		if(!empty($data['idsenha']))

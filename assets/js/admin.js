@@ -30,10 +30,11 @@ $.AdminBSB.options = {
     leftSideBar: {
         scrollColor: 'rgba(0,0,0,0.5)',
         scrollWidth: '4px',
-        scrollAlwaysVisible: false,
+        scrollAlwaysVisible: true,
         scrollBorderRadius: '0',
         scrollRailBorderRadius: '0',
-        scrollActiveItemWhenPageLoad: true,
+        scrollActiveItemWhenPageLoad: false,
+        collapseWhenExpandItem: false,
         breakpointWidth: 1170
     },
     dropdownMenu: {
@@ -80,7 +81,7 @@ $.AdminBSB.leftSideBar = {
             var $this = $(this);
             var $content = $this.next();
 
-            if ($($this.parents('ul')[0]).hasClass('list')) {
+            if ($.AdminBSB.options.leftSideBar.collapseWhenExpandItem && $($this.parents('ul')[0]).hasClass('list')) {
                 var $not = $(e.target).hasClass('menu-toggle') ? e.target : $(e.target).parents('.menu-toggle');
 
                 $.each($('.menu-toggle.toggled').not($not).next(), function (i, val) {
@@ -110,7 +111,7 @@ $.AdminBSB.leftSideBar = {
     setMenuHeight: function (isFirstTime) {
         if (typeof $.fn.slimScroll != 'undefined') {
             var configs = $.AdminBSB.options.leftSideBar;
-            var height = ($(window).height() - ($('.legal').outerHeight() + $('.user-info').outerHeight() + $('.navbar').innerHeight()));
+            var height = ($(window).height() - ($('.legal').outerHeight() + 100 + $('.user-info').outerHeight() + $('.navbar').innerHeight()));
             var $el = $('.list');
 
             $el.slimscroll({

@@ -62,7 +62,11 @@
 		<?=script_tag('assets/plugins/jquery-sparkline/jquery.sparkline.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-ui/jquery-ui.min.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-tree/jquery.tree.min.js')."\n";?>
+		<?=script_tag('assets/plugins/momentjs/moment.js')."\n";?>
+		<?=script_tag('assets/plugins/momentjs/locale/pt-br.js')."\n";?>
 
+		<?=script_tag('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')."\n";?>
+		
 		<?=script_tag('assets/js/admin.js')."\n";?>
 		<?=script_tag('assets/js/pages/index.js')."\n";?>		
 		<?=script_tag('assets/js/pages/forms/basic-form-elements.js')."\n";?>
@@ -86,6 +90,7 @@
 		<?=link_tag('assets/plugins/multi-select/css/multi-select.css')."\n";?>
 		<?=link_tag('assets/plugins/jquery-ui/jquery-ui.min.css')."\n";?>
 		<?=link_tag('assets/plugins/jquery-tree/jquery.tree.min.css')."\n";?>
+		<?=link_tag('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')."\n";?>
 		<?=link_tag('assets/css/style.css')."\n";?>
 		<?=link_tag('assets/css/themes/theme-black-custom.css')."\n";?>		
 		
@@ -157,15 +162,15 @@
 			<aside id="leftsidebar" class="sidebar">
 				<div class="user-info">
 					<div class="image">
-						<?=img($txfoto, FALSE, array('width' => '48', 'height' => '48'))."\n";?>
+						<?=img($session_txfoto, FALSE, array('width' => '48', 'height' => '48'))."\n";?>
 					</div>
 					<div class="info-container">
-						<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?=$nmusuario;?></div>
-						<div class="email"><?=$nmtipo;?></div>
+						<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?=$session_nmusuario;?></div>
+						<div class="email"><?=$session_nmtipo;?></div>
 						<div class="btn-group user-helper-dropdown">
 							<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 							<ul class="dropdown-menu pull-right">
-								<li><a href="<?=site_url('usuario/visualizar/'.$cdusuario);?>"><i class="material-icons">person</i><?=$this->lang->str(100089);?></a></li>
+								<li><a href="<?=site_url('usuario/conta/'.$session_cdusuario);?>"><i class="material-icons">person</i><?=$this->lang->str(100089);?></a></li>
 								<li role="seperator" class="divider"></li>
 								<li><a href="<?=site_url('logout');?>"><i class="material-icons">input</i><?=$this->lang->str(100090);?></a></li>
 							</ul>

@@ -1,9 +1,9 @@
-﻿<?php
+<?php
 $lang["s_100000"] = "MellowTeam";
 $lang["s_100001"] = "Home";
 $lang["s_100002"] = "Estabelecimento";
-$lang["s_100003"] = "Cliente";
-$lang["s_100004"] = "Evento";
+$lang["s_100003"] = "Sessão";
+$lang["s_100004"] = "Cliente";
 $lang["s_100005"] = "Produto";
 $lang["s_100006"] = "Comanda";
 $lang["s_100007"] = "Configuração";
@@ -102,11 +102,11 @@ $lang["s_100099"] = "Insira seus dados";
 $lang["s_100100"] = "Listagem";
 $lang["s_100101"] = "Navegar";
 $lang["s_100102"] = "Bem-vindo(a) ao %1";
-$lang["s_100103"] = "s_100103";
-$lang["s_100104"] = "s_100104";
-$lang["s_100105"] = "s_100105";
-$lang["s_100106"] = "s_100106";
-$lang["s_100107"] = "s_100107";
+$lang["s_100103"] = "Contato";
+$lang["s_100104"] = "Dados pessoais";
+$lang["s_100105"] = "Data de nascimento";
+$lang["s_100106"] = "RG";
+$lang["s_100107"] = "CPF";
 $lang["s_100108"] = "s_100108";
 $lang["s_100109"] = "s_100109";
 $lang["s_100110"] = "s_100110";

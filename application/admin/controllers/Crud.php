@@ -6,6 +6,7 @@ class Crud extends Home {
 	
 	var $fields 		= array();
 	var $cdfield 		= '';
+	var $redir 			= '';
 	
 	public function __construct()
 	{
@@ -15,10 +16,18 @@ class Crud extends Home {
 		$this->grid->show_action_delete = false;
 		$this->grid->url_action_view = $this->controller.'/visualizar/';
 		$this->grid->url_action_edit = $this->controller.'/editar/';
+		
+		$this->redir = $this->controller;
 	}
 	
-		
 	public function index() {
+		$this->data['title'] 	= $this->lang->str($this->str);
+		$this->data['urlnovo'] 	= site_url($this->controller.'/novo');
+				
+		$this->load->template('list/'.$this->controller, $this->data);
+	}
+	
+	public function gestao() {
 		$this->data['title'] 	= $this->lang->str($this->str);
 		$this->data['urlnovo'] 	= site_url($this->controller.'/novo');
 				
@@ -90,7 +99,7 @@ class Crud extends Home {
 	
 	public function salvar($fields, $cdfield = ''){	
 		$fgedit = (!empty($cdfield) || $cdfield == -1);
-				
+		
 		$this->form_validation->set_error_delimiters('<div ><label class="error">', '</label></div>');
 		foreach($fields as $key => $field)
 			$this->form_validation->set_rules($key, $field['label'], $field['rule'], $field['msg']);
@@ -126,7 +135,7 @@ class Crud extends Home {
 
 			if(!empty($cdfield) && $cdfield != -1){
 				$this->session->set_flashdata('success_message', $this->lang->str($str));
-				redirect($this->controller);
+				redirect($this->redir);
 			} 
 			else 
 			{
@@ -145,7 +154,7 @@ class Crud extends Home {
 		
 		if($this->upload->do_upload($id))
 			return  'upload/'.$this->controller.'/'.$this->upload->data()['file_name'];
-		return false;
+		return $this->input->post('hidden_'.$id);
 	}
 }
 ?>

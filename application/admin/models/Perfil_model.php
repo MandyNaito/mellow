@@ -6,6 +6,24 @@ class Perfil_model extends Crud_Model {
 	var $table 		= "perfil";
 	var $cdfield 	= "cdperfil";
 	
+	public function insert($data){		
+		$fgpermissao = array();
+		if(!empty($data['fgpermissao'])){
+			$fgpermissao = $data['fgpermissao'];
+			unset($data['fgpermissao']);
+		}
+		
+		$cdfield = parent::insert($data);
+		
+		if($cdfield){
+			foreach($fgpermissao as $cdmenu => $value){
+				$this->insertChild('menu_perfil', array('cdperfil' => $cdfield, 'cdmenu' => $cdmenu));
+			}
+		}
+
+		return $cdfield;
+	}
+	
 	public function update($cdfield, $data){
 		
 		$fgpermissao = array();

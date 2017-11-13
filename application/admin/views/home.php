@@ -13,7 +13,7 @@
 										   <?=img('assets/images/background/'.CURRENT_APP.'.jpg')."\n";?>
 											<div class="carousel-caption">
 												<h3><?=$welcome?></h3>
-												<p><?=$nmusuario;?></p>
+												<p><?=$session_nmusuario;?></p>
 											</div>
 										</div>
 									</div>

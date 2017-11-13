@@ -25,11 +25,11 @@ class Home extends Auth_Controller {
 		$this->breadcrumbs->reset();
 		$bread = $this->menu->getBreadcrumbs('home');
 		foreach($bread as $k => $v)
-			$this->breadcrumbs->push($v['cdmenu'], $this->lang->str($v['cdtermo']), $v['nmslug'], $v['idiconmenu']);
+			$this->breadcrumbs->push($v['cdmenu'], $this->lang->menu($v['cdtermo']), $v['nmslug'], $v['idiconmenu']);
 			
 		$bread = $this->menu->getBreadcrumbs($this->data['item_active']);
 		foreach($bread as $k => $v)
-			$this->breadcrumbs->push($v['cdmenu'], $this->lang->str($v['cdtermo']), $v['nmslug'], $v['idiconmenu']);
+			$this->breadcrumbs->push($v['cdmenu'], $this->lang->menu($v['cdtermo']), $v['nmslug'], $v['idiconmenu']);
 	}
 	
 	public function index()
@@ -45,6 +45,8 @@ class Home extends Auth_Controller {
 			$this->grid->set_query_itens($arr['data']['item']);
 		
 		$dados = array('status' => true, 'data' => $this->grid->render());
+		
+		header('Content-Type: application/json'); 
 		
 		echo json_encode($dados);
 	}

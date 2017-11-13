@@ -161,12 +161,12 @@ class Menu_model extends CI_Model {
 		foreach ($fields as $values)
 		{
 			if (array_key_exists('list',$dados) && !empty($dados['list']))
-				$itens[$values['cdmenu']] = $this->lang->str($values['cdtermo']);	
+				$itens[$values['cdmenu']] = $this->lang->menu($values['cdtermo']);	
 			else
 			{
 				$itens[$values['cdmenu']] = array(
 					'cdmenu' 	=> $values['cdmenu'],						
-					'nmmenu' 	=> $this->lang->str($values['cdtermo'])
+					'nmmenu' 	=> $this->lang->menu($values['cdtermo'])
 				);
 				
 				$childs = $this->childs($values['cdmenu']);
@@ -174,7 +174,7 @@ class Menu_model extends CI_Model {
 					foreach($childs as $k => $v){
 						$itens[$values['cdmenu']]['childs'][$v['cdmenu']] = array(
 							'cdmenu' 	=> $v['cdmenu'],						
-							'nmmenu' 	=> $this->lang->str($v['cdtermo'])
+							'nmmenu' 	=> $this->lang->menu($v['cdtermo'])
 						);
 					}
 				}

@@ -398,7 +398,7 @@ function loadMasks(obj){
 	$(obj).find(".year").mask( "9999" );	
 	$(obj).find(".dateMonth").mask("99/9999");
 	$(obj).find(".datetime").mask("99/99/9999 99:99");
-	
+		
 	$(obj).find(".date").mask("99/99/9999", {
 		completed: function() {
 			if (empty(verificaDataValida($(this).val()))) {
@@ -406,7 +406,7 @@ function loadMasks(obj){
 				$(this).val('');
 			}
 		}
-	});
+	}).bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY', weekStart : 0, time: false , lang : 'pt-BR'});
 	
 	$(obj).find(".hour").mask("99:99", {
 		completed: function() {
@@ -426,29 +426,6 @@ function loadMasks(obj){
 		$(this).html($.datepicker.formatDate('dd/mm/yy', new Date(convertStrToDate(value))));
 	});
 	
-	$.each($(obj).find('.date:not(.clone-display)'), function() {
-		var id = $(this).attr('id');
-		
-		if($('#'+ id+ '-display').length == 0){
-			var clone = $(this).clone();
-			clone.insertAfter(this);
-			clone.hide();
-			
-			$(this).attr('id', id + '-display').attr('name', id + '-display');
-			$(this).addClass('clone-display').removeClass('date required');
-		}
-
-        $(this).datepicker({ dateFormat: "dd/mm/yy", altField: "#" + id, altFormat: "yy-mm-dd", gotoCurrent: true });
-
-		if ($(this).attr('value')) {
-			var date = $.datepicker.parseDate("yy-mm-dd", $(this).attr('value'));
-			$('#'+ id+ '-display').attr('value', $.datepicker.formatDate("dd/mm/yy", date));
-		}
-		
-		$('#'+ id+ '-display').mask("99/99/9999");
-		
-	});
-
 	$.each($(obj).find('.dateMonth:not(.clone-display)'), function() {
 		var id = $(this).attr('id');
 
