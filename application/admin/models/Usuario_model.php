@@ -7,6 +7,9 @@ class Usuario_model extends Crud_Model {
 	var $cdfield 	= "cdusuario";
 		
 	public function insert($data){		
+		if(empty($data['cdestabelecimento']))
+			$data['cdestabelecimento'] = null;
+		
 		if(!empty($data['idsenha']))
 			$data['idsenha'] = md5($data['idsenha']);
 		
@@ -14,6 +17,10 @@ class Usuario_model extends Crud_Model {
 	}
 	
 	public function update($cdfield, $data){
+		
+		if(empty($data['cdestabelecimento']))
+			$data['cdestabelecimento'] = null;
+		
 		if(!empty($data['idsenha']))
 			$data['idsenha'] = md5($data['idsenha']);
 		
