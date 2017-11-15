@@ -399,12 +399,12 @@ function loadMasks(obj){
 	$(obj).find(".dateMonth").mask("99/9999");
 	$(obj).find(".datetime").mask("99/99/9999 99:99");
 		
-	$(obj).find(".date").mask("99/99/9999", {
+	$(obj).find(".wDate").mask("99/99/9999", {
 		completed: function() {
-			if (empty(verificaDataValida($(this).val()))) {
+			/*if (empty(verificaDataValida($(this).val()))) {
 				addErrorMsg("Data inválida!");
 				$(this).val('');
-			}
+			}*/
 		}
 	}).bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY', weekStart : 0, time: false , lang : 'pt-BR'});
 	

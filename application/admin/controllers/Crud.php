@@ -51,6 +51,7 @@ class Crud extends Home {
 	}
 	
 	public function editar($cdfield){
+		$this->data['cdfield'] 		= $cdfield;
 		$this->data['target'] 		= $this->controller.'/editar/'.$cdfield;
 		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 
@@ -58,7 +59,9 @@ class Crud extends Home {
 	}
 	
 	public function visualizar($cdfield){
+		$this->data['cdfield'] 		= $cdfield;
 		$this->data['target'] 		= $this->controller.'/visualizar/'.$cdfield;
+		$this->data['edit_target'] 	= $this->controller.'/editar/'.$cdfield;
 		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 		$this->data['view'] 		= true;
 		
@@ -147,8 +150,10 @@ class Crud extends Home {
 	}
 	
 	function uploadImage($id){
-		$config['upload_path']	 = './upload/'.$this->controller.'/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['upload_path']	 	= './upload/'.$this->controller.'/';
+		$config['allowed_types'] 	= 'gif|jpg|png|jpeg';
+		$config['max_filename'] 	= '100';
+		$config['encrypt_name'] 	= true;
 		
 		$this->load->library('upload', $config);
 		

@@ -194,36 +194,36 @@
 						return arg !== value;
 					}, s_100074);
 					
-					var $config = {
-						'cdperfil': {
-							valueNotEquals: '0'
-						},
-						'cdestabelecimento': {
-							required: ($('#cdperfil').val() == 2 || $('#cdperfil').val() == 3),
-							valueNotEquals: '0'
-						},
-						'idcpf': {
-							required: ($('#cdperfil').val() == 4)
-						},
-						'idrg': {
-							required: ($('#cdperfil').val() == 4)
-						},
-						'dtnascimento': {
-							required: ($('#cdperfil').val() == 4)
-						},
-						'idcelular': {
-							required: ($('#cdperfil').val() == 4)
-						},
-						'nmemail': {
-							required: ($('#cdperfil').val() == 4)
-						}
-					};
-					
-					if(!(($('#cdperfil').val() == 2 || $('#cdperfil').val() == 3)))
-						$('#cdestabelecimento').rules('remove', 'valueNotEquals');
+					$.validator.addMethod("brazilianDate",function(value, element) {
+							return value.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
+					},s_100108);
 					
 					$('#usuario-form').validate({
-						rules: $config,
+						rules: {
+							'cdperfil': {
+								valueNotEquals: '0'
+							},
+							'cdestabelecimento': {
+								required: ($('#cdperfil').val() == 2 || $('#cdperfil').val() == 3),
+								valueNotEquals: '0'
+							},
+							'idcpf': {
+								required: ($('#cdperfil').val() == 4)
+							},
+							'idrg': {
+								required: ($('#cdperfil').val() == 4)
+							},
+							'dtnascimento': {
+								required: ($('#cdperfil').val() == 4),
+								brazilianDate : true
+							},
+							'idcelular': {
+								required: ($('#cdperfil').val() == 4)
+							},
+							'nmemail': {
+								required: ($('#cdperfil').val() == 4)
+							}
+						},
 						highlight: function (input) {
 							$(input).parents('.form-line').addClass('error');
 						},
@@ -234,7 +234,10 @@
 							$(element).parents('.form-group').append(error);
 						}
 					});
-					 
+					
+					if(!(($('#cdperfil').val() == 2 || $('#cdperfil').val() == 3)))
+						$('#cdestabelecimento').rules('remove', 'valueNotEquals');
+					
 					$('#usuario-form').submit(); 
 				});
 			});	
