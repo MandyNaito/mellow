@@ -218,7 +218,7 @@
 						</a>
 					</div>
 					<div class="col-md-4"> 
-						<a class="portfolio-item" href="<?=site_url('mellow.php');?>">
+						<a class="portfolio-item" href="<?=base_url('mellow.php');?>">
 							<div class="portfolio-item info-box-3 bg-cyan hover-zoom-effect">
 								<div class="icon">
 									<i class="material-icons">location_city</i>
@@ -231,7 +231,7 @@
 						</a>
 					</div>
 					<div class="col-md-4"> 
-						<a class="portfolio-item" href="<?=site_url('mellow.php');?>">
+						<a class="portfolio-item" href="<?=base_url('mellow.php');?>">
 							<div class="portfolio-item info-box-3 bg-orange hover-zoom-effect">
 								<div class="icon">
 									<i class="material-icons">settings</i>
