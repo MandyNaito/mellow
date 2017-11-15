@@ -76,10 +76,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'tcc',
+	'hostname' => 'opmy0019.servidorwebfacil.com:3306',
+	'username' => 'amand_root',
+	'password' => 'Ue0u7h2$',
+	'database' => 'amanda_naito_tcc',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
