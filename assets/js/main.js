@@ -406,7 +406,7 @@ function loadMasks(obj){
 				$(this).val('');
 			}*/
 		}
-	}).bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY', weekStart : 0, time: false , lang : 'pt-BR'});
+	});
 	
 	$(obj).find(".hour").mask("99:99", {
 		completed: function() {

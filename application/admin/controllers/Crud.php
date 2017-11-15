@@ -23,7 +23,7 @@ class Crud extends Home {
 	public function index() {
 		$this->data['title'] 	= $this->lang->str($this->str);
 		$this->data['urlnovo'] 	= site_url($this->controller.'/novo');
-				
+
 		$this->load->template('list/'.$this->controller, $this->data);
 	}
 	

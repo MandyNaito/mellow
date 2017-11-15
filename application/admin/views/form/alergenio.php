@@ -18,6 +18,19 @@
 								<h2 class="card-inside-title"></h2>
 								<?=form_open($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
 									<?=form_hidden('cdalergenio', set_value('cdalergenio', -1));?>
+									<?php if(empty($session_cdestabelecimento)) { ?>
+									<div class="row clearfix">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<?=form_label($this->lang->str(100002), 'cdestabelecimento', array('class'=> 'form-label'))?>
+												<?=form_dropdown(array('name' => 'cdestabelecimento','id' => 'cdestabelecimento', 'selected' => set_value('cdestabelecimento')), $list_estabelecimento, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
+												<?=form_error('cdestabelecimento');?>
+											</div>
+										</div>
+									</div>
+									<?php } else { ?>
+										<?=form_hidden('cdestabelecimento', $session_cdestabelecimento);?>
+									<?php } ?>
 									<div class="row clearfix">
 										<div class="col-sm-12">
 											<div class="form-group form-float">

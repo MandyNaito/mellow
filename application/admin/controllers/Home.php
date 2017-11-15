@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends Auth_Controller {
 	
 	var $data 			= array();
+	var $filter 		= array();
 	var $controller 	= 'home';
 	var $item_active 	= 'home';
 	var $str 			= 100001;
@@ -25,14 +26,15 @@ class Home extends Auth_Controller {
 		if(!in_array($this->item_active, $items))
 			$this->item_active = 'home';		
 		
-		$this->data['wintitle'] 			= $this->lang->str(100000)." | ".$this->lang->str($this->str);
-		$this->data['session_cdusuario'] 	= $this->session->userdata('logged_in')['cdusuario'];
-		$this->data['session_nmusuario']	= $this->session->userdata('logged_in')['nmusuario'];
-		$this->data['session_txfoto'] 		= $this->session->userdata('logged_in')['txfoto'];
-		$this->data['session_nmtipo'] 		= $this->session->userdata('logged_in')['nmtipo'];
-		$this->data['item_active'] 			= $this->item_active;
-		$this->data['controller'] 			= $this->controller;
-		$this->data['welcome'] 				= $this->lang->replaceStringTags(100102, array(1 => array('text' => $this->lang->str(100094))));
+		$this->data['wintitle'] 					= $this->lang->str(100000)." | ".$this->lang->str($this->str);
+		$this->data['session_cdusuario'] 			= $this->session->userdata('logged_in')['cdusuario'];
+		$this->data['session_nmusuario']			= $this->session->userdata('logged_in')['nmusuario'];
+		$this->data['session_txfoto'] 				= $this->session->userdata('logged_in')['txfoto'];
+		$this->data['session_nmtipo'] 				= $this->session->userdata('logged_in')['nmtipo'];
+		$this->data['session_cdestabelecimento']	= $this->session->userdata('logged_in')['cdestabelecimento'];
+		$this->data['item_active'] 					= $this->item_active;
+		$this->data['controller'] 					= $this->controller;
+		$this->data['welcome'] 						= $this->lang->replaceStringTags(100102, array(1 => array('text' => $this->lang->str(100094))));
 			
 		$this->breadcrumbs->reset();
 		$bread = $this->menu->getBreadcrumbs('home');
@@ -51,7 +53,7 @@ class Home extends Auth_Controller {
 	
 	public function grid()
 	{
-		$arr = $this->model->getListData($_REQUEST);
+		$arr = $this->model->getListData(array_replace($this->filter, $_REQUEST));
 		$this->grid->set_label_column($arr['data']['label']);
 		if($arr['status'])
 			$this->grid->set_query_itens($arr['data']['item']);

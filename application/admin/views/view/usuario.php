@@ -85,7 +85,7 @@
 										<div class="form-group form-float">
 											<div class="form-line">
 												<?=form_label($this->lang->str(100105), 'dtnascimento', array('class'=> 'form-label'))?>
-												<?=form_input(array('name' => 'dtnascimento','id' => 'dtnascimento'), set_value('dtnascimento'), array('class' => 'form-control wDate', 'disabled' => ''))?>
+												<?=form_date(array('name' => 'dtnascimento','id' => 'dtnascimento'), set_value('dtnascimento'), array('class' => 'form-control', 'readonly' => ''))?>
 											</div>
 										</div>
 									</div>

@@ -120,8 +120,8 @@
 										<div class="col-sm-6">
 											<div class="form-group form-float">
 												<div class="form-line">
-													<?=form_label($this->lang->str(100105), 'dtnascimento', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'dtnascimento','id' => 'dtnascimento'), set_value('dtnascimento'), array('class' => 'form-control date'))?>
+													<?=form_label($this->lang->str(100105), 'dtnascimento', array('class'=> 'form-label'));?>
+													<?=form_date(array('name' => 'dtnascimento','id' => 'dtnascimento'), set_value('dtnascimento'), array('class' => 'form-control'))?>
 												</div>
 												<?=form_error('dtnascimento');?>
 											</div>
@@ -194,10 +194,6 @@
 						return arg !== value;
 					}, s_100074);
 					
-					$.validator.addMethod("brazilianDate",function(value, element) {
-							return value.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
-					},s_100108);
-					
 					$('#usuario-form').validate({
 						rules: {
 							'cdperfil': {
@@ -214,8 +210,7 @@
 								required: ($('#cdperfil').val() == 4)
 							},
 							'dtnascimento': {
-								required: ($('#cdperfil').val() == 4),
-								brazilianDate : true
+								required: ($('#cdperfil').val() == 4)
 							},
 							'idcelular': {
 								required: ($('#cdperfil').val() == 4)

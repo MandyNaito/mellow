@@ -55,10 +55,12 @@ Class Login extends CI_Controller
 				{
 					$session_data = array
 									(
-										'cdusuario' => $result[0]->cdusuario,
-										'idlogin' 	=> $result[0]->idlogin,
-										'nmusuario' => $result[0]->nmusuario,
-										'nmtipo' 	=> $result[0]->nmtipo,
+										'cdusuario' 			=> $result[0]->cdusuario,
+										'idlogin' 				=> $result[0]->idlogin,
+										'nmusuario' 			=> $result[0]->nmusuario,
+										'nmtipo' 				=> $result[0]->nmtipo,
+										'cdperfil' 				=> $result[0]->cdperfil,
+										'cdestabelecimento' 	=> $result[0]->cdestabelecimento,
 										'txfoto' 	=> (!(empty($result[0]->txfoto)) ? $result[0]->txfoto : 'assets/images/user-default.png')
 									);
 									
