@@ -22,7 +22,8 @@ class Tipoproduto_model extends Crud_Model {
 			$orderby = ' ORDER BY '.$dados['orderby'];
 		
 		# Tabelas:
-		$from = ' tipoproduto TP ';
+		$from = ' 	tipoproduto TP 
+					INNER JOIN estabelecimento E ON (TP.cdestabelecimento = E.cdestabelecimento) ';
 		if (array_key_exists('from',$dados)) 
 			$from = ' '.$dados['from'].' ';
 		
@@ -30,17 +31,20 @@ class Tipoproduto_model extends Crud_Model {
 		$where = "";
 		foreach($dados as $field => $value)
 		{
-			switch(strtolower($field))
-			{
-				case 'cdtipoproduto':		$where.= " AND TP.{$field} = ".intval($value)." \n"; break;
-				case 'nmtipoproduto':		$where.= " AND TP.{$field} = '{$value}' \n"; break;
-				case 'dstipoproduto':		$where.= " AND TP.{$field} LIKE '%{$value}%' \n"; break;
-				case 'buscarapida':			$where.= " AND (TP.cdtipoproduto = ".intval($value)." OR TP.nmtipoproduto LIKE '%{$value}%' \n"; break;
+			if($value != ''){
+				switch(strtolower($field))
+				{
+					case 'cdestabelecimento':	$where.= " AND TP.{$field} = ".intval($value)." \n"; break;
+					case 'cdtipoproduto':		$where.= " AND TP.{$field} = ".intval($value)." \n"; break;
+					case 'nmtipoproduto':		$where.= " AND TP.{$field} = '{$value}' \n"; break;
+					case 'dstipoproduto':		$where.= " AND TP.{$field} LIKE '%{$value}%' \n"; break;
+					case 'buscarapida':			$where.= " AND (TP.cdtipoproduto = ".intval($value)." OR TP.nmtipoproduto LIKE '%{$value}%' \n"; break;
+				}
 			}
 		}
 		
 		# Campos:
-		$select = '*';
+		$select = 'TP.*, E.nmfantasia AS nmestabelecimento ';
 		if (array_key_exists('totalRecords',$dados)){
 			$select = ' COUNT(1) as totalRecords';
             $limit = $orderby = '';
@@ -64,10 +68,12 @@ class Tipoproduto_model extends Crud_Model {
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdtipoproduto' 	=> $this->lang->str(100027),
-			'nmtipoproduto' 	=> $this->lang->str(100066),
-			'fgstatus' 			=> $this->lang->str(100037)
+			'fgstatus' 				=> $this->lang->str(100037),
+			'nmtipoproduto' 		=> $this->lang->str(100066),
+			'nmestabelecimento' 	=> $this->lang->str(100002)
 			);
+		if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
+			unset($label['nmestabelecimento']);
 		
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
@@ -79,11 +85,14 @@ class Tipoproduto_model extends Crud_Model {
 				$itens[$values['cdtipoproduto']] = $values['nmtipoproduto'];
 			else
 			{
-				$itens[$values['cdtipoproduto']] = array(
-					'cdtipoproduto' 	=> $values['cdtipoproduto'],						
+				$itens[$values['cdtipoproduto']] = array(					
+					'fgstatus' 			=> $values['fgstatus'],
 					'nmtipoproduto' 	=> $values['nmtipoproduto'],
-					'fgstatus' 			=> $values['fgstatus']
+					'nmestabelecimento' 	=> $values['nmestabelecimento']
 				);
+				
+				if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
+					unset($itens[$values['cdtipoproduto']]['nmestabelecimento']);
 			}
 		}
 		

@@ -7,7 +7,6 @@ class Alergenio_model extends Crud_Model {
 	var $cdfield 	= "cdalergenio";
 
 	public function getListData($dados = array()) {
-error_log(print_r($dados, true));
 		# Limite:
 		$limit = '';
 		if (array_key_exists('limit',$dados) && !empty($dados['limit']) && array_key_exists('page',$dados)) 
@@ -68,10 +67,9 @@ error_log(print_r($dados, true));
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdalergenio' 			=> $this->lang->str(100027),
+			'fgstatus' 				=> $this->lang->str(100037),
 			'nmalergenio' 			=> $this->lang->str(100066),
-			'nmestabelecimento' 	=> $this->lang->str(100002),
-			'fgstatus' 				=> $this->lang->str(100037)
+			'nmestabelecimento' 	=> $this->lang->str(100002)
 			);
 		if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
 			unset($label['nmestabelecimento']);
@@ -86,11 +84,10 @@ error_log(print_r($dados, true));
 				$itens[$values['cdalergenio']] = $values['nmalergenio'];
 			else
 			{
-				$itens[$values['cdalergenio']] = array(
-					'cdalergenio' 			=> $values['cdalergenio'],						
+				$itens[$values['cdalergenio']] = array(					
+					'fgstatus' 				=> $values['fgstatus'],
 					'nmalergenio' 			=> $values['nmalergenio'],
-					'nmestabelecimento' 	=> $values['nmestabelecimento'],
-					'fgstatus' 				=> $values['fgstatus']
+					'nmestabelecimento' 	=> $values['nmestabelecimento']
 				);
 				
 				if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
