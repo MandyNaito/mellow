@@ -9,10 +9,10 @@ class Produto_model extends Crud_Model {
 	public function insert($data){
 		
 		$cdalergenio = array();
-		if(!empty($data['cdalergenio'])){
+		if(!empty($data['cdalergenio']))
 			$cdalergenio = $data['cdalergenio'];
-			unset($data['cdalergenio']);
-		}
+		
+		unset($data['cdalergenio']);
 		
 		$this->db->insert($this->table, $data);
 		$cdfield = $this->db->insert_id();
@@ -29,10 +29,10 @@ class Produto_model extends Crud_Model {
 	public function update($cdfield, $data){
 		
 		$cdalergenio = array();
-		if(!empty($data['cdalergenio'])){
+		if(!empty($data['cdalergenio']))
 			$cdalergenio = array_unique($data['cdalergenio']);
-			unset($data['cdalergenio']);
-		}
+		
+		unset($data['cdalergenio']);
 		
 		$updated = parent::update($cdfield, $data);
 		
@@ -70,6 +70,7 @@ class Produto_model extends Crud_Model {
 		
 		return false;
 	}
+	
 	public function getListData($dados = array()) {
 		# Limite:
 		$limit = '';
@@ -88,6 +89,7 @@ class Produto_model extends Crud_Model {
 		# Tabelas:
 		$from = ' 	produto P 
 					INNER JOIN tipoproduto TP ON (P.cdtipoproduto = TP.cdtipoproduto)
+					INNER JOIN estabelecimento E ON (P.cdestabelecimento = E.cdestabelecimento) 
 				';
 		if (array_key_exists('from',$dados)) 
 			$from = ' '.$dados['from'].' ';
@@ -96,21 +98,24 @@ class Produto_model extends Crud_Model {
 		$where = "";
 		foreach($dados as $field => $value)
 		{
-			switch(strtolower($field))
-			{
-				case 'cdproduto':		$where.= " AND P.{$field} = ".intval($value)." \n"; break;
-				case 'cdtipoproduto':	$where.= " AND P.{$field} = ".intval($value)." \n"; break;
-				case 'cdalergenio':		$where.= " AND P.{$field} = ".intval($value)." \n"; break;
-				case 'nmproduto':		$where.= " AND P.{$field} LIKE '%{$value}%' \n"; break;
-				case 'dsproduto':		$where.= " AND P.{$field} LIKE '%{$value}%' \n"; break;
-				case 'vlproduto':		$where.= " AND P.{$field} = '{$value}' \n"; break;
-				case 'fgstatus':		$where.= " AND P.{$field} = '{$value}' \n"; break;
-				case 'buscarapida':	 	$where.= " AND (P.cdproduto = ".intval($value)." OR P.nmproduto LIKE '%{$value}%')\n"; break;
+			if($value != ''){
+				switch(strtolower($field))
+				{
+					case 'cdestabelecimento':	$where.= " AND P.{$field} = ".intval($value)." \n"; break;
+					case 'cdproduto':			$where.= " AND P.{$field} = ".intval($value)." \n"; break;
+					case 'cdtipoproduto':		$where.= " AND P.{$field} = ".intval($value)." \n"; break;
+					case 'cdalergenio':			$where.= " AND P.{$field} = ".intval($value)." \n"; break;
+					case 'nmproduto':			$where.= " AND P.{$field} LIKE '%{$value}%' \n"; break;
+					case 'dsproduto':			$where.= " AND P.{$field} LIKE '%{$value}%' \n"; break;
+					case 'vlproduto':			$where.= " AND P.{$field} = '{$value}' \n"; break;
+					case 'fgstatus':			$where.= " AND P.{$field} = '{$value}' \n"; break;
+					case 'buscarapida':	 		$where.= " AND (P.cdproduto = ".intval($value)." OR P.nmproduto LIKE '%{$value}%')\n"; break;
+				}
 			}
 		}
 		
 		# Campos:
-		$select = ' P.*, TP.nmtipoproduto ';
+		$select = ' P.*, TP.nmtipoproduto, E.nmfantasia AS nmestabelecimento ';
 		if (array_key_exists('totalRecords',$dados)){
 			$select = ' COUNT(1) as totalRecords';
             $limit = $orderby = '';
@@ -134,12 +139,15 @@ class Produto_model extends Crud_Model {
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdproduto' 		=> $this->lang->str(100027),
-			'cdtipoproduto' 	=> $this->lang->str(100077),
-			'nmproduto' 		=> $this->lang->str(100066),
-			'vlproduto' 		=> $this->lang->str(100092),
-			'fgstatus' 			=> $this->lang->str(100037)
+			'fgstatus' 				=> $this->lang->str(100037),
+			'cdtipoproduto' 		=> $this->lang->str(100077),
+			'nmproduto' 			=> $this->lang->str(100066),
+			'nmestabelecimento' 	=> $this->lang->str(100002),
+			'vlproduto' 			=> $this->lang->str(100092)
 			);
+		
+		if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
+			unset($label['nmestabelecimento']);
 		
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
@@ -153,12 +161,15 @@ class Produto_model extends Crud_Model {
 			else
 			{
 				$itens[$values['cdproduto']] = array(
-						'cdproduto' 		=> $values['cdproduto'],
+						'fgstatus' 			=> $values['fgstatus'],
 						'cdtipoproduto' 	=> $values['nmtipoproduto'],
 						'nmproduto' 		=> $values['nmproduto'],
+						'nmestabelecimento' => $values['nmestabelecimento'],
 						'vlproduto' 		=> $values['vlproduto'],
-						'fgstatus' 			=> $values['fgstatus']
 						);
+				
+				if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
+					unset($itens[$values['cdproduto']]['nmestabelecimento']);
 			}
 		}
 		

@@ -18,10 +18,11 @@ class Produto extends Crud {
         $this->load->model('alergenio_model', 		'alergenio');
         $this->load->model('estabelecimento_model', 'estabelecimento');
 		
-		$this->data['list_estabelecimento'] = $this->combolist($this->estabelecimento);
-		
+		$this->data['list_estabelecimento'] = $this->combolist($this->estabelecimento);		
 		$this->data['list_tipoproduto'] 	= $this->combolist($this->tipoproduto);
 		$this->data['list_alergenio'] 		= $this->combolist($this->alergenio, array('denyEmpty' => true, 'orderby' => 'nmalergenio ASC'));
+		
+		$this->filter['cdestabelecimento'] 	= $this->session->userdata('logged_in')['cdestabelecimento'];
 
 		$this->model = $this->produto;
 	

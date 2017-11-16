@@ -71,6 +71,7 @@ class Alergenio_model extends Crud_Model {
 			'nmalergenio' 			=> $this->lang->str(100066),
 			'nmestabelecimento' 	=> $this->lang->str(100002)
 			);
+			
 		if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
 			unset($label['nmestabelecimento']);
 		

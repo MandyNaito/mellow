@@ -24,13 +24,15 @@
 											</div>
 										</div>
 										
-										<?php if(empty($cdestabelecimento)) { ?>
+										<?php if(empty($session_cdestabelecimento)) { ?>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<?=form_label($this->lang->str(100002), 'cdestabelecimento', array('class'=> 'form-label'))?>
 												<?=form_dropdown(array('name' => 'cdestabelecimento','id' => 'cdestabelecimento', 'selected' => set_value('cdestabelecimento')), $list_estabelecimento, array(), array('class' => 'form-control show-tick', 'disabled'=>''));?>
 											</div>
 										</div>
+										<?php } else { ?>
+											<?=form_hidden('cdestabelecimento', $session_cdestabelecimento);?>
 										<?php } ?>
 									</div>
 

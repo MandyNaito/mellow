@@ -18,6 +18,8 @@
 								<h2 class="card-inside-title"></h2>
 								<?=form_open($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
 									<?=form_hidden('cdproduto', set_value('cdproduto', -1));?>
+									
+									
 									<div class="row clearfix">
 										<div class="col-sm-6">
 											<div class="form-group">
@@ -26,7 +28,6 @@
 												<?=form_error('cdtipoproduto');?>
 											</div>
 										</div>
-										
 										<?php if(empty($session_cdestabelecimento)) { ?>
 										<div class="col-sm-6">
 											<div class="form-group">

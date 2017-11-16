@@ -16,6 +16,16 @@
 							</div>
 							<div class="body">
 								<h2 class="card-inside-title"></h2>
+								<?php if(empty($session_cdestabelecimento)) { ?>
+								<div class="row clearfix">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<?=form_label($this->lang->str(100002), 'cdestabelecimento', array('class'=> 'form-label'))?>
+											<?=form_dropdown(array('name' => 'cdestabelecimento','id' => 'cdestabelecimento', 'selected' => set_value('cdestabelecimento')), $list_estabelecimento, array(), array('class' => 'form-control show-tick', 'disabled'=>''));?>
+										</div>
+									</div>
+								</div>
+								<?php } ?>
 								<div class="row clearfix">
 									<div class="col-sm-12">
 										<div class="form-group form-float">
@@ -40,6 +50,7 @@
 								<div class="row clearfix">
 									<div id="actions" class="pull-right">
 										<div id="btn_actions" class="col-sm-12">
+											<?=form_button('btn_edit', $this->lang->str(100039), array('class' => 'btn btn-success waves-effect', 'onclick' => 'window.location.replace(\''.site_url($controller).'/editar/'.$cdfield.'\')')); ?>
 											<?=form_reset('cancel', $this->lang->str(100053), array('class' => 'btn btn-warning btn-cancel waves-effect', 'onclick' => 'window.location.replace(\''.site_url($controller).'\')')); ?>
 										</div>
 									</div>	
