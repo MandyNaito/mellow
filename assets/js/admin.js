@@ -35,7 +35,7 @@ $.AdminBSB.options = {
         scrollRailBorderRadius: '0',
         scrollActiveItemWhenPageLoad: false,
         collapseWhenExpandItem: false,
-        expandAllItem: true,
+        expandAllItem: false,
         breakpointWidth: 1170
     },
     dropdownMenu: {
