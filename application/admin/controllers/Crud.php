@@ -36,7 +36,7 @@ class Crud extends Home {
 		
 	public function novo(){
 		$this->data['target'] 		= $this->controller.'/inserir';
-		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => ($this->lang->str($this->str)))));
+		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => mb_strtolower($this->lang->str($this->str)))));
 		$this->data[$this->cdfield] = -1;
 		
 		$this->load->template($this->controller.'/form', $this->data);
@@ -44,7 +44,7 @@ class Crud extends Home {
 	
 	public function inserir(){
 		$this->data['target'] 		= $this->controller.'/inserir';
-		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => ($this->lang->str($this->str)))));
+		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => mb_strtolower($this->lang->str($this->str)))));
 		$this->data[$this->cdfield] = -1;
 		
 		$this->salvar($this->fields);
@@ -53,7 +53,7 @@ class Crud extends Home {
 	public function editar($cdfield){
 		$this->data['cdfield'] 		= $cdfield;
 		$this->data['target'] 		= $this->controller.'/editar/'.$cdfield;
-		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => ($this->lang->str($this->str)))));
+		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => mb_strtolower($this->lang->str($this->str)))));
 
 		$this->salvar($this->fields, $cdfield);
 	}
@@ -62,7 +62,7 @@ class Crud extends Home {
 		$this->data['cdfield'] 		= $cdfield;
 		$this->data['target'] 		= $this->controller.'/visualizar/'.$cdfield;
 		$this->data['edit_target'] 	= $this->controller.'/editar/'.$cdfield;
-		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => ($this->lang->str($this->str)))));
+		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => mb_strtolower($this->lang->str($this->str)))));
 		$this->data['view'] 		= true;
 		
 		$_POST = array_merge($_POST, $this->model->getDataByCd($cdfield));
