@@ -227,7 +227,7 @@ class CI_Lang {
 		$replace = array();
 		foreach ($replacement as $key => $props)
 		{
-			$text = $props['text'];
+			$text = utf8_encode($props['text']);
 			if(!empty($props['link']))
 				$text = '<a id=\''.$props['link']['id'].'\' class=\''.$props['link']['class'].'\' href=\''.$props['link']['href'].'\' onClick=\''.$props['link']['onClick'].'\'>'.$text.'</a>';
 			
