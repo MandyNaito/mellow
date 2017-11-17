@@ -12,5 +12,4 @@
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^(.*)$ mellow/index.php?/$1 [QSA,L]	
 </IfModule>
-
-
+AddDefaultCharset UTF-8
