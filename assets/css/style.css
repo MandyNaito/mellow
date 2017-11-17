@@ -4349,6 +4349,16 @@ section.content {
     -ms-border-radius: 0;
     border-radius: 0;
 }
+.bootstrap-select.error {
+    border-bottom: 2px solid #F44336 !important;
+}
+.bootstrap-select.success {
+    border-bottom: 2px solid #4CAF50 !important;
+}
+.bootstrap-select.warning {
+    border-bottom: 2px solid #FFC107 !important;
+}
+
 .bootstrap-select .dropdown-toggle:focus,
 .bootstrap-select .dropdown-toggle:active {
     outline: none !important;
@@ -9125,17 +9135,26 @@ html.ie11 .bs-searchbox .form-control {
 .card-box .content {
     display: inline-block;
     padding: 7px 10px;
+	width: 100%;
 }
 .card-box .content .text {
     font-size: 13px;
     margin-top: 11px;
     color: #555;
+	width: 100%;   
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .card-box .content .title {
     font-weight: normal;
-    font-size: 26px;
+    font-size: 20px;
     margin-top: -4px;
     color: #555;
+	width: 100%;
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .card-box .content .number {
     font-weight: normal;

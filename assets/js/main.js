@@ -259,8 +259,7 @@ function verifyCNPJ(cnpj) {
     
 }
 
-function formValue($formulario, disabled)
-{
+function formValue($formulario, disabled){
 	if(typeof disabled == 'undefined')
 		disabled = false;
 	
@@ -371,6 +370,7 @@ function loadMasks(obj){
 
 	$(obj).find(".cpf").mask("999.999.999-99");
 	$(obj).find(".cnpj").mask("99.999.999/9999-99");
+	$(obj).find(".cep").mask("99999-999");
 		
 	$(obj).find(".number").mask( "0#" );
 	$(obj).find(".interger").mask( "9?999" );
@@ -390,8 +390,8 @@ function loadMasks(obj){
 		$(this).maskMoney('mask', Number(value));
 	});
 	
-	$(obj).find(".phone").mask("(99)9999-9999");
-	$(obj).find(".cellphone").mask("(99)99999-9999");
+	$(obj).find(".phone").mask("(99) 9999-9999");
+	$(obj).find(".cellphone").mask("(99) 99999-9999");
 	
 	$(obj).find(".day").mask("9?9");
 	$(obj).find(".month").mask("9?9");
@@ -466,10 +466,32 @@ function loadMasks(obj){
 			$('#'+ id+ '-display').attr('value', $.datepicker.formatDate("MM/yy", date));
 		}
 	});
+	
+	$.each($(':input[required]:visible'), function(){
+		if($(this).parent().hasClass('form-line') || $(this).parent().hasClass('form-control')){
+			$(this).parent().addClass('warning');
+			$('label[for="'+$(this).attr('id')+'"]').append(' *')
+		}
+	});
 }
 
 $(document).ready(function(){
 	loadDefault();
+	
+	$.ajaxSetup({
+		type		: "POST",
+		dataType	: "json",
+		beforeSend	: function () {
+			$('.card').waitMe({effect: 'pulse'});
+		},
+		complete	: function () {
+			setTimeout(function () { $('.card').waitMe('hide'); }, 50);
+		},
+		error		: function () {
+			setTimeout(function () { $('.card').waitMe('hide'); }, 50);
+		}	
+	});
+
 });
 
  

@@ -12,7 +12,7 @@ class Estabelecimento extends Crud {
 	public function __construct()
 	{
 		parent::__construct();
-		
+				
         $this->load->model('estabelecimento_model', 'estabelecimento');
         $this->load->model('tipoestabelecimento_model', 'tipoestabelecimento');
 		$this->data['list_tipoestabelecimento'] = $this->combolist($this->tipoestabelecimento);
@@ -31,7 +31,17 @@ class Estabelecimento extends Crud {
 			'idcelular'     			=> array('label'=> $this->lang->str(100083), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
 			'nmemail'     				=> array('label'=> $this->lang->str(100084), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
 			'nmsite'     				=> array('label'=> $this->lang->str(100085), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
-			'nrcapacidade'     			=> array('label'=> $this->lang->str(100086), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true)
+			'nrcapacidade'     			=> array('label'=> $this->lang->str(100086), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'idcep'     				=> array('label'=> $this->lang->str(100110), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'dsendereco'     			=> array('label'=> $this->lang->str(100109), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'nrnumero'     				=> array('label'=> $this->lang->str(100111), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'nmcomplemento'     		=> array('label'=> $this->lang->str(100112), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'nmpais'     				=> array('label'=> $this->lang->str(100113), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'nmestado'     				=> array('label'=> $this->lang->str(100114), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'nmcidade'     				=> array('label'=> $this->lang->str(100115), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'nmbairro'     				=> array('label'=> $this->lang->str(100116), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'nrlatitude'     			=> array('label'=> $this->lang->str(100117), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true),
+			'nrlongitude'     			=> array('label'=> $this->lang->str(100118), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true)
 		);
 	}
 	

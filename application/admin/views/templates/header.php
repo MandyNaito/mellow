@@ -55,8 +55,10 @@
 		<?=script_tag('assets/plugins/flot-charts/jquery.flot.pie.js')."\n";?>
 		<?=script_tag('assets/plugins/flot-charts/jquery.flot.categories.js')."\n";?>
 		<?=script_tag('assets/plugins/flot-charts/jquery.flot.time.js')."\n";?>
+		
 		-->
 		
+		<?=script_tag('assets/plugins/waitme/waitMe.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-sparkline/jquery.sparkline.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-ui/jquery-ui.min.js')."\n";?>
 		<?=script_tag('assets/plugins/jquery-tree/jquery.tree.min.js')."\n";?>
@@ -69,6 +71,7 @@
 		<?=script_tag('assets/js/pages/index.js')."\n";?>		
 		<?=script_tag('assets/js/pages/forms/basic-form-elements.js')."\n";?>
 		<?=script_tag('assets/js/main.js')."\n";?>		
+		<?=script_tag('assets/js/cep.js')."\n";?>		
 		<?=script_tag('assets/js/grid.js')."\n";?>		
 		<?=script_tag('assets/js/demo.js')."\n";?>		
 		

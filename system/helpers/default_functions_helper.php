@@ -8,11 +8,27 @@ if ( ! function_exists('rand_card_colors'))
 {
 	function rand_card_colors($cont)
 	{
-		if(intval($cont) % 3 == 0)
-			return "orange"; 
-		if(intval($cont) % 2 == 0)
-			return "cyan"; 
-		
-		return "pink";
+		$colors = array	(
+							//'red',
+							'pink',
+							//'purple',
+							//'deep-purple',
+							//'indigo',
+							//'blue',
+							//'light-blue',
+							'cyan',
+							//'teal',
+							//'green',
+							//'light-green',
+							'lime',
+							//'yellow',
+							'amber',
+							'orange'
+							//'deep-orange',
+							//'brown',
+							//'grey',
+							//'blue-grey'
+						);
+		return $colors[floor(($cont) % count($colors))];
 	}
 }
