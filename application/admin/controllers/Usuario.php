@@ -43,7 +43,7 @@ class Usuario extends Crud {
 		$this->data['cdfield'] 		= $cdfield;
 		$this->data['target'] 		= $this->controller.'/conta/'.$cdfield;
 		$this->data['edit_target'] 	= $this->controller.'/alterar/'.$cdfield;
-		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => ($this->lang->str($this->str)))));
+		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 		$this->data['view'] 		= true;
 		
 		$this->redir = 'home';
@@ -55,7 +55,7 @@ class Usuario extends Crud {
 	
 	public function alterar($cdfield){
 		$this->data['target'] 		= $this->controller.'/alterar/'.$cdfield;
-		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => ($this->lang->str($this->str)))));
+		$this->data['title'] 		= $this->lang->replaceStringTags(100069, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 		$this->data['alterar'] 		= true;
 		$this->redir = 'home';
 
