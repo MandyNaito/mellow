@@ -14,8 +14,8 @@ class Crud extends Home {
 		
 		$this->grid->show_action_column = true;
 		$this->grid->show_action_delete = false;
-		$this->grid->url_action_view = $this->controller.'/visualizar/';
-		$this->grid->url_action_edit = $this->controller.'/editar/';
+		$this->grid->url_action_view = site_url($this->controller.'/visualizar/');
+		$this->grid->url_action_edit = site_url($this->controller.'/editar/');
 		
 		$this->redir = $this->controller;
 	}
