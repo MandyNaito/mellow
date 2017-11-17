@@ -534,7 +534,7 @@ class CI_Multi_menu {
 	{
 		$segment = $this->ci->uri->segment($this->uri_segment);
 
-		if ( ($this->item_active != '' && $slug == $this->item_active && empty($segment)) || (!empty($slug) && $slug == $segment) || $active_parent) 
+		if ( ($this->item_active != '' && $slug == $this->item_active) || (!empty($slug) && $slug == $segment) || $active_parent) 
 		{
 			$doc = new DOMDocument();
 			$doc->loadHTML($html);

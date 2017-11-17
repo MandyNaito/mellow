@@ -69,35 +69,29 @@ class Estabelecimento_model extends Crud_Model {
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdestabelecimento' 	=> $this->lang->str(100027),
-			'cdtipoestabelecimento' => $this->lang->str(100077),
+			'fgstatus' 				=> $this->lang->str(100037),
 			'nmfantasia' 			=> $this->lang->str(100079),
-			'fgstatus' 				=> $this->lang->str(100037)
+			'cdtipoestabelecimento' => $this->lang->str(100077)
 			);
 		
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
 		
-		$itens = array();	
+		if(empty($dados['grid']))			
+			return array('status' => true, 'data' => $fields);
 		
+		$itens = array();	
 		foreach ($fields as $values)
 		{
-			$itens[$values['cdestabelecimento']] = array(
-						'cdestabelecimento' 		=> $values['cdestabelecimento'],
-						'cdtipoestabelecimento' 	=> $values['nmtipoestabelecimento'],
-						'nmfantasia' 				=> $values['nmfantasia'],
-						'fgstatus' 					=> $values['fgstatus']
-						);
 			if (array_key_exists('list',$dados) && !empty($dados['list']))
 				$itens[$values['cdestabelecimento']] = $values['nmfantasia'];
 			else
 			{
 				$itens[$values['cdestabelecimento']] = array(
-						'cdestabelecimento' 		=> $values['cdestabelecimento'],
-						'cdtipoestabelecimento' 	=> $values['nmtipoestabelecimento'],
-						'nmfantasia' 				=> $values['nmfantasia'],
-						'fgstatus' 					=> $values['fgstatus']
-						);
+					'fgstatus' 					=> $values['fgstatus'],
+					'nmfantasia' 				=> $values['nmfantasia'],
+					'cdtipoestabelecimento' 	=> $values['nmtipoestabelecimento']
+				);
 			}
 		}
 		

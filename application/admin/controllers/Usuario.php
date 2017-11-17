@@ -50,7 +50,7 @@ class Usuario extends Crud {
 		
 		$_POST = array_merge($_POST, $this->model->getDataByCd($cdfield));
 		
-		$this->load->template('view/'.$this->controller, $this->data);
+		$this->load->template($this->controller.'/view', $this->data);
 	}
 	
 	public function alterar($cdfield){

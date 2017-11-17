@@ -35,6 +35,7 @@ $.AdminBSB.options = {
         scrollRailBorderRadius: '0',
         scrollActiveItemWhenPageLoad: false,
         collapseWhenExpandItem: false,
+        expandAllItem: true,
         breakpointWidth: 1170
     },
     dropdownMenu: {
@@ -68,13 +69,28 @@ $.AdminBSB.leftSideBar = {
             $(val).next().slideToggle(0);
         });
 
-        //When page load
-        $.each($('.menu .list li.active'), function (i, val) {
-            var $activeAnchors = $(val).find('a:eq(0)');
+        //When page load        
+		if($.AdminBSB.options.leftSideBar.expandAllItem){		
+			$.each($('.menu .list li.active'), function (i, val) {
+				var $activeAnchors = $(val).find('a:eq(0)');
+				$activeAnchors.addClass('toggled');
+			});	
+			
+			$.each($('.menu-toggle'), function(){
+				var $this = $(this);
+				var $content = $this.next();
 
-            $activeAnchors.addClass('toggled');
-            $activeAnchors.next().show();
-        });
+				$this.toggleClass('toggled');
+				$content.slideToggle(320);
+			});
+		}else{
+			$.each($('.menu .list li.active'), function (i, val) {
+				var $activeAnchors = $(val).find('a:eq(0)');
+
+				$activeAnchors.addClass('toggled');
+				$activeAnchors.next().show();
+			});
+		}
 
         //Collapse or Expand Menu
         $('.menu-toggle').on('click', function (e) {
@@ -111,7 +127,7 @@ $.AdminBSB.leftSideBar = {
     setMenuHeight: function (isFirstTime) {
         if (typeof $.fn.slimScroll != 'undefined') {
             var configs = $.AdminBSB.options.leftSideBar;
-            var height = ($(window).height() - ($('.legal').outerHeight() + 50 + $('.user-info').outerHeight() + $('.navbar').innerHeight()));
+            var height = ($(window).height() - ($('.legal').outerHeight() + 5 + $('.user-info').outerHeight() + $('.navbar').innerHeight()));
             var $el = $('.list');
 
             $el.slimscroll({

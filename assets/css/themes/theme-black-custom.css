@@ -69,12 +69,12 @@
 	background-color: transparent; 
 }
 
-.sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle) i, 
-.sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle) span{
+.sidebar .menu .list .ml-menu li.active a.toggled i, 
+.sidebar .menu .list .ml-menu li.active a.toggled span{
 	color: #FF9800; 
 }
-.sidebar .menu .list .ml-menu li.active a:hover.toggled:not(.menu-toggle) i,
-.sidebar .menu .list .ml-menu li.active a:hover.toggled:not(.menu-toggle) span{
+.sidebar .menu .list .ml-menu li.active a:hover.toggled i,
+.sidebar .menu .list .ml-menu li.active a:hover.toggled span{
 	color: #FF6D00; 
 }
 

@@ -17,7 +17,6 @@ class Home extends Auth_Controller {
 		$menu = $this->menu->getMenu();
 		$this->multi_menu->set_items($menu);
 		
-		
 		$items = array_column($menu, 'slug');
 		foreach($items as $k => $value){
 			if(strpos($value, "/"))
@@ -36,12 +35,16 @@ class Home extends Auth_Controller {
 		$this->data['controller'] 					= $this->controller;
 		$this->data['welcome'] 						= $this->lang->replaceStringTags(100102, array(1 => array('text' => $this->lang->str(100094))));
 			
+		$this->loadBreadcrumbs();
+	}
+	
+	public function loadBreadcrumbs(){
 		$this->breadcrumbs->reset();
 		$bread = $this->menu->getBreadcrumbs('home');
 		foreach($bread as $k => $v)
 			$this->breadcrumbs->push($v['cdmenu'], $this->lang->menu($v['cdtermo']), $v['nmslug'], $v['idiconmenu']);
 			
-		$bread = $this->menu->getBreadcrumbs($this->data['item_active']);
+		$bread = $this->menu->getBreadcrumbs($this->item_active);
 		foreach($bread as $k => $v)
 			$this->breadcrumbs->push($v['cdmenu'], $this->lang->menu($v['cdtermo']), $v['nmslug'], $v['idiconmenu']);
 	}
@@ -53,7 +56,12 @@ class Home extends Auth_Controller {
 	
 	public function grid()
 	{
-		$arr = $this->model->getListData(array_replace($this->filter, $_REQUEST));
+		$options = array('grid' => true);
+		if(!empty($this->filter))
+			$options =  array_replace($options, $this->filter);
+		
+		$arr = $this->model->getListData(array_replace($options, $_REQUEST));
+		
 		$this->grid->set_label_column($arr['data']['label']);
 		if($arr['status'])
 			$this->grid->set_query_itens($arr['data']['item']);
@@ -69,7 +77,7 @@ class Home extends Auth_Controller {
 	{
 		$item = array();
 		
-		$options = array('list' => true);
+		$options = array('grid' => true, 'list' => true);
 		if(!empty($params))
 			$options =  array_replace($options, $params);
 
@@ -87,7 +95,7 @@ class Home extends Auth_Controller {
 	{
 		$item = array();
 		
-		$options = array('denyEmpty' => true, 'noparent' => true);
+		$options = array('grid' => true, 'denyEmpty' => true, 'noparent' => true);
 		if(!empty($params))
 			$options =  array_replace($options, $params);
 
@@ -99,17 +107,6 @@ class Home extends Auth_Controller {
 		}
 		
 		return $item;
-	}
-	
-	public function combolist2($mod){
-		$this->load->model($mod.'_model', $mod);
-		$dados = $this->combolist($this->{$mod}, $_REQUEST);
-		if(!empty($dados))
-			$result = array('status' => true, 'records' => $dados);
-		else
-			$result = array('status' => false);
-		
-		echo json_encode($result);
 	}
 	
 	public function childData($table, $cdfield){

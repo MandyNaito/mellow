@@ -24,14 +24,14 @@ class Crud extends Home {
 		$this->data['title'] 	= $this->lang->str($this->str);
 		$this->data['urlnovo'] 	= site_url($this->controller.'/novo');
 
-		$this->load->template('list/'.$this->controller, $this->data);
+		$this->load->template($this->controller.'/list', $this->data);
 	}
 	
 	public function gestao() {
 		$this->data['title'] 	= $this->lang->str($this->str);
 		$this->data['urlnovo'] 	= site_url($this->controller.'/novo');
 				
-		$this->load->template('list/'.$this->controller, $this->data);
+		$this->load->template($this->controller.'/list', $this->data);
 	}
 		
 	public function novo(){
@@ -39,7 +39,7 @@ class Crud extends Home {
 		$this->data['title'] 		= $this->lang->replaceStringTags(100073, array(1 => array('text' => strtolower($this->lang->str($this->str)))));
 		$this->data[$this->cdfield] = -1;
 		
-		$this->load->template('form/'.$this->controller, $this->data);
+		$this->load->template($this->controller.'/form', $this->data);
 	}
 	
 	public function inserir(){
@@ -67,7 +67,7 @@ class Crud extends Home {
 		
 		$_POST = array_merge($_POST, $this->model->getDataByCd($cdfield));
 		
-		$this->load->template('view/'.$this->controller, $this->data);
+		$this->load->template($this->controller.'/view', $this->data);
 	}
 	
 	public function deletar($cdfield){
@@ -112,7 +112,7 @@ class Crud extends Home {
 			if($fgedit)
 				$_POST = array_replace($_POST, $this->model->getDataByCd($cdfield));
 			
-			$this->load->template('form/'.$this->controller, $this->data);
+			$this->load->template($this->controller.'/form', $this->data);
 		} 
 		else 
 		{
@@ -144,7 +144,7 @@ class Crud extends Home {
 			{
 				if($fgedit)
 					$_POST = array_replace($_POST, $this->model->getDataByCd($cdfield));
-				$this->load->template('form/'.$this->controller, $this->data);
+				$this->load->template($this->controller.'/form', $this->data);
 			}
 		}
 	}

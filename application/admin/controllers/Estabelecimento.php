@@ -34,5 +34,18 @@ class Estabelecimento extends Crud {
 			'nrcapacidade'     			=> array('label'=> $this->lang->str(100086), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true)
 		);
 	}
+	
+	public function explorar(){
+		$this->item_active = 'estabelecimento/explorar';
+		$this->loadBreadcrumbs();
+		
+		$data = $this->model->getListData($this->filter);		
+		if($data['status'])
+			$this->data['data_estabelecimento'] = $data['data'];
+		
+		$this->data['item_active'] 	= $this->item_active;
+		$this->data['title'] 		= $this->lang->str($this->str);
+		$this->load->template($this->controller.'/explorar', $this->data);
+	}	
 }
 ?>
