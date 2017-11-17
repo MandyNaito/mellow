@@ -35,7 +35,6 @@ $.AdminBSB.options = {
         scrollRailBorderRadius: '0',
         scrollActiveItemWhenPageLoad: false,
         collapseWhenExpandItem: false,
-        expandAllItem: false,
         breakpointWidth: 1170
     },
     dropdownMenu: {
@@ -70,27 +69,12 @@ $.AdminBSB.leftSideBar = {
         });
 
         //When page load        
-		if($.AdminBSB.options.leftSideBar.expandAllItem){		
-			$.each($('.menu .list li.active'), function (i, val) {
-				var $activeAnchors = $(val).find('a:eq(0)');
-				$activeAnchors.addClass('toggled');
-			});	
-			
-			$.each($('.menu-toggle'), function(){
-				var $this = $(this);
-				var $content = $this.next();
+		$.each($('.menu .list li.active'), function (i, val) {
+			var $activeAnchors = $(val).find('a:eq(0)');
 
-				$this.toggleClass('toggled');
-				$content.slideToggle(320);
-			});
-		}else{
-			$.each($('.menu .list li.active'), function (i, val) {
-				var $activeAnchors = $(val).find('a:eq(0)');
-
-				$activeAnchors.addClass('toggled');
-				$activeAnchors.next().show();
-			});
-		}
+			$activeAnchors.addClass('toggled');
+			$activeAnchors.next().show();
+		});
 
         //Collapse or Expand Menu
         $('.menu-toggle').on('click', function (e) {
