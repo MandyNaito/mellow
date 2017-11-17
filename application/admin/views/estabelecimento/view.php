@@ -103,9 +103,6 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								
-								<div class="row clearfix">
 									<div class="col-sm-6">
 										<div class="form-group form-float">
 											<div class="form-line">
@@ -226,7 +223,7 @@
 			$(document).ready(function(){	
 				$.each($(':input:not(button)'), function(){
 					if(empty($(this).val()))
-						$(this).parent().hide();
+						$(this).parent().parent().parent().hide();
 					
 					$(this).parent().removeClass('form-line');
 				});

@@ -113,9 +113,6 @@
 												<?=form_error('idcelular');?>
 											</div>
 										</div>
-									</div>
-									
-									<div class="row clearfix">
 										<div class="col-sm-6">
 											<div class="form-group form-float">
 												<div class="form-line">
