@@ -9179,3 +9179,8 @@ html.ie11 .bs-searchbox .form-control {
 .card-box.hover-expand-effect:hover:after {
     width: 100%;
 }
+
+.btn-box{
+	position: relative;
+    margin-bottom: 30px;
+}

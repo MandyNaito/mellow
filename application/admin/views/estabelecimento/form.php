@@ -8,16 +8,13 @@
 				</div>				
 				<div class="row clearfix">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="card">
-							<div class="header">
-								<h2>
-									<?=$title;?>
-								</h2>
-							</div>
-							<div class="body">
-								<h2 class="card-inside-title"></h2>
-								<?=form_open_multipart($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
-									<?=form_hidden('cdestabelecimento', set_value('cdestabelecimento', -1));?>
+						<?=form_open_multipart($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
+							<?=form_hidden('cdestabelecimento', set_value('cdestabelecimento', -1));?>
+							<div class="card">
+								<div class="header">
+									<h2><?=$title;?></h2>
+								</div>
+								<div class="body">
 									<div class="row clearfix">
 										<div class="col-sm-12">
 											<div class="form-group form-float">
@@ -32,29 +29,16 @@
 											<div class="form-group">
 												<?=form_label($this->lang->str(100077), 'cdtipoestabelecimento', array('class'=> 'form-label'))?>
 												<?=form_dropdown(array('name' => 'cdtipoestabelecimento','id' => 'cdtipoestabelecimento', 'selected' => set_value('cdtipoestabelecimento'), 'data-value'=>set_value('cdtipoestabelecimento')), $list_tipoestabelecimento, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
-												<?=form_error('cdtipoestabelecimento');?>
 											</div>
+											<?=form_error('cdtipoestabelecimento');?>
 										</div>
 									</div>
-
-									<div class="row clearfix">
-										<div class="col-sm-6">
-											<div class="form-group form-float">
-												<div class="form-line">
-													<?=form_label($this->lang->str(100081), 'idcnpj', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'idcnpj','id' => 'idcnpj'), set_value('idcnpj'), array('class' => 'form-control cnpj', 'required'=>''))?>
-												</div>
-												<?=form_error('idcnpj');?>
-											</div>
-										</div>
-									</div>
-									
 									<div class="row clearfix">
 										<div class="col-sm-6">
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100078), 'nmrazaosocial', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'nmrazaosocial','id' => 'nmrazaosocial'), set_value('nmrazaosocial'), array('class' => 'form-control', 'required'=>''))?>
+													<?=form_input('nmrazaosocial', set_value('nmrazaosocial'), array('class' => 'form-control', 'required'=>''))?>
 												</div>
 												<?=form_error('nmrazaosocial');?>
 											</div>
@@ -63,20 +47,19 @@
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100079), 'nmfantasia', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'nmfantasia','id' => 'nmfantasia'), set_value('nmfantasia'), array('class' => 'form-control', 'required'=>''))?>
+													<?=form_input('nmfantasia', set_value('nmfantasia'), array('class' => 'form-control', 'required'=>''))?>
 												</div>
 												<?=form_error('nmfantasia');?>
 											</div>
 										</div>
 									</div>
 									
-									
 									<div class="row clearfix">
 										<div class="col-sm-12">
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100080), 'dsestabelecimento', array('class'=> 'form-label'))?>
-													<?=form_textarea(array('name' => 'dsestabelecimento','id' => 'dsestabelecimento'), set_value('dsestabelecimento'), array('class' => 'form-control no-resize'))?>
+													<?=form_textarea('dsestabelecimento', set_value('dsestabelecimento'), array('class' => 'form-control no-resize'))?>
 												</div>
 												<?=form_error('dsestabelecimento');?>
 											</div>
@@ -84,24 +67,39 @@
 									</div>
 									
 									<div class="row clearfix">
-										<div class="col-sm-4">
+										<div class="col-sm-6">
+											<div class="form-group form-float">
+												<div class="form-line">
+													<?=form_label($this->lang->str(100081), 'idcnpj', array('class'=> 'form-label'))?>
+													<?=form_input('idcnpj', set_value('idcnpj'), array('class' => 'form-control cnpj', 'required'=>''))?>
+												</div>
+												<?=form_error('idcnpj');?>
+											</div>
+										</div>
+										<div class="col-sm-3">
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100086), 'nrcapacidade', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'nrcapacidade','id' => 'nrcapacidade'), set_value('nrcapacidade'), array('class' => 'form-control number', 'required'=>''))?>
+													<?=form_input('nrcapacidade', set_value('nrcapacidade'), array('class' => 'form-control number', 'required'=>''))?>
 												</div>
-												<?=form_error('nrcapacidade');?>
 											</div>
+											<?=form_error('nrcapacidade');?>
 										</div>
 									</div>
-									
-									<h2 class="card-inside-title"><?=$this->lang->str(100103);?></h2>
+								</div>
+							</div>
+						
+							<div class="card">
+								<div class="header">
+									<h2><?=$this->lang->str(100103);?></h2>
+								</div>
+								<div class="body">
 									<div class="row clearfix">
 										<div class="col-sm-6">
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100082), 'idtelefone', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'idtelefone','id' => 'idtelefone'), set_value('idtelefone'), array('class' => 'form-control phone', 'required'=>''))?>
+													<?=form_input('idtelefone', set_value('idtelefone'), array('class' => 'form-control phone', 'required'=>''))?>
 												</div>
 												<?=form_error('idtelefone');?>
 											</div>
@@ -110,7 +108,7 @@
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100083), 'idcelular', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'idcelular','id' => 'idcelular'), set_value('idcelular'), array('class' => 'form-control cellphone'))?>
+													<?=form_input('idcelular', set_value('idcelular'), array('class' => 'form-control cellphone'))?>
 												</div>
 												<?=form_error('idcelular');?>
 											</div>
@@ -122,7 +120,7 @@
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100084), 'nmemail', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'nmemail','id' => 'nmemail'), set_value('nmemail'), array('class' => 'form-control email'))?>
+													<?=form_input('nmemail', set_value('nmemail'), array('class' => 'form-control email'))?>
 												</div>
 												<?=form_error('nmemail');?>
 											</div>
@@ -131,14 +129,20 @@
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100085), 'nmsite', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'nmsite','id' => 'nmsite'), set_value('nmsite'), array('class' => 'form-control'))?>
+													<?=form_input('nmsite', set_value('nmsite'), array('class' => 'form-control'))?>
 												</div>
 												<?=form_error('nmsite');?>
 											</div>
 										</div>
 									</div>
-									
-									<h2 class="card-inside-title"><?=$this->lang->str(100109);?></h2>
+								</div>
+							</div>
+					
+							<div class="card">
+								<div class="header">
+									<h2><?=$this->lang->str(100109);?></h2>
+								</div>
+								<div class="body">
 									<?=form_hidden('nrlatitude', set_value('nrlatitude'));?>
 									<?=form_hidden('nrlongitude', set_value('nrlongitude'));?>
 									<div class="row clearfix">
@@ -218,20 +222,22 @@
 												<?=form_error('nmpais');?>
 											</div>
 										</div>
-									</div>									
-									
-									
-									<div class="row clearfix">
-										<div id="actions" class="pull-right">
-											<div id="btn_actions" class="col-sm-12">
-												<?=form_reset('cancel', $this->lang->str(100044), array('class' => 'btn btn-default btn-cancel waves-effect', 'onclick' => 'window.location.replace(\''.site_url($controller).'\')')); ?>
-												<?=form_button('btn_submit', $this->lang->str(100068), array('class' => 'btn btn-success waves-effect')); ?>
-											</div>
-										</div>	
-									</div>
-								<?=form_close();?>
+									</div>	
+								</div>
 							</div>
-						</div>
+					
+					
+							<div class="btn-box">
+								<div class="row clearfix">
+									<div id="actions" class="pull-right">
+										<div id="btn_actions" class="col-sm-12">
+											<?=form_reset('cancel', $this->lang->str(100044), array('class' => 'btn btn-default btn-lg btn-cancel waves-effect', 'onclick' => 'window.location.replace(\''.site_url($controller).'\')')); ?>
+											<?=form_button('btn_submit', $this->lang->str(100068), array('class' => 'btn btn-success btn-lg waves-effect')); ?>
+										</div>
+									</div>	
+								</div>	
+							</div>
+						<?=form_close();?>
 					</div>
 				</div>
 			</div>

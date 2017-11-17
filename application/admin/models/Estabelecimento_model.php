@@ -6,6 +6,10 @@ class Estabelecimento_model extends Crud_Model {
 	var $table 		= "estabelecimento";
 	var $cdfield 	= "cdestabelecimento";
 	
+	public function getDataByCd($cdfield) {
+		return $this->getListData(array($this->cdfield => $cdfield))['data'][0];
+	}
+	
 	public function getListData($dados = array()) {
 		# Limite:
 		$limit = '';
