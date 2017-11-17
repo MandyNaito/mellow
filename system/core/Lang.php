@@ -224,7 +224,6 @@ class CI_Lang {
 	
 	function replaceStringTags($string,  $replacement = array())
 	{
-		header('Content-Type: text/html; charset=utf-8');
 		$replace = array();
 		foreach ($replacement as $key => $props)
 		{
