@@ -17,14 +17,20 @@ class Sessao extends Home {
 		
 	}
 	
+	public function verificar(){		
+		error_log(print_r($this->input->post('qrcode'), true));
+		error_log(print_r($_FILES, true));
+	}
+	
 	public function verificador(){
 		$this->item_active = 'sessao/verificador';
+		$this->data['target'] 		= $this->controller.'/verificar';
 		$this->loadBreadcrumbs();
 		
 		$data = $this->model->getListData($this->filter);		
 		
 		$this->data['item_active'] 	= $this->item_active;
-		$this->data['title'] 		= $this->lang->str($this->str)
+		$this->data['title'] 		= $this->lang->str($this->str);
 		
 		$this->load->template($this->controller.'/verificador', $this->data);
 	}
