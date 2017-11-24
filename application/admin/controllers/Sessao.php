@@ -4,9 +4,9 @@ require_once("Crud.php");
 
 class Sessao extends Home {
 	
-	var $controller 	= 'sessao';
-	var $item_active 	= 'sessao';
-	var $str 			= 100002;
+	var $controller 			= 'sessao';
+	var $item_active 			= 'sessao';
+	var $str 					= 100120;
 	
 	public function __construct()
 	{
@@ -14,6 +14,7 @@ class Sessao extends Home {
 
         $this->load->model('estabelecimento_model', 'estabelecimento');
 		$this->model = $this->estabelecimento;
+		$this->load->library('encryption');
 		
 	}
 	
@@ -31,11 +32,11 @@ class Sessao extends Home {
 		
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['title'] 		= $this->lang->str($this->str);
-		
+		//$hash2 = $this->encryption->decrypt($hash);
 		$this->load->template($this->controller.'/verificador', $this->data);
 	}
 	
-	public function checkin(){
+	public function checkin($cdestabelecimento = ''){
 		$this->item_active = 'sessao/checkin';
 		$this->loadBreadcrumbs();
 		
@@ -44,24 +45,43 @@ class Sessao extends Home {
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['title'] 		= $this->lang->str($this->str);
 		
-		$this->load->library('ciqrcode');
-		
-		$hash = md5($this->session->userdata('logged_in')['cdusuario']);
-		
-		$params['data'] 			= $hash;
-		$params['level'] 			= 'H';
-		$params['size']			 	= 8;
-		$params['savename']	 		= './upload/'.$this->controller.'/'.$hash.'.png';
-		$params['cacheable']		= false; 
-		$params['cachedir']			= APPPATH.'cache/'; 
-		$params['errorlog']			= APPPATH.'logs/'; 
-			
-		$this->ciqrcode->generate($params);
-		
-		
-		$this->data['qrcode'] 		= $params['savename'];
+		if(!empty($this->session->userdata('logged_in')['comanda']))
+		{
+			redirect('home');
+		}
+		else
+		{
+			if(!empty($cdestabelecimento)){
+				$estabelecimento = $this->estabelecimento->getDataByCd($cdestabelecimento);
+				
+				$this->load->library('ciqrcode');
+				
+				$hash = $this->session->userdata('logged_in')['cdusuario'].'-'.$cdestabelecimento;
 
-		$this->load->template($this->controller.'/checkin', $this->data);
+				$params['data'] 			= $this->encryption->encrypt($hash);
+				$params['level'] 			= 'H';
+				$params['size']			 	= 10;
+				$params['savename']	 		= './upload/'.$this->controller.'/'.$hash.'.png';
+				$params['cacheable']		= false; 
+				$params['cachedir']			= APPPATH.'cache/'; 
+				$params['errorlog']			= APPPATH.'logs/'; 
+					
+				$this->ciqrcode->generate($params);
+				
+				$this->data['qrcode'] 		= $params['savename'];
+				$this->data['title'] 		= $this->lang->str(100119).' | '.$estabelecimento['nmfantasia'];
+				$this->load->template($this->controller.'/checkin', $this->data);
+			}
+			else
+			{
+				$this->data['target'] = $this->controller.'/checkin';
+				$data = $this->model->getListData($this->filter);		
+				if($data['status'])
+					$this->data['data_estabelecimento'] = $data['data'];
+			
+				$this->load->template('estabelecimento/explorar', $this->data);
+			}
+		}
 	}
 }
 ?>

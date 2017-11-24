@@ -5,10 +5,17 @@
             <div class="container-fluid">
 				<div class="block-header">
 					<h2><?=$this->breadcrumbs->show();?></h2>
-				</div>
-				<div class="row clearfix">
-					<div class="col-xs-12">
-						<img src="<?=base_url($qrcode);?>" />
+				</div>			
+				<div class="card">
+					<div class="header  bg-pink">
+						<h2><?=$title;?></h2>
+					</div>
+					<div class="body">
+						<div class="row clearfix">
+							<div class="col-md-offset-4 col-md-4 col-xs-12">
+								<?=img(base_url($qrcode), false, array('id' => 'qrcode', 'class' => 'qrcode'));?>												
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -9184,3 +9184,8 @@ html.ie11 .bs-searchbox .form-control {
 	position: relative;
     margin-bottom: 30px;
 }
+
+.qrcode{
+	height: 100%;
+	width: 100%;
+}

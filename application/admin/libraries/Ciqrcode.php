@@ -32,13 +32,22 @@ class Ciqrcode
 		include "qrcode/qrmask.php";
 		include "qrcode/qrencode.php";
 		
+		$this->ci =& get_instance();
+		
+		$this->ci->load->config('qrcode');
+		$this->cacheable 	= $this->ci->config->item('cacheable');
+		$this->cachedir 	= $this->ci->config->item('cachedir');
+		$this->errorlog 	= $this->ci->config->item('errorlog');
+		$this->quality 		= $this->ci->config->item('quality');
+		$this->size 		= $this->ci->config->item('size');
+		
 		$this->initialize($config);
 	}
 	
 	public function initialize($config = array()) {
 		$this->cacheable = (isset($config['cacheable'])) ? $config['cacheable'] : $this->cacheable;
-		$this->cachedir = (isset($config['cachedir'])) ? $config['cachedir'] : FCPATH.$this->cachedir;
-		$this->errorlog = (isset($config['errorlog'])) ? $config['errorlog'] : FCPATH.$this->errorlog;
+		$this->cachedir = (isset($config['cachedir'])) ? $config['cachedir'] : $this->cachedir;
+		$this->errorlog = (isset($config['errorlog'])) ? $config['errorlog'] : $this->errorlog;
 		$this->quality = (isset($config['quality'])) ? $config['quality'] : $this->quality;
 		$this->size = (isset($config['size'])) ? $config['size'] : $this->size;
 		

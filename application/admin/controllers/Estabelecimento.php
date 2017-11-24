@@ -55,6 +55,7 @@ class Estabelecimento extends Crud {
 		
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['title'] 		= $this->lang->str($this->str);
+		$this->data['target']		= $this->controller.'/visualizar';
 		$this->load->template($this->controller.'/explorar', $this->data);
 	}	
 }
