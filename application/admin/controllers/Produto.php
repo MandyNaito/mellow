@@ -57,5 +57,42 @@ class Produto extends Crud {
 			
 		parent::visualizar($cdfield);
 	}
+	
+	public function cardapio($cdestabelecimento = ''){
+		$this->item_active = 'produto/cardapio';
+		$this->loadBreadcrumbs();
+		
+		$this->data['item_active'] 	= $this->item_active;
+		$this->data['title'] 		= $this->lang->str(100129);
+		
+		$cdestabelecimento = !empty($cdestabelecimento) ? $cdestabelecimento : $this->session->userdata('logged_in')['cdestabelecimento'];
+		
+		if(!empty($cdestabelecimento)){			
+			$estabelecimento = $this->estabelecimento->getDataByCd($cdestabelecimento);
+			
+			$produto = $this->produto->getListData(array('cdestabelecimento' => $cdestabelecimento));	
+			if($produto['status']){
+				$this->data['data_produto'] = $produto['data'];	
+				$this->data['title']  = $this->lang->str(100129).' | '.$estabelecimento['nmfantasia'];
+				$this->data['target'] = $this->controller.'/visualizar';
+				$this->load->template($this->controller.'/cardapio', $this->data);
+			}
+			else
+			{
+				$this->session->set_flashdata('error_message', $this->lang->str(100130));
+				redirect('produto/cardapio');
+			}
+			
+		}
+		else
+		{
+			$estabelecimento = $this->estabelecimento->getListData($this->filter);	
+			if($estabelecimento['status'])
+				$this->data['data_estabelecimento'] = $estabelecimento['data'];	
+			$this->data['target'] = $this->controller.'/cardapio';
+		
+			$this->load->template('estabelecimento/explorar', $this->data);
+		}
+	}
 }	
 ?>

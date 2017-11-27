@@ -32,15 +32,17 @@ class Estabelecimento_model extends Crud_Model {
 		$where = "";
 		foreach($dados as $field => $value)
 		{
-			switch(strtolower($field))
-			{
-				case 'cdestabelecimento':		$where.= " AND E.{$field} = ".intval($value)." \n"; break;
-				case 'cdtipoestabelecimento':	$where.= " AND E.{$field} = ".intval($value)." \n"; break;
-				case 'nmfantasia':				$where.= " AND E.{$field} LIKE '%{$value}%' \n"; break;
-				case 'nmrazaosocial':			$where.= " AND E.{$field} LIKE '%{$value}%' \n"; break;
-				case 'dsestabelecimento':		$where.= " AND E.{$field} LIKE '%{$value}%' \n"; break;
-				case 'fgstatus':				$where.= " AND E.{$field} = '{$value}' \n"; break;
-				case 'buscarapida':	 			$where.= " AND (E.cdestabelecimento = ".intval($value)." OR E.nmfantasia LIKE '%{$value}%' OR E.nmrazaosocial LIKE '%{$value}%')\n"; break;
+			if($value != ''){
+				switch(strtolower($field))
+				{
+					case 'cdestabelecimento':		$where.= " AND E.{$field} = ".intval($value)." \n"; break;
+					case 'cdtipoestabelecimento':	$where.= " AND E.{$field} = ".intval($value)." \n"; break;
+					case 'nmfantasia':				$where.= " AND E.{$field} LIKE '%{$value}%' \n"; break;
+					case 'nmrazaosocial':			$where.= " AND E.{$field} LIKE '%{$value}%' \n"; break;
+					case 'dsestabelecimento':		$where.= " AND E.{$field} LIKE '%{$value}%' \n"; break;
+					case 'fgstatus':				$where.= " AND E.{$field} = '{$value}' \n"; break;
+					case 'buscarapida':	 			$where.= " AND (E.cdestabelecimento = ".intval($value)." OR E.nmfantasia LIKE '%{$value}%' OR E.nmrazaosocial LIKE '%{$value}%')\n"; break;
+				}
 			}
 		}
 		
