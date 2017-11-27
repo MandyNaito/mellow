@@ -15,6 +15,7 @@ class Sessao extends Home {
         $this->load->model('estabelecimento_model', 'estabelecimento');
 		$this->model = $this->estabelecimento;
 		$this->load->library('encryption');
+		$this->load->library('encrypt');
 		
 	}
 	
@@ -55,9 +56,11 @@ class Sessao extends Home {
 				$estabelecimento = $this->estabelecimento->getDataByCd($cdestabelecimento);
 				
 				$this->load->library('ciqrcode');
+				$this->load->library('crypter');
 				
 				$hash = $this->session->userdata('logged_in')['cdusuario'].'-'.$cdestabelecimento;
 
+				
 				$params['data'] 			= $this->encryption->encrypt($hash);
 				$params['level'] 			= 'H';
 				$params['size']			 	= 10;
@@ -69,7 +72,9 @@ class Sessao extends Home {
 				$this->ciqrcode->generate($params);
 				
 				$this->data['qrcode'] 		= $params['savename'];
+				$this->data['nrcode'] 		= $this->crypter->encrypt($hash);
 				$this->data['title'] 		= $this->lang->str(100119).' | '.$estabelecimento['nmfantasia'];
+				$this->data['target']		= $this->controller.'/checkin';
 				$this->load->template($this->controller.'/checkin', $this->data);
 			}
 			else

@@ -73,6 +73,7 @@
 		<?=script_tag('assets/js/main.js')."\n";?>		
 		<?=script_tag('assets/js/cep.js')."\n";?>		
 		<?=script_tag('assets/js/grid.js')."\n";?>		
+		<?=script_tag('assets/js/card.js')."\n";?>		
 		<?=script_tag('assets/js/demo.js')."\n";?>		
 		
 
