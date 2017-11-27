@@ -43,9 +43,7 @@ class Usuario_model extends Crud_Model {
             $limit = ' LIMIT '.$dados['limit'];
         
 		# Ordenação:
-		$orderby = "";
-        if (isset($dados['orderby']) && !empty($dados['orderby']))
-			$orderby = ' ORDER BY '.$dados['orderby'];
+		$orderby = ' ORDER BY '.((!empty($dados['orderby']))? $dados['orderby'] : ' nmusuario ');
 		
 		# Tabelas:
 		$from = ' 	usuario U 
@@ -106,12 +104,17 @@ class Usuario_model extends Crud_Model {
 		
 		foreach ($fields as $values)
 		{
-			$itens[$values['cdusuario']] = array(
-						'cdusuario' 		=> $values['cdusuario'],
-						'cdperfil' 			=> $values['nmperfil'],
-						'idlogin' 			=> $values['idlogin'],
-						'fgstatus' 			=> $values['fgstatus']
-						);
+			if (array_key_exists('list',$dados) && !empty($dados['list']))
+				$itens[$values['cdusuario']] = $values['nmusuario'];
+			else
+			{
+				$itens[$values['cdusuario']] = array(
+							'cdusuario' 		=> $values['cdusuario'],
+							'cdperfil' 			=> $values['nmperfil'],
+							'idlogin' 			=> $values['idlogin'],
+							'fgstatus' 			=> $values['fgstatus']
+							);
+			}
 		}
 		
 		return array('status' => true, 'data' => array('label' => $label, 'item' => $itens));

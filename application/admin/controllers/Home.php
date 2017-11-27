@@ -73,6 +73,23 @@ class Home extends Auth_Controller {
 		echo json_encode($dados);
 	}
 	
+	public function childGrid($table, $cdfield)
+	{
+		$dados = $this->model->getChildData($table, $cdfield);
+		$arr =  $this->model->getChildGrid($dados);
+				
+		$this->grid->show_action_column = false;
+		$this->grid->set_label_column($arr['data']['label']);
+		if($arr['status'])
+			$this->grid->set_query_itens($arr['data']['item']);
+		
+		$dados = array('status' => true, 'data' => $this->grid->render());
+		
+		header('Content-Type: application/json'); 
+		
+		echo json_encode($dados);
+	}
+	
 	public function combolist($model, $params = array())
 	{
 		$item = array();
@@ -84,7 +101,7 @@ class Home extends Auth_Controller {
 		$result = $model->getListData($options);
 		if($result['status']){
 			if(empty($options['denyEmpty']))
-				array_unshift($result['data']['item'], '');
+				$result['data']['item'] = array('' => '') + $result['data']['item'];			
 			$item = $result['data']['item'];
 		}
 		

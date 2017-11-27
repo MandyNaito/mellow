@@ -5,62 +5,20 @@ class Comanda_model extends Crud_Model {
 	
 	var $table 		= "comanda";
 	var $cdfield 	= "cdcomanda";
-	/*
-	public function insert($data){
-		
-		$cdalergenio = array();
-		if(!empty($data['cdalergenio']))
-			$cdalergenio = $data['cdalergenio'];
-		
-		unset($data['cdalergenio']);
-		
-		$this->db->insert($this->table, $data);
-		$cdfield = $this->db->insert_id();
-		
-		if(!empty($cdfield)){
-			foreach($cdalergenio as $key => $value){
-				$this->insertChild('comanda_alergenio', array('cdcomanda' => $cdfield, 'cdalergenio' => $value));
-			}
-		}
-		
-		return $cdfield;
-	}
 	
-	public function update($cdfield, $data){
-		
-		$cdalergenio = array();
-		if(!empty($data['cdalergenio']))
-			$cdalergenio = array_unique($data['cdalergenio']);
-		
-		unset($data['cdalergenio']);
-		
-		$updated = parent::update($cdfield, $data);
-		
-		if($updated){
-			$deleted = $this->deleteChild('cdcomanda', 'comanda_alergenio', $cdfield);
-
-			if($deleted){
-				foreach($cdalergenio as $key => $value)
-					$this->insertChild('comanda_alergenio', array('cdcomanda' => $cdfield, 'cdalergenio' => $value));
-			}
-			
-		}
-
-		return $updated;
-	}
 	public function getChildData($table, $cdfield = -1) {
-		
 		$SQL = '';
 		switch($table){
-			case 'comanda_alergenio':
+			case 'pedido':
 				$SQL = '
 					SELECT 
 						*
 					FROM 
-						comanda P 
-						INNER JOIN comanda_alergenio 	PA ON (PA.cdcomanda = P.cdcomanda)
+						comanda C 
+						INNER JOIN pedido P 	ON (C.cdcomanda = P.cdcomanda)
+						INNER JOIN produto PD 	ON (P.cdproduto = PD.cdproduto)
 					WHERE 
-						PA.cdcomanda = '.$cdfield;
+						C.cdcomanda = '.$cdfield;
 				break;
 		}
 		
@@ -69,7 +27,32 @@ class Comanda_model extends Crud_Model {
 		
 		return false;
 	}
-	*/
+	
+	public function getChildGrid($fields) {
+		$label = array(
+			'dtpedido' 				=> $this->lang->str(100124),
+			'nmproduto' 			=> $this->lang->str(100005),
+			'nrquantidade' 			=> $this->lang->str(100125),
+			'vlproduto'			 	=> $this->lang->str(100092)
+			);
+					
+		if(empty($fields))
+			return array('status' => false, 'data' => array('label' => $label));
+		
+		$itens = array();	
+		
+		foreach ($fields as $values)
+		{
+			$itens[$values['cdpedido']] = array(
+					'dtpedido' 			=> $values['dtpedido'],
+					'nmproduto' 		=> $values['nmproduto'],
+					'nrquantidade' 		=> $values['nrquantidade'],
+					'vlproduto' 		=> $values['vlproduto']
+					);
+		}
+		
+		return array('status' => true, 'data' => array('label' => $label, 'item' => $itens));
+	}
 	
 	public function getListData($dados = array()) {
 		# Limite:
@@ -101,10 +84,10 @@ class Comanda_model extends Crud_Model {
 			if($value != ''){
 				switch(strtolower($field))
 				{
-					case 'cdcomanda':			$where.= " AND P.{$field} = ".intval($value)." \n"; break;
-					case 'cdusuario':			$where.= " AND P.{$field} = ".intval($value)." \n"; break;
-					case 'cdusuario':			$where.= " AND P.{$field} = ".intval($value)." \n"; break;
-					case 'fgstatus':			$where.= " AND P.{$field} = '{$value}' \n"; break;
+					case 'cdcomanda':			$where.= " AND C.{$field} = ".intval($value)." \n"; break;
+					case 'cdusuario':			$where.= " AND C.{$field} = ".intval($value)." \n"; break;
+					case 'cdestabelecimento':	$where.= " AND C.{$field} = ".intval($value)." \n"; break;
+					case 'fgstatus':			$where.= " AND C.{$field} = '{$value}' \n"; break;
 				}
 			}
 		}

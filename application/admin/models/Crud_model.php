@@ -48,8 +48,8 @@ class Crud_Model extends CI_Model {
 	}
 	
 	public function getDataByCd($cdfield) {
-		$this->db->where($this->cdfield, $cdfield);
-		return $this->all($this->table)[0];
+		$data = $this->getListData(array($this->cdfield => $cdfield))['data']['item'];
+		return $data[key($data)];
 	}
 	
 	public function saveChild($field, $table, $cdfield, $data){
@@ -79,6 +79,8 @@ class Crud_Model extends CI_Model {
 	public function getChildTableData($SQL) {
 		return $this->db->query($SQL)->result_array();
 	}
+	
+	
 
 	public function getChildTableByCd($field, $table, $cdfield = -1) {
 		$this->db->where($field, $cdfield);

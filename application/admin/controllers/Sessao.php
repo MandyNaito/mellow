@@ -46,7 +46,7 @@ class Sessao extends Home {
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['title'] 		= $this->lang->str($this->str);
 		
-		if(!empty($this->session->userdata('logged_in')['comanda']))
+		if(!empty($this->session->userdata('logged_in')['cdcomanda']))
 		{
 			redirect('home');
 		}

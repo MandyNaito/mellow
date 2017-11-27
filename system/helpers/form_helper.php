@@ -290,6 +290,30 @@ if ( ! function_exists('form_date'))
 		return '<input '._parse_form_attributes($data, $defaults)._attributes_to_string($extra)." />\n";
 	}
 }
+// ------------------------------------------------------------------------
+
+if ( ! function_exists('form_datetime'))
+{
+	/**
+	 * Text Input Field
+	 *
+	 * @param	mixed
+	 * @param	string
+	 * @param	mixed
+	 * @return	string
+	 */
+	function form_datetime($data = '', $value = '', $extra = '')
+	{
+		$defaults = array(
+			'type' => 'datetime',
+			'id' => is_array($data) ? '' : $data,
+			'name' => is_array($data) ? '' : $data,
+			'value' => $value
+		);
+
+		return '<input '._parse_form_attributes($data, $defaults)._attributes_to_string($extra)." />\n";
+	}
+}
 
 // ------------------------------------------------------------------------
 

@@ -8680,7 +8680,7 @@ fieldset[disabled] .form-control {
     max-width: 360px;
     margin: 5% auto;
     overflow-x: hidden;
-    background-size: 100% 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: left top;
     overflow: hidden;
