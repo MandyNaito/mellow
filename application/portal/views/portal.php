@@ -93,7 +93,7 @@
 			<h2>Deixando a vida mais <span class="rotating col-cyan">doce, fácil, rápida, descomplicada</span></h2>
 			<div class="actions">
 			  <a href="#about" class="btn-orange-o">O projeto</a>
-			  <a href="#portfolio" class="btn-pink">Acessar</a>
+			  <a href="<?=base_url('suite.php');?>"" class="btn-pink">Acessar</a>
 			</div>
 		  </div>
 		</div>
@@ -188,61 +188,7 @@
 							Cansou de carregar aqueles papeizinhos com medo de perder e pagar a multa? Sem problemas!
 							A comanda aqui é digital, pode ser visualizado diretamente do seu smartphone.
 						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="portfolio">
-			<div class="container wow fadeInUp">
-				<div class="row">
-					<div class="col-md-12">
-						<h3 class="section-title">Mellow Suite</h3>
-						<div class="section-title-divider"></div>
-						<p class="section-description">Suíte de aplicativos para todos os gostos</p>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-4"> 
-						<a class="portfolio-item" href="<?=base_url('mellow.php');?>">
-							<div class="portfolio-item info-box-3 bg-pink hover-zoom-effect">
-								<div class="icon">
-									<i class="material-icons">face</i>
-								</div>
-								<div class="content">
-									<div class="text"><?=$this->lang->str(100031);?></div>
-									<div class="lb-box"><?=$this->lang->str(100096);?></div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-4"> 
-						<a class="portfolio-item" href="<?=base_url('mellow.php');?>">
-							<div class="portfolio-item info-box-3 bg-cyan hover-zoom-effect">
-								<div class="icon">
-									<i class="material-icons">location_city</i>
-								</div>
-								<div class="content">
-									<div class="text"><?=$this->lang->str(100031);?></div>
-									<div class="lb-box"><?=$this->lang->str(100095);?></div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-4"> 
-						<a class="portfolio-item" href="<?=base_url('mellow.php');?>">
-							<div class="portfolio-item info-box-3 bg-orange hover-zoom-effect">
-								<div class="icon">
-									<i class="material-icons">settings</i>
-								</div>
-								<div class="content">
-									<div class="text"><?=$this->lang->str(100031);?></div>
-									<div class="lb-box"><?=$this->lang->str(100094);?></div>
-								</div>
-							</div>
-						</a>
-					</div>
+					</div> 
 				</div>
 			</div>
 		</section>
@@ -308,7 +254,7 @@
 				</div>
 			</div>
 		</section>
-
+		
 		<footer id="footer">
 			<div class="container">
 				<div class="row">

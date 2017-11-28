@@ -152,6 +152,9 @@ class Produto_model extends Crud_Model {
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
 		
+		if(empty($dados['grid']))			
+			return array('status' => true, 'data' => $fields);
+		
 		$itens = array();	
 		
 		foreach ($fields as $values)

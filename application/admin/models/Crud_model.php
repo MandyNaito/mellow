@@ -48,7 +48,9 @@ class Crud_Model extends CI_Model {
 	}
 	
 	public function getDataByCd($cdfield) {
-		$data = $this->getListData(array($this->cdfield => $cdfield))['data']['item'];
+		$data = $this->getListData(array($this->cdfield => $cdfield))['data'];
+		if(isset($data['item']))
+			$data = $data['item'];
 		return $data[key($data)];
 	}
 	

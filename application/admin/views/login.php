@@ -115,7 +115,7 @@
 						
 						<div class="row m-t-15 m-b--20">
 							<div class="col-xs-12">
-								<a href="<?=site_url('login/cadastro/app');?>"><?=$this->lang->str(100098);?></a>
+								<a href="<?=site_url('inscricao');?>"><?=$this->lang->str(100098);?></a>
 							</div>
 						</div>
 					<?=form_close();?>

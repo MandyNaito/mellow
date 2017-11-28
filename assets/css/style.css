@@ -8712,6 +8712,13 @@ fieldset[disabled] .form-control {
     color: #fff;
     margin-top: -5px;
 }
+.portal-page {
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+
 .portal-page .portal-box .logo {
     margin-bottom: 50px;
 }
