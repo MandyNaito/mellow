@@ -112,7 +112,6 @@
 					<li class="menu-active"><a href="#hero">Home</a></li>
 					<li><a href="#about">O projeto</a></li>
 					<li><a href="#services">Diferenciais</a></li>
-					<li><a href="#portfolio">Mellow Suite</a></li>
 					<li><a href="#team">A equipe</a></li>
 				</ul>
 			</nav>

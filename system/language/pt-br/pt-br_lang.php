@@ -1,5 +1,5 @@
 <?php
-$lang["s_100000"] = "MellowTeam";
+$lang["s_100000"] = "Mellow Suíte";
 $lang["s_100001"] = "Home";
 $lang["s_100002"] = "Estabelecimento";
 $lang["s_100003"] = "Sessão";
@@ -132,7 +132,7 @@ $lang["s_100129"] = "Cardápio";
 $lang["s_100130"] = "Não há produtos cadastrados para este estabelecimento";
 $lang["s_100131"] = "Seja nosso parceiro!";
 $lang["s_100132"] = "Cadastre-se";
-$lang["s_100133"] = "s_100133";
+$lang["s_100133"] = "Atenção! Pode conter:";
 $lang["s_100134"] = "s_100134";
 $lang["s_100135"] = "s_100135";
 $lang["s_100136"] = "s_100136";
@@ -154,5 +154,5 @@ $lang["s_100151"] = "s_100151";
 $lang["s_100152"] = "s_100152";
 $lang["s_100153"] = "s_100153";
 $lang["s_100154"] = "s_100154";
-$lang["s_999999"] = "Mozylie";
+$lang["s_999999"] = "MellowTeam";
 ?>

@@ -59,7 +59,8 @@ class Produto_model extends Crud_Model {
 						*
 					FROM 
 						produto P 
-						INNER JOIN produto_alergenio 	PA ON (PA.cdproduto = P.cdproduto)
+						INNER JOIN produto_alergenio 	PA 	ON (PA.cdproduto 	= P.cdproduto)
+						INNER JOIN alergenio 			A 	ON (PA.cdalergenio 	= A.cdalergenio)
 					WHERE 
 						PA.cdproduto = '.$cdfield;
 				break;

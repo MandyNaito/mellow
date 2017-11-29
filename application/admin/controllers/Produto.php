@@ -58,6 +58,19 @@ class Produto extends Crud {
 		parent::visualizar($cdfield);
 	}
 	
+	public function detalhe($cdfield){
+		$alergenio = $this->model->getChildData('produto_alergenio', $cdfield);
+
+		$this->data['alergenios'] 	= $alergenio;
+		$this->data['cdfield'] 		= $cdfield;
+		$this->data['title'] 		= $this->lang->replaceStringTags(100072, array(1 => array('text' => mb_strtolower($this->lang->str($this->str)))));
+		$this->data['view'] 		= true;
+		
+		$_POST = array_merge($_POST, $this->model->getDataByCd($cdfield));
+		
+		$this->load->template($this->controller.'/detalhe', $this->data);
+	}
+	
 	public function cardapio($cdestabelecimento = ''){
 		$this->item_active = 'produto/cardapio';
 		$this->loadBreadcrumbs();
@@ -67,14 +80,27 @@ class Produto extends Crud {
 		
 		$cdestabelecimento = !empty($cdestabelecimento) ? $cdestabelecimento : $this->session->userdata('logged_in')['cdestabelecimento'];
 		
-		if(!empty($cdestabelecimento)){			
+		if(!empty($cdestabelecimento)){		
 			$estabelecimento = $this->estabelecimento->getDataByCd($cdestabelecimento);
 			
-			$produto = $this->produto->getListData(array('cdestabelecimento' => $cdestabelecimento));	
-			if($produto['status']){
-				$this->data['data_produto'] = $produto['data'];	
-				$this->data['title']  = $this->lang->str(100129).' | '.$estabelecimento['nmfantasia'];
-				$this->data['target'] = $this->controller.'/visualizar';
+			$this->breadcrumbs->push('current_page', $estabelecimento['nmfantasia'], '');
+		
+			$this->data['title']  = $this->lang->str(100129).' | '.$estabelecimento['nmfantasia'];
+			$this->data['target'] = $this->controller.'/detalhe';
+		
+			$tipoproduto = $this->tipoproduto->getListData(array('cdestabelecimento' => $cdestabelecimento));	
+			if($tipoproduto['status']){
+				foreach($tipoproduto['data'] as $key => $tipo){
+					$produto = $this->produto->getListData(array('cdestabelecimento' => $cdestabelecimento, 'cdtipoproduto' => $tipo['cdtipoproduto']));	
+					if($produto['status'])
+						$tipoproduto['data'][$key]['produto'] = $produto['data'];
+					else
+						unset($tipoproduto['data'][$key]);				
+				}
+			}
+			
+			if(!empty($tipoproduto['data'])){
+				$this->data['data_tipoproduto'] = $tipoproduto['data'];	
 				$this->load->template($this->controller.'/cardapio', $this->data);
 			}
 			else

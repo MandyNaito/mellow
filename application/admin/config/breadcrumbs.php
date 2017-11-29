@@ -15,7 +15,7 @@
 */
 
 $config['crumb_divider'] 	= '';
-$config['tag_open'] 		= '<ol class="breadcrumb breadcrumb-bg-cyan">';
+$config['tag_open'] 		= '<ol class="breadcrumb breadcrumb-bg-grey">';
 $config['tag_close'] 		= '</ol>';
 $config['crumb_open'] 		= '<li>';
 $config['crumb_last_open'] 	= '<li class="active">';

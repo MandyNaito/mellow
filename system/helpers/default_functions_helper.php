@@ -32,3 +32,19 @@ if ( ! function_exists('rand_card_colors'))
 		return $colors[floor(($cont) % count($colors))];
 	}
 }
+if ( ! function_exists('rand_card_icons'))
+{
+	function rand_card_icons($cont)
+	{
+		$colors = array	(
+							'blur_on',
+							'star', 
+							'music_note',
+							'toys',
+							'mood',
+							'thumb_up',
+							'favorite'
+						);
+		return $colors[floor(($cont) % count($colors))];
+	}
+}

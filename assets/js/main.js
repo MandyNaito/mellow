@@ -372,15 +372,16 @@ function loadMasks(obj){
 	$(obj).find(".cnpj").mask("99.999.999/9999-99");
 	$(obj).find(".cep").mask("99999-999");
 		
-	$(obj).find(".number").mask( "0#" );
+	//$(obj).find(".number").mask( "0#" );
 	$(obj).find(".interger").mask( "9?999" );
 
 	$(obj).find(".float").maskMoney({prefix:'', thousands:'.', decimal:',', affixesStay: false});
 	$(obj).find(".floatZero").maskMoney({prefix:'', thousands:'.', decimal:',', affixesStay: false, allowZero: true});
 	
-	$(obj).find(".money").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: true, selectAllOnFocus : true});
-	$(obj).find(".moneyZero").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: true, allowZero: true, selectAllOnFocus : true});
-	$(obj).find(".moneyZeroNegative").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: true, allowZero: true, allowNegative: true, selectAllOnFocus : true});
+	$(obj).find(".money").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: false, selectAllOnFocus : true}).trigger('mask.maskMoney');
+	$(obj).find(".moneyZero").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: false, allowZero: true, selectAllOnFocus : true}).trigger('mask.maskMoney');
+	$(obj).find(".moneyZeroNegative").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: false, allowZero: true, allowNegative: true, selectAllOnFocus : true}).trigger('mask.maskMoney');
+	
 	
 	$(obj).find(".percent").maskMoney({suffix:' %', thousands:'.', decimal:',', affixesStay: false});
 	$(obj).find(".percentZero").maskMoney({suffix:' %', thousands:'.', decimal:',', affixesStay: false, allowZero: true});
