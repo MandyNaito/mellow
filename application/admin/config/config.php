@@ -35,7 +35,7 @@ $config['base_url'] = 'http://www.mellow-suite.xyz/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'mellow.php';
+$config['index_page'] = 'suite.php';
 
 /*
 |--------------------------------------------------------------------------
