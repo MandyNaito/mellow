@@ -88,10 +88,10 @@ class Produto extends Crud {
 			$this->data['title']  = $this->lang->str(100129).' | '.$estabelecimento['nmfantasia'];
 			$this->data['target'] = $this->controller.'/detalhe';
 		
-			$tipoproduto = $this->tipoproduto->getListData(array('cdestabelecimento' => $cdestabelecimento));	
+			$tipoproduto = $this->tipoproduto->getListData(array('cdestabelecimento' => $cdestabelecimento, 'fgstatus' => 1));	
 			if($tipoproduto['status']){
 				foreach($tipoproduto['data'] as $key => $tipo){
-					$produto = $this->produto->getListData(array('cdestabelecimento' => $cdestabelecimento, 'cdtipoproduto' => $tipo['cdtipoproduto']));	
+					$produto = $this->produto->getListData(array('cdestabelecimento' => $cdestabelecimento, 'cdtipoproduto' => $tipo['cdtipoproduto'], 'fgstatus' => 1));	
 					if($produto['status'])
 						$tipoproduto['data'][$key]['produto'] = $produto['data'];
 					else
@@ -112,7 +112,7 @@ class Produto extends Crud {
 		}
 		else
 		{
-			$estabelecimento = $this->estabelecimento->getListData($this->filter);	
+			$estabelecimento = $this->estabelecimento->getListData(array_replace($this->filter, array('fgstatus' => 1)));	
 			if($estabelecimento['status'])
 				$this->data['data_estabelecimento'] = $estabelecimento['data'];	
 			$this->data['target'] = $this->controller.'/cardapio';

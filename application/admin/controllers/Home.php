@@ -14,17 +14,6 @@ class Home extends Auth_Controller {
 	{
 		parent::__construct();
 		
-		$menu = $this->menu->getMenu();
-		$this->multi_menu->set_items($menu);
-		
-		$items = array_column($menu, 'slug');
-		foreach($items as $k => $value){
-			if(strpos($value, "/"))
-				$items[$k] = explode('/', $value)[1];
-		}
-		if(!in_array($this->item_active, $items))
-			$this->item_active = 'home';		
-		
 		$this->data['wintitle'] 					= $this->lang->str(100000)." | ".$this->lang->str($this->str);
 		$this->data['session_cdusuario'] 			= $this->session->userdata('logged_in')['cdusuario'];
 		$this->data['session_nmusuario']			= $this->session->userdata('logged_in')['nmusuario'];
@@ -33,7 +22,7 @@ class Home extends Auth_Controller {
 		$this->data['session_cdestabelecimento']	= $this->session->userdata('logged_in')['cdestabelecimento'];
 		$this->data['item_active'] 					= $this->item_active;
 		$this->data['controller'] 					= $this->controller;
-		$this->data['welcome'] 						= $this->lang->replaceStringTags(100102, array(1 => array('text' => $this->lang->str(100094))));
+		$this->data['welcome'] 						= $this->lang->replaceStringTags(100102, array(1 => array('text' => $this->lang->str(100000))));
 			
 		$this->loadBreadcrumbs();
 	}
