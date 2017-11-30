@@ -18,6 +18,10 @@ class Crud extends Home {
 		$this->grid->url_action_edit = site_url($this->controller.'/editar/');
 		
 		$this->redir = $this->controller;
+		
+		$this->load->library('user_agent');
+		if ($this->agent->is_referral())
+			$this->redir = $this->agent->referrer();
 	}
 	
 	public function index() {

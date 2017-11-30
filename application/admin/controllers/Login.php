@@ -61,7 +61,7 @@ Class Login extends CI_Controller
 										'nmtipo' 				=> $result[0]->nmtipo,
 										'cdperfil' 				=> $result[0]->cdperfil,
 										'cdestabelecimento' 	=> $result[0]->cdestabelecimento,
-										'txfoto' 	=> (!(empty($result[0]->txfoto)) ? $result[0]->txfoto : 'assets/images/user-default.png')
+										'txfoto' 				=> ((!empty($result[0]->txfoto)) ? $result[0]->txfoto : 'assets/images/user-default.png')
 									);
 									
 					$result = $this->login->getEnabledUser($session_data['cdusuario']);

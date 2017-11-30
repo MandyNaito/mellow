@@ -10,8 +10,12 @@ class Comanda extends Crud {
 	var $str 			= 100006;
 	
 	public function __construct()
-	{
+	{		
 		parent::__construct();
+		
+		
+		$this->grid->show_action_active 	= false;
+		$this->grid->disab_edit_inactive 	= true;
 		
         $this->load->model('comanda_model', 		'comanda');
         $this->load->model('estabelecimento_model', 'estabelecimento');
@@ -29,6 +33,7 @@ class Comanda extends Crud {
 			'cdusuario'   				=> array('label'=> $this->lang->str(100004), 	'rule' => 'trim|required|greater_than[0]', 	'msg' => array('greater_than' => $this->lang->str(100075).'%s'.$this->lang->str(100076)), 'isField' => true)
 		);
 	}
+
 	
 	public function extrato(){
 		$this->item_active = 'comanda/extrato';
@@ -37,15 +42,18 @@ class Comanda extends Crud {
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['title'] 		= $this->lang->str(100126);
 		
-		$cdfield = $this->session->userdata('logged_in')['cdcomanda'];
-		
-		if(empty($cdfield))
+		$comanda = $this->comanda->getListData(array('cdusuario'=> $this->session->userdata('logged_in')['cdusuario'], 'fgstatus' => 1));
+		if(empty($comanda['data']))
 		{
 			$this->session->set_flashdata('error_message', $this->lang->str(100128));
 			redirect('home');
 		}
 		else
 		{
+			$dados = $comanda['data'];
+			$dados = $dados[key($dados)];
+			$cdfield = $dados['cdcomanda'];
+			
 			$this->data['cdfield'] 		= $cdfield;
 			$this->data['target'] 		= $this->controller.'/visualizar/'.$cdfield;
 			$this->data['view'] 		= true;

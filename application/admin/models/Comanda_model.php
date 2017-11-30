@@ -54,6 +54,11 @@ class Comanda_model extends Crud_Model {
 		return array('status' => true, 'data' => array('label' => $label, 'item' => $itens));
 	}
 	
+	public function disable($cdfield){
+		$this->db->set('dtsaida', date("Y-m-d H:i:s"));
+		return parent::disable($cdfield);
+	}
+	
 	public function getListData($dados = array()) {
 		# Limite:
 		$limit = '';
@@ -130,7 +135,7 @@ class Comanda_model extends Crud_Model {
 		
 		if(empty($dados['grid']))			
 			return array('status' => true, 'data' => $fields);
-		
+	
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
 		

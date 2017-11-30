@@ -24,6 +24,7 @@ class CI_Grid {
 	public 	$fgfield				= '';
 	private $field_active			= '<i class="material-icons text-success">check_circle</i>';
 	private $field_inactive			= '<i class="material-icons text-danger">cancel</i>';
+	public 	$disab_edit_inactive	= false;
 	public 	$show_action_view		= true;
 	public 	$show_action_edit		= true;
 	public 	$show_action_delete		= true;
@@ -98,13 +99,13 @@ class CI_Grid {
 					$output .= '<td class="actions">';
 					if($this->show_action_view)
 						$output .= '<a class="data-tooltip btn btn-xs btn-info waves-effect btn-view" href="'.$this->url_action_view.$cod.'" 		data-index="'.$cod.'" title="'.$this->ci->lang->str(100038).'">'.$this->icon_view.'</a> ';
-					if($this->show_action_edit)
+					if($this->show_action_edit && (!$this->disab_edit_inactive  || ($this->disab_edit_inactive && $isactive)))
 						$output .= '<a class="data-tooltip btn btn-xs btn-warning waves-effect btn-edit" href="'.$this->url_action_edit.$cod.'" 	data-index="'.$cod.'" title="'.$this->ci->lang->str(100039).'">'.$this->icon_edit.'</a> ';
 					if($this->show_action_active && !$isactive)					
 						$output .= '<a class="data-tooltip btn btn-xs btn-success waves-effect btn-active" 	data-type="confirm"  					data-index="'.$cod.'" title="'.$this->ci->lang->str(100055).'">'.$this->icon_active.'</a> ';
 					if($this->show_action_inactive  && $isactive)					
 						$output .= '<a class="data-tooltip btn btn-xs btn-danger waves-effect  btn-inactive" data-type="confirm"  					data-index="'.$cod.'" title="'.$this->ci->lang->str(100056).'">'.$this->icon_inactive.'</a> ';
-					if($this->show_action_delete)					
+					if($this->show_action_delete && (!$this->disab_edit_inactive  || ($this->disab_edit_inactive && $isactive)))					
 						$output .= '<a class="data-tooltip btn btn-xs btn-danger waves-effect  btn-delete" 	data-type="confirm"  					data-index="'.$cod.'" title="'.$this->ci->lang->str(100040).'"">'.$this->icon_delete.'</a> ';
 					$output .= "</td>";
 				}

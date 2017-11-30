@@ -9,7 +9,7 @@
 				<div class="row clearfix">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<?=form_open($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
-						<?=form_hidden('cdcomanda', set_value('cdcomanda', -1));?>
+						<?=form_hidden('cdpedido', set_value('cdpedido', -1));?>
 							<div class="card">
 								<div class="header">
 									<h2><?=$title;?></h2>
@@ -17,28 +17,32 @@
 								<div class="body">
 									<h2 class="card-inside-title"></h2>
 									<div class="row clearfix">
-										<?php if(empty($session_cdestabelecimento)) { ?>
 										<div class="col-sm-6">
 											<div class="form-group">
-												<?=form_label($this->lang->str(100002), 'cdestabelecimento', array('class'=> 'form-label'))?>
-												<?=form_dropdown(array('name' => 'cdestabelecimento','id' => 'cdestabelecimento', 'selected' => set_value('cdestabelecimento')), $list_estabelecimento, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
-												<?=form_error('cdestabelecimento');?>
+												<?=form_label($this->lang->str(100006), 'cdcomanda', array('class'=> 'form-label'))?>
+												<?=form_dropdown(array('name' => 'cdcomanda','id' => 'cdcomanda', 'selected' => set_value('cdcomanda')), $list_comanda, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
+												<?=form_error('cdcomanda');?>
 											</div>
 										</div>
-										<?php } else { ?>
-											<?=form_hidden('cdestabelecimento', $session_cdestabelecimento);?>
-										<?php } ?>
 										<div class="col-sm-6">
 											<div class="form-group">
-												<?=form_label($this->lang->str(100004), 'cdusuario', array('class'=> 'form-label'))?>
-												<?=form_dropdown(array('name' => 'cdusuario','id' => 'cdusuario', 'selected' => set_value('cdusuario')), $list_usuario, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
-												<?=form_error('cdusuario');?>
+												<?=form_label($this->lang->str(100005), 'cdproduto', array('class'=> 'form-label'))?>
+												<?=form_dropdown(array('name' => 'cdproduto','id' => 'cdproduto', 'selected' => set_value('cdproduto')), $list_produto, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
+												<?=form_error('cdproduto');?>
 											</div>
+										</div>
+										<div class="col-sm-3">
+											<div class="form-group form-float">
+												<div class="form-line">
+													<?=form_label($this->lang->str(100125), 'nrquantidade', array('class'=> 'form-label'))?>
+													<?=form_input('nrquantidade', set_value('nrquantidade'), array('class' => 'form-control number', 'required'=>''))?>
+												</div>
+											</div>
+											<?=form_error('nrquantidade');?>
 										</div>
 									</div>
 								</div>
 							</div>
-							
 							<div class="btn-box">
 								<div class="row clearfix">
 									<div id="actions" class="pull-right">
@@ -60,26 +64,9 @@
 			var controller = '<?=$controller;?>';
 			
 			$(document).ready(function(){
-				$("#fgalergenio").change(function () {
-					var checked = $(this).is(":checked");
-					$('#cdalergenio').prop('disabled', (!checked));
-					
-					if(!checked)
-						$('#cdalergenio').val('');
-						
-					$('#cdalergenio').multiSelect('refresh');
-				}).change();
-	
 				$( "#"+controller+"-form" ).find("button[name='btn_submit']").on('click', function (e) {
-					$.validator.addMethod("valueNotEquals", function(value, element, arg){
-						return arg !== value;
-					}, s_100074);
-					
 					$( "#"+controller+"-form" ).validate({
 						rules: {
-							'cdtipoproduto': {
-								valueNotEquals: '0'
-							}
 						},
 						highlight: function (input) {
 							$(input).parents('.form-line').addClass('error');
@@ -90,11 +77,6 @@
 						errorPlacement: function (error, element) {
 							$(element).parents('.form-group').append(error);
 						}
-					});
-					
-					$.each($(".moneyZero"), function(){
-						var value = $(this).maskMoney('unmasked')[0];
-						$(this).val(value);
 					});
 					 
 					$( "#"+controller+"-form" ).submit(); 

@@ -8,6 +8,7 @@ function renderGrid()
 		url : site_url+'/grid',
 		dataType: 'json', 
 		data: request,
+		async: false,
 		success: function (response) {
 			if(response.status)
 			{

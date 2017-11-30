@@ -162,7 +162,7 @@
 			<aside id="leftsidebar" class="sidebar">
 				<div class="user-info">
 					<div class="image">
-						<?=img(set_value($session_txfoto, 'assets/images/user-default.png'), FALSE, array('width' => '48', 'height' => '48'))."\n";?>
+						<?=img($session_txfoto, FALSE, array('width' => '48', 'height' => '48'))."\n";?>
 					</div>
 					<div class="info-container">
 						<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?=$session_nmusuario;?></div>
