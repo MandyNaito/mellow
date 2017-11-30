@@ -81,7 +81,6 @@ class Tipoproduto_model extends Crud_Model {
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
 		
-		
 		$itens = array();		
 		foreach ($fields as $values)
 		{

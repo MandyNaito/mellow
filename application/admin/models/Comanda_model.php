@@ -128,11 +128,11 @@ class Comanda_model extends Crud_Model {
 		if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
 			unset($label['nmestabelecimento']);
 		
-		if(empty($fields))
-			return array('status' => false, 'data' => array('label' => $label));
-		
 		if(empty($dados['grid']))			
 			return array('status' => true, 'data' => $fields);
+		
+		if(empty($fields))
+			return array('status' => false, 'data' => array('label' => $label));
 		
 		$itens = array();	
 		

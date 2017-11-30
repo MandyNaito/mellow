@@ -128,11 +128,11 @@ class Perfil_model extends Crud_Model {
 			'fgstatus' 	=> $this->lang->str(100037)
 			);
 		
-		if(empty($fields))
-			return array('status' => false, 'data' => array('label' => $label));
-		
 		if(empty($dados['grid']))			
 			return array('status' => true, 'data' => $fields);
+		
+		if(empty($fields))
+			return array('status' => false, 'data' => array('label' => $label));
 		
 		$itens = array();		
 		foreach ($fields as $values)

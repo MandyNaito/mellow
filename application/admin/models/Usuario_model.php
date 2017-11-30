@@ -47,7 +47,8 @@ class Usuario_model extends Crud_Model {
 		
 		# Tabelas:
 		$from = ' 	usuario U 
-					INNER JOIN perfil P ON (U.cdperfil = P.cdperfil)
+					INNER 		JOIN perfil P 			ON (U.cdperfil = P.cdperfil)
+					LEFT OUTER 	JOIN estabelecimento E 	ON (U.cdestabelecimento = E.cdestabelecimento) 
 				';
 		if (array_key_exists('from',$dados)) 
 			$from = ' '.$dados['from'].' ';
@@ -67,7 +68,7 @@ class Usuario_model extends Crud_Model {
 		}
 		
 		# Campos:
-		$select = ' U.*, P.nmperfil ';
+		$select = ' U.*, P.nmperfil, E.nmfantasia AS nmestabelecimento  ';
 		if (array_key_exists('totalRecords',$dados)){
 			$select = ' COUNT(1) as totalRecords';
             $limit = $orderby = '';
@@ -91,11 +92,18 @@ class Usuario_model extends Crud_Model {
 		$fields = $this->db->query($SQL)->result_array();
 
 		$label = array(
-			'cdusuario' => $this->lang->str(100027),
-			'cdperfil' 	=> $this->lang->str(100009),
-			'idlogin' 	=> $this->lang->str(100093),
-			'fgstatus' 	=> $this->lang->str(100037)
+			'cdusuario' 			=> $this->lang->str(100027),
+			'nmestabelecimento' 	=> $this->lang->str(100002),
+			'cdperfil' 				=> $this->lang->str(100009),
+			'idlogin' 				=> $this->lang->str(100093),
+			'fgstatus' 				=> $this->lang->str(100037)
 			);
+			
+		if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
+			unset($label['nmestabelecimento']);
+		
+		if(empty($dados['grid']))			
+			return array('status' => true, 'data' => $fields);
 		
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
@@ -109,11 +117,15 @@ class Usuario_model extends Crud_Model {
 			else
 			{
 				$itens[$values['cdusuario']] = array(
-							'cdusuario' 		=> $values['cdusuario'],
-							'cdperfil' 			=> $values['nmperfil'],
-							'idlogin' 			=> $values['idlogin'],
-							'fgstatus' 			=> $values['fgstatus']
+							'cdusuario' 			=> $values['cdusuario'],
+							'nmestabelecimento' 	=> $values['nmestabelecimento'],
+							'cdperfil' 				=> $values['nmperfil'],
+							'idlogin' 				=> $values['idlogin'],
+							'fgstatus' 				=> $values['fgstatus']
 							);
+				
+				if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
+					unset($itens[$values['cdusuario']]['nmestabelecimento']);
 			}
 		}
 		

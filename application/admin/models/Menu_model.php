@@ -153,10 +153,13 @@ class Menu_model extends CI_Model {
 			'cdmenu' 	=> $this->lang->str(100027),
 			'nmmenu' 	=> $this->lang->str(100066)
 			);
+			
+		if(empty($dados['grid']))			
+			return array('status' => true, 'data' => $fields);
 		
 		if(empty($fields))
 			return array('status' => false, 'data' => array('label' => $label));
-
+		
 		$itens = array();		
 		foreach ($fields as $values)
 		{
