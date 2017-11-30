@@ -16,7 +16,7 @@
 						<div class="body">
 							<div class="row clearfix text-center">
 								<div class="col-md-offset-4 col-md-4 col-xs-12">		
-									<?=form_upload(array('name' => 'qrcode', 'id' => 'qrcode'),set_value('qrcode'), array('placeholder' => $this->lang->str(100087),'class' => 'hidden', 'enabled' => true, 'accept' => 'image/*', 'onchange' => 'readURL(this);'));?>
+									<?=form_upload(array('name' => 'qrcode', 'id' => 'qrcode'),set_value('qrcode'), array('placeholder' => $this->lang->str(100087),'class' => 'hidden', 'enabled' => true, 'accept' => 'image/*', 'capture' => 'camera', 'onchange' => 'readURL(this);'));?>
 									<?=img(set_value('qrcode', 'assets/images/qrcode-default.png'), false, array('id' => 'img_qrcode', 'class' => 'user-profile-photo img-thumbnail zoom-in', 'title' => $this->lang->str(100087)));?>
 									<?=form_error('qrcode');?>
 								</div>
