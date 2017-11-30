@@ -13,15 +13,37 @@ class Sessao extends Home {
 		parent::__construct();
 
         $this->load->model('estabelecimento_model', 'estabelecimento');
-		$this->model = $this->estabelecimento;
+        $this->load->model('comanda_model', 'comanda');
+		
 		$this->load->library('encryption');
 		$this->load->library('encrypt');
+		$this->load->library('crypter');
 		
+		$this->model = $this->estabelecimento;	
 	}
 	
 	public function verificar(){		
-		error_log(print_r($this->input->post('qrcode'), true));
-		error_log(print_r($_FILES, true));
+		$nrcode = $this->input->post('nrcode');
+		$qrcode = $this->input->post('qrtoken');
+		
+		if(!empty($nrcode) || !empty($qrcode)){
+			$hash = (!empty($nrcode) ? $this->crypter->decrypt($nrcode) : (!empty($qrcode) ? $this->encryption->decrypt($qrcode) : ''));
+			if(!empty($hash)){
+				$data = explode('-', $hash);
+				$cdusuario 			= $data[0];
+				$cdestabelecimento 	= $data[1];
+				
+				$cdcomanda = $this->comanda->insert(array('cdusuario' => $cdusuario, 'cdestabelecimento' => $cdestabelecimento));
+				if(!empty($cdcomanda))
+					$this->session->set_flashdata('success_message', $this->lang->replaceStringTags(100141, array(1 => array('text' => $cdcomanda))));
+				else
+					$this->session->set_flashdata('error_message', $this->lang->str(100140));
+			}
+		}
+		else
+			$this->session->set_flashdata('error_message', $this->lang->str(100140));
+		
+		redirect($this->controller.'/verificador');
 	}
 	
 	public function verificador(){
@@ -32,8 +54,8 @@ class Sessao extends Home {
 		$data = $this->model->getListData($this->filter);		
 		
 		$this->data['item_active'] 	= $this->item_active;
-		$this->data['title'] 		= $this->lang->str($this->str);
-		//$hash2 = $this->encryption->decrypt($hash);
+		$this->data['title'] 		= $this->lang->str(100139);
+		
 		$this->load->template($this->controller.'/verificador', $this->data);
 	}
 	
@@ -56,11 +78,9 @@ class Sessao extends Home {
 				$estabelecimento = $this->estabelecimento->getDataByCd($cdestabelecimento);
 				
 				$this->load->library('ciqrcode');
-				$this->load->library('crypter');
 				
 				$hash = $this->session->userdata('logged_in')['cdusuario'].'-'.$cdestabelecimento;
 
-				
 				$params['data'] 			= $this->encryption->encrypt($hash);
 				$params['level'] 			= 'H';
 				$params['size']			 	= 10;

@@ -20,13 +20,5 @@ class Auth_Controller extends CI_Controller {
 		}
 		if(!in_array($this->item_active, $items))
 			$this->item_active = 'home';	
-		
-		//$cdusuario = $this->session->userdata('logged_in')['cdusuario'];
-		
-		//$mod 		= $this->uri->segment(1);
-		////$function 	= $this->uri->segment(2);
-		//$segment 	= $this->uri->uri_to_assoc(2);
-		
-		//error_log(print_r($segment , true));
     }
 }
