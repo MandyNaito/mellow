@@ -25,7 +25,7 @@ class Crud extends Home {
 	}
 	
 	public function index() {
-		redirect('home');
+		$this->gestao();
 	}
 	
 	public function gestao() {

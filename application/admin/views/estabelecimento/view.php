@@ -207,7 +207,7 @@
 							<div class="row clearfix">
 								<div id="actions" class="pull-right">
 									<div id="btn_actions" class="col-sm-12">
-										<?=form_reset('cancel', $this->lang->str(100053), array('class' => 'btn btn-warning btn-cancel btn-lg waves-effect', 'onclick' => 'window.location.replace(\''.site_url($controller).'\')')); ?>
+										<?=form_reset('cancel', $this->lang->str(100053), array('class' => 'btn btn-warning btn-cancel btn-lg waves-effect', 'onclick' => 'history.go(-1);')); ?>
 									</div>
 								</div>	
 							</div>	
