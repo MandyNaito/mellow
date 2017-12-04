@@ -133,13 +133,13 @@
 					<div class="col-md-6 col-md-push-6 about-content">
 						<h2 class="about-title">Resumo</h2>
 						<p class="about-text">
-						Este trabalho visa documentar e descrever o desenvolvimento de um sistema que facilite o gerenciamento de entradas e saídas de clientes em estabelecimentos comerciais através da criação e automatização de comandas de usuários pre cadastrados. Além disso, permite também que os clientes possam acompanhar em tempo real a quantidade consumida até o momento e verificar as opções disponibilizadas no cardápio do estabelecimento através do acesso via smartphone conectado á internet. Ao analisar esse campo, verifica-se uma demora excessiva para realizar estas ações, prejudicanto tanto os clientes que desejam usufruir do estabelecimento quanto do estabelecimento em cadastrar clientes e realizar o fechamento das contas. 
+						Este trabalho visa realizar a descrição e desenvolvimento de um sistema, que pretende descomplexificar o gerenciamento de entradas e saídas de clientes em estabelecimentos comerciais. Através da criação e automatização de comandas por usuários pré-cadastrados, torna-se possível que clientes acompanhem, em tempo real, a quantidade consumida e verifiquem as opções disponibilizadas no cardápio do estabelecimento. Este procedimento pode ser realizado via smartphone, desde que esteja conectado à internet. 
 						</p>
 						<p class="about-text">
-						O intuito do Mellow Suite é justamente sanar a deficiência que causa tanto prejuizo, otimizando o tempo de obtenção dos dados dos novos clientes, tratamento dos lançamentos e pedidos realizados e facilitando o fechamento e faturamento das contas de forma a diminuir a necessidade de filas de espera.
+						Ao analisar esse campo, nota-se uma espera excessiva na realização destas ações, tornando-se prejudicial tanto aos clientes, que desejam usufruir do estabelecimento, quanto ao estabelecimento, na realização de cadastros e fechamento de contas. O intuito do Mellow Suite é prevenir essa possível deficiência, otimizando o tempo de obtenção dos dados de novos clientes, análise de lançamentos e pedidos realizados e facilitar o fechamento e faturamento de contas, diminuindo a formação de filas de espera. 
 						</p>
 						<p class="about-text">
-						O trabalho de conclusão de curso proposto também tem como objetivo demonstrar as mais novas tecnologias e métodos de desenvolvimento para várias áreas da programação e análise. Para isso, serão utilizadas tecnologias gratuitas e de grande reconhecimento no mercado.
+						O trabalho de conclusão de curso proposto tem como objetivo, também, demonstrar as mais novas tecnologias e métodos de desenvolvimento, disponíveis em várias áreas da programação e análise de sistemas. Para isso, serão utilizadas tecnologias gratuitas e de grande reconhecimento.
 						</p>
 					</div>
 				</div>
