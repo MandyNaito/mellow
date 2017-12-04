@@ -48,3 +48,10 @@ if ( ! function_exists('rand_card_icons'))
 		return $colors[floor(($cont) % count($colors))];
 	}
 }
+if ( ! function_exists('format_money'))
+{
+	function format_money($value)
+	{
+		return 'R$ '.number_format($value,2,',','.');
+	}
+}

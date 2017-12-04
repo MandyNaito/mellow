@@ -68,9 +68,10 @@ class Sessao extends Home {
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['title'] 		= $this->lang->str($this->str);
 		
-		if(!empty($this->session->userdata('logged_in')['cdcomanda']))
-		{
-			redirect('home');
+		$comanda = $this->comanda->getListData(array('cdusuario'=> $this->session->userdata('logged_in')['cdusuario'], 'fgstatus' => 1))['data'];		
+		if(!empty($comanda)){
+			$this->session->set_flashdata('error_message', $this->lang->str(100142));
+			redirect('comanda/extrato');
 		}
 		else
 		{

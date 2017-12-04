@@ -34,5 +34,21 @@ class Ajax extends CI_Controller {
 
 		echo json_encode(array('status' => $status, 'data' => $dados));
 	}
+	
+	public function verifica_comanda()
+	{
+        $this->load->model('comanda_model', 'comanda');
+		$comanda = $this->comanda->getListData(array('cdusuario'=> $this->session->userdata('logged_in')['cdusuario'], 'fgstatus' => 1))['data'];		
+		if(!empty($comanda)){
+			$this->output
+				->set_content_type("application/json")
+				->set_output(json_encode(array('status'=>true, 'redirect' => site_url('comanda/extrato') )));
+		}
+		else {
+			$this->output
+				->set_content_type("application/json")
+				->set_output(json_encode(array('status'=>false)));
+		}   
+	}
 }
 ?>

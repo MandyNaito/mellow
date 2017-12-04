@@ -17,6 +17,7 @@ class Produto extends Crud {
         $this->load->model('tipoproduto_model', 	'tipoproduto');
         $this->load->model('alergenio_model', 		'alergenio');
         $this->load->model('estabelecimento_model', 'estabelecimento');
+        $this->load->model('comanda_model', 'comanda');
 		
 		$this->data['list_estabelecimento'] = $this->combolist($this->estabelecimento);		
 		$this->data['list_tipoproduto'] 	= $this->combolist($this->tipoproduto);
@@ -78,7 +79,11 @@ class Produto extends Crud {
 		$this->data['item_active'] 	= $this->item_active;
 		$this->data['title'] 		= $this->lang->str(100129);
 		
-		$cdestabelecimento = !empty($cdestabelecimento) ? $cdestabelecimento : $this->session->userdata('logged_in')['cdestabelecimento'];
+		$cdestabelecimento 	= !empty($cdestabelecimento) ? $cdestabelecimento : $this->session->userdata('logged_in')['cdestabelecimento'];
+		
+		$comanda = $this->comanda->getListData(array('cdusuario'=> $this->session->userdata('logged_in')['cdusuario'], 'fgstatus' => 1))['data'];
+		if(!empty($comanda))
+			$cdestabelecimento = $comanda[0]['cdestabelecimento'];
 		
 		if(!empty($cdestabelecimento)){		
 			$estabelecimento = $this->estabelecimento->getDataByCd($cdestabelecimento);

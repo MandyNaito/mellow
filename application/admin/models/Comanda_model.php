@@ -12,7 +12,10 @@ class Comanda_model extends Crud_Model {
 			case 'pedido':
 				$SQL = '
 					SELECT 
-						*
+						*, 
+						DATE_FORMAT(P.dtpedido, "%d/%m/%Y %H:%i") AS dtpedido_formatada, 
+						DATE_FORMAT(C.dtentrada, "%d/%m/%Y %H:%i") AS dtentrada_formatada, 
+						DATE_FORMAT(C.dtsaida, "%d/%m/%Y %H:%i") AS dtsaida_formatada
 					FROM 
 						comanda C 
 						INNER JOIN pedido P 	ON (C.cdcomanda = P.cdcomanda)
@@ -40,14 +43,13 @@ class Comanda_model extends Crud_Model {
 			return array('status' => false, 'data' => array('label' => $label));
 		
 		$itens = array();	
-		
 		foreach ($fields as $values)
 		{
 			$itens[$values['cdpedido']] = array(
-					'dtpedido' 			=> $values['dtpedido'],
+					'dtpedido' 			=> $values['dtpedido_formatada'],
 					'nmproduto' 		=> $values['nmproduto'],
 					'nrquantidade' 		=> $values['nrquantidade'],
-					'vlproduto' 		=> $values['vlproduto']
+					'vlproduto' 		=> format_money($values['vlproduto'])
 					);
 		}
 		
@@ -55,7 +57,7 @@ class Comanda_model extends Crud_Model {
 	}
 	
 	public function disable($cdfield){
-		$this->db->set('dtsaida', date("Y-m-d H:i:s"));
+        $this->db->set('dtsaida', 'NOW()', FALSE);
 		return parent::disable($cdfield);
 	}
 	
@@ -98,7 +100,12 @@ class Comanda_model extends Crud_Model {
 		}
 		
 		# Campos:
-		$select = ' C.*, E.nmfantasia AS nmestabelecimento, U.nmusuario';
+		$select = ' C.*, 
+					(SELECT SUM((SELECT vlproduto FROM produto WHERE cdproduto = P.cdproduto) * nrquantidade) FROM pedido P WHERE P.cdcomanda = C.cdcomanda) AS vltotal,
+					DATE_FORMAT(C.dtentrada, "%d/%m/%Y %H:%i") AS dtentrada_formatada, 
+					DATE_FORMAT(C.dtsaida, "%d/%m/%Y %H:%i") AS dtsaida_formatada, 
+					E.nmfantasia AS nmestabelecimento, 
+					U.nmusuario';
 		if (array_key_exists('totalRecords',$dados)){
 			$select = ' COUNT(1) as totalRecords';
             $limit = $orderby = '';
@@ -127,7 +134,8 @@ class Comanda_model extends Crud_Model {
 			'nmestabelecimento' 	=> $this->lang->str(100002),
 			'nmusuario'			 	=> $this->lang->str(100004),
 			'dtentrada'			 	=> $this->lang->str(100122),
-			'dtsaida'			 	=> $this->lang->str(100123)
+			'dtsaida'			 	=> $this->lang->str(100123),
+			'vltotal'			 	=> $this->lang->str(100143)
 			);
 		
 		if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
@@ -152,8 +160,9 @@ class Comanda_model extends Crud_Model {
 						'cdcomanda' 		=> $values['cdcomanda'],
 						'nmestabelecimento' => $values['nmestabelecimento'],
 						'nmusuario' 		=> $values['nmusuario'],
-						'dtentrada' 		=> $values['dtentrada'],
-						'dtsaida' 			=> $values['dtsaida'],
+						'dtentrada' 		=> $values['dtentrada_formatada'],
+						'dtsaida' 			=> $values['dtsaida_formatada'],
+						'vltotal' 			=> format_money($values['vltotal'])
 						);
 				
 				if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))

@@ -67,7 +67,7 @@ class Comanda extends Crud {
 	public function historico() {
 		$this->item_active = 'comanda/historico';
 		$this->loadBreadcrumbs();
-		
+				
 		$this->filter['cdestabelecimento'] 	= '';
 		$this->filter['cdusuario'] 			= $this->session->userdata('logged_in')['cdusuario'];
 		

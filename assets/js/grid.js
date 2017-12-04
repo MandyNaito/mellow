@@ -14,7 +14,6 @@ function renderGrid()
 			{
 				$("#grid_table").html(response.data);
 				$('.grid_datatable').DataTable({
-					responsive: true,
 					columnDefs: [
 					   { orderable: false, targets: -1 }
 					],

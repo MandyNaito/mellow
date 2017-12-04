@@ -37,7 +37,7 @@
 										<div class="form-group form-float">
 											<div class="form-line">
 												<?=form_label($this->lang->str(100122), 'dtentrada', array('class'=> 'form-label'))?>
-												<?=form_datetime('dtentrada', set_value('dtentrada'), array('class' => 'form-control', 'disabled'=>''))?>
+												<?=form_datetime('dtentrada', set_value('dtentrada_formatada'), array('class' => 'form-control', 'disabled'=>''))?>
 											</div>
 										</div>
 									</div>
@@ -45,7 +45,7 @@
 										<div class="form-group form-float">
 											<div class="form-line">
 												<?=form_label($this->lang->str(100123), 'dtsaida', array('class'=> 'form-label'))?>
-												<?=form_datetime('dtsaida', set_value('dtsaida'), array('class' => 'form-control', 'disabled'=>''))?>
+												<?=form_datetime('dtsaida', set_value('dtsaida_formatada'), array('class' => 'form-control', 'disabled'=>''))?>
 											</div>
 										</div>
 									</div>

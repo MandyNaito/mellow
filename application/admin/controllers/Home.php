@@ -28,6 +28,8 @@ class Home extends Auth_Controller {
 	}
 	
 	public function loadBreadcrumbs(){
+		$this->data['item_active'] 	= $this->item_active;
+		
 		$this->breadcrumbs->reset();
 		$bread = $this->menu->getBreadcrumbs('home');
 		foreach($bread as $k => $v)

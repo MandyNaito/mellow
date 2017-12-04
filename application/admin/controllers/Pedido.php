@@ -40,7 +40,10 @@ class pedido extends Crud {
 	
 	public function index()
 	{
-		$this->gestao();
+		$this->data['title'] 	= $this->lang->str($this->str);
+		$this->data['urlnovo'] 	= site_url($this->controller.'/novo');
+		
+		$this->load->template($this->controller.'/list', $this->data);
 	}
 }	
 ?>

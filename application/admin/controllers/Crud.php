@@ -29,6 +29,9 @@ class Crud extends Home {
 	}
 	
 	public function gestao() {
+		$this->item_active = $this->controller.'/gestao';
+		$this->loadBreadcrumbs();
+		
 		$this->data['title'] 	= $this->lang->str($this->str);
 		$this->data['urlnovo'] 	= site_url($this->controller.'/novo');
 				

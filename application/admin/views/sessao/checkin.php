@@ -11,7 +11,7 @@
 						<h2><?=$title;?></h2>
 						 <ul class="header-dropdown m-r--5">
 							<li>
-								<a href="javascript:void(0);" data-toggle="cardloading" data-loading-effect="pulse">
+								<a href="javascript:void(0);" onclick="verifyTab(true);" data-toggle="cardloading" data-loading-effect="pulse">
 									<i class="material-icons">loop</i>
 								</a>
 							</li>
@@ -40,6 +40,27 @@
 			controller 	= '<?=$controller;?>';
 			site_url 	= '<?=site_url($controller);?>';
 			base_url 	= '<?=base_url();?>';
+			
+			function verifyTab(bool) {
+				$.ajax({
+					url : site_url+'../ajax/verifica_comanda/',
+					dataType: 'json',
+					beforeSend	: function () {
+						$('.card').waitMe('hide');
+					},
+					success: function (response) {
+						if( response.status === true )
+							document.location.href = response.redirect;
+					}
+				});  
+				
+				if(empty(bool))
+					setTimeout(verifyTab, 5000); 
+			}
+
+			$(document).ready(function() {
+				setTimeout(verifyTab, 5000);
+			});
 		</script>
 	</body>
 </html>
