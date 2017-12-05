@@ -9188,3 +9188,12 @@ html.ie11 .bs-searchbox .form-control {
 	height: 100%;
 	width: 100%;
 }
+
+.home{
+	text-align: center;
+    background-color: rgba(0, 0, 0, 0.12);
+    width: 100%;
+    background: center;
+    background-size: cover;
+    height: 80vh;
+}

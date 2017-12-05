@@ -9,8 +9,7 @@
 							<div class="body">
 								<div class="carousel slide" data-ride="carousel">
 									<div class="carousel-inner" role="listbox">
-										<div class="item active">
-										   <?=img('assets/images/home.jpg')."\n";?>
+										<div class="item active home" style="background-image: url('<?=base_url('assets/images/home.jpg');?>');">
 											<div class="carousel-caption">
 												<h3><?=$welcome?></h3>
 												<p><?=$session_nmusuario;?></p>
