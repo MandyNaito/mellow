@@ -169,7 +169,7 @@ class Produto_model extends Crud_Model {
 						'cdtipoproduto' 	=> $values['nmtipoproduto'],
 						'nmproduto' 		=> $values['nmproduto'],
 						'nmestabelecimento' => $values['nmestabelecimento'],
-						'vlproduto' 		=> ((empty($dados['grid'])) ? $values['vlproduto'] : format_money($values['vlproduto'])),
+						'vlproduto' 		=> $values['vlproduto'],
 						);
 				
 				if(!empty($this->session->userdata('logged_in')['cdestabelecimento']))
