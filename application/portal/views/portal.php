@@ -229,7 +229,7 @@
 					<div class="col-md-3">
 						<div class="member">
 							<div class="pic" style="background-image: url(assets/images/equipe/harrison.jpg);"></div>
-							<h4>Harrison Brunno dos Santos</h4>
+							<h4>Harrison Brunno Santos</h4>
 							<span>Analista de negócios</span>
 							<div class="social">
 								<a href="https://www.facebook.com/harrisonbsantos"><i class="fa fa-facebook"></i></a>
