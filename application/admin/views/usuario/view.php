@@ -10,9 +10,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="card">
 							<div class="header">
-								<h2>
-									<?=$title;?>
-								</h2>
+								<h2><?=$title;?></h2>
 							</div>
 							<div class="body">
 								<h2 class="card-inside-title"></h2>
@@ -117,18 +115,20 @@
 											</div>
 										</div>
 									</div>
-								</div>
-
-								<div class="row clearfix">
-									<div id="actions" class="pull-right">
-										<div id="btn_actions" class="col-sm-12">
-											<?=form_button('btn_edit', $this->lang->str(100039), array('class' => 'btn btn-success waves-effect', 'onclick' => 'window.location.replace(\''.site_url($edit_target).'\')')); ?>
-											<?=form_reset('cancel', $this->lang->str(100053), array('class' => 'btn btn-warning btn-cancel waves-effect', 'onclick' => 'history.go(-1);')); ?>
-										</div>
-									</div>	
-								</div>								
+								</div>							
 							</div>
 						</div>
+
+						<div class="btn-box">
+							<div class="row clearfix">
+								<div id="actions" class="pull-right">
+									<div id="btn_actions" class="col-sm-12">
+										<?=form_button('btn_edit', $this->lang->str(100039), array('class' => 'btn btn-success btn-lg waves-effect', 'onclick' => 'window.location.replace(\''.site_url($edit_target).'\')')); ?>
+										<?=form_reset('cancel', $this->lang->str(100053), array('class' => 'btn btn-warning btn-cancel btn-lg waves-effect', 'onclick' => 'history.go(-1);')); ?>
+									</div>
+								</div>	
+							</div>	
+						</div>	
 					</div>
 				</div>
 			</div>

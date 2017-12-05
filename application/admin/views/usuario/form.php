@@ -8,16 +8,12 @@
 				</div>				
 				<div class="row clearfix">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="card">
-							<div class="header">
-								<h2>
-									<?=$title;?>
-								</h2>
-							</div>
-							<div class="body">
-								<h2 class="card-inside-title"></h2>
-								<?=form_open_multipart($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
-									<?=form_hidden('cdusuario', set_value('cdusuario', -1));?>
+						<?=form_open_multipart($target, array('id' => $controller.'-form', 'role' => 'form', 'accept-charset' => 'utf-8'));?>
+							<?=form_hidden('cdusuario', set_value('cdusuario', -1));?>
+							<div class="card">
+								<div class="header"><h2><?=$title;?></h2></div>
+								<div class="body">
+									<h2 class="card-inside-title"></h2>
 									<div class="row clearfix">
 										<div class="col-sm-12">
 											<div class="form-group form-float">
@@ -97,6 +93,7 @@
 											<?php } ?>
 										</div>
 									</div>
+									
 									<h2 class="card-inside-title"><?=$this->lang->str(100104);?></h2>
 									<div class="row clearfix">
 										<div class="col-sm-6">
@@ -158,18 +155,20 @@
 											</div>
 										</div>
 									</div>
-									
-									<div class="row clearfix">
-										<div id="actions" class="pull-right">
-											<div id="btn_actions" class="col-sm-12">
-												<?=form_reset('cancel', $this->lang->str(100044), array('class' => 'btn btn-default btn-cancel waves-effect', 'onclick' => 'history.go(-1)')); ?>
-												<?=form_button( 'btn_submit', $this->lang->str(100068), array('class' => 'btn btn-success waves-effect')); ?>
-											</div>
-										</div>	
-									</div>
-								<?=form_close();?>
+								</div>
 							</div>
-						</div>
+							
+							<div class="btn-box">
+								<div class="row clearfix">
+									<div id="actions" class="pull-right">
+										<div id="btn_actions" class="col-sm-12">
+											<?=form_reset('cancel', $this->lang->str(100044), array('class' => 'btn btn-default btn-lg btn-cancel waves-effect', 'onclick' => 'history.go(-1)')); ?>
+											<?=form_button('btn_submit', $this->lang->str(100068), array('class' => 'btn btn-success btn-lg waves-effect')); ?>
+										</div>
+									</div>	
+								</div>	
+							</div>
+						<?=form_close();?>
 					</div>
 				</div>
 			</div>
