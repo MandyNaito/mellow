@@ -89,14 +89,37 @@ class Home extends Auth_Controller {
 		if(!empty($params))
 			$options =  array_replace($options, $params);
 
-		$result = $model->getListData($options);
-		if($result['status']){
+		$data = $model->getListData($options);
+		if($data['status']){
 			if(empty($options['denyEmpty']))
-				$result['data']['item'] = array('' => '') + $result['data']['item'];			
-			$item = $result['data']['item'];
+				$data['data']['item'] = array('' => '') + $data['data']['item'];			
+			$item = $data['data']['item'];
 		}
 		
 		return $item;
+	}
+	
+	public function combolistData($model, $params = array())
+	{
+		$item = array();
+		
+		$options = array('grid' => true, 'list' => true, 'denyEmpty' => true);
+		if(!empty($params))
+			$options =  array_replace($options, $params);
+
+		$data = $this->{$model}->getListData(array_replace($options, $_REQUEST));
+		if($data['status']){
+			if(empty($options['denyEmpty']))
+				$data['data']['item'] = array('' => '') + $data['data']['item'];			
+			$item = $data['data']['item'];
+		}
+		
+		if(!empty($item))
+			$result = array('status' => true, 'records' => $item);
+		else
+			$result = array('status' => false);
+		
+		echo json_encode($result);
 	}
 	
 	public function treelist($model, $params = array())

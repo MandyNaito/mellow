@@ -70,6 +70,7 @@
 		<?=script_tag('assets/js/admin.js')."\n";?>
 		<?=script_tag('assets/js/pages/index.js')."\n";?>		
 		<?=script_tag('assets/js/pages/forms/basic-form-elements.js')."\n";?>
+		<?=script_tag('assets/js/php.js')."\n";?>		
 		<?=script_tag('assets/js/main.js')."\n";?>		
 		<?=script_tag('assets/js/cep.js')."\n";?>		
 		<?=script_tag('assets/js/grid.js')."\n";?>		

@@ -27,6 +27,7 @@ class Tipoproduto_model extends Crud_Model {
 		if (array_key_exists('from',$dados)) 
 			$from = ' '.$dados['from'].' ';
 		
+		
 		# Filtros:
 		$where = "";
 		foreach($dados as $field => $value)

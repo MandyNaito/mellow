@@ -21,6 +21,17 @@
 									
 									
 									<div class="row clearfix">
+										<?php if(empty($session_cdestabelecimento)) { ?>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<?=form_label($this->lang->str(100002), 'cdestabelecimento', array('class'=> 'form-label'))?>
+												<?=form_dropdown(array('name' => 'cdestabelecimento','id' => 'cdestabelecimento', 'selected' => set_value('cdestabelecimento', -1)), $list_estabelecimento, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
+												<?=form_error('cdestabelecimento');?>
+											</div>
+										</div>
+										<?php } else { ?>
+											<?=form_hidden('cdestabelecimento', $session_cdestabelecimento);?>
+										<?php } ?>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<?=form_label($this->lang->str(100077), 'cdtipoproduto', array('class'=> 'form-label'))?>
@@ -28,17 +39,6 @@
 												<?=form_error('cdtipoproduto');?>
 											</div>
 										</div>
-										<?php if(empty($session_cdestabelecimento)) { ?>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<?=form_label($this->lang->str(100002), 'cdestabelecimento', array('class'=> 'form-label'))?>
-												<?=form_dropdown(array('name' => 'cdestabelecimento','id' => 'cdestabelecimento', 'selected' => set_value('cdestabelecimento')), $list_estabelecimento, array(), array('class' => 'form-control show-tick', 'required'=>''));?>
-												<?=form_error('cdestabelecimento');?>
-											</div>
-										</div>
-										<?php } else { ?>
-											<?=form_hidden('cdestabelecimento', $session_cdestabelecimento);?>
-										<?php } ?>
 									</div>
 
 									<div class="row clearfix">
@@ -55,7 +55,7 @@
 											<div class="form-group form-float">
 												<div class="form-line">
 													<?=form_label($this->lang->str(100092), 'vlproduto', array('class'=> 'form-label'))?>
-													<?=form_input(array('name' => 'vlproduto','id' => 'vlproduto'), set_value('vlproduto'), array('class' => 'form-control moneyZero', 'required'=>''))?>
+													<?=form_input(array('name' => 'vlproduto','id' => 'vlproduto'), format_money(set_value('vlproduto', 0)), array('class' => 'form-control moneyZero', 'required'=>''))?>
 												</div>
 												<?=form_error('vlproduto');?>
 											</div>
@@ -112,6 +112,29 @@
 			var controller = '<?=$controller;?>';
 			
 			$(document).ready(function(){
+				$("#cdestabelecimento").change(function () {
+					var cdestabelecimento = !empty($(this).val()) ? $(this).val() : -1;
+					
+					$.ajax({
+						url : site_url+'/combolistData/tipoproduto/',
+						dataType: 'json', 
+						data: {
+							cdestabelecimento: cdestabelecimento
+						},
+						success: function (response) {
+							var html = '<option value=""></option>';
+							if(response.status){
+								$.each(response.records, function(key, value){
+									html += '<option value="'+key+'">'+value+'</option>';
+								});
+							}
+							
+							$('#cdtipoproduto').html(html).selectpicker('refresh');
+						}
+				   }); 
+				}).change();
+				
+				
 				$("#fgalergenio").change(function () {
 					var checked = $(this).is(":checked");
 					$('#cdalergenio').prop('disabled', (!checked));
@@ -123,15 +146,8 @@
 				}).change();
 	
 				$( "#"+controller+"-form" ).find("button[name='btn_submit']").on('click', function (e) {
-					$.validator.addMethod("valueNotEquals", function(value, element, arg){
-						return arg !== value;
-					}, s_100074);
-					
 					$( "#"+controller+"-form" ).validate({
 						rules: {
-							'cdtipoproduto': {
-								valueNotEquals: '0'
-							}
 						},
 						highlight: function (input) {
 							$(input).parents('.form-line').addClass('error');
