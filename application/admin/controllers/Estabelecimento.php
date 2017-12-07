@@ -18,7 +18,7 @@ class Estabelecimento extends Crud {
 		$this->data['list_tipoestabelecimento'] = $this->combolist($this->tipoestabelecimento);
 		
 		$this->filter['cdestabelecimento'] 	= $this->session->userdata('logged_in')['cdestabelecimento'];
-
+		
 		$this->model = $this->estabelecimento;
 	
 		$this->fields = array(
@@ -46,6 +46,14 @@ class Estabelecimento extends Crud {
 			'nrlongitude'     			=> array('label'=> $this->lang->str(100118), 	'rule' => 'trim|xss_clean', 				'msg' => array(), 'isField' => true)
 		);
 	}
+	
+	
+	public function visualizar($cdfield){
+		$this->data['checkin_target'] = 'sessao/checkin/'.$cdfield;
+		
+		parent::visualizar($cdfield);
+	}
+	
 	
 	public function explorar(){
 		$this->item_active = 'estabelecimento/explorar';

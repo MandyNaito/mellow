@@ -99,9 +99,11 @@ class Sessao extends Home {
 					
 				$this->ciqrcode->generate($params);
 				
+				$this->breadcrumbs->push('current_page', $estabelecimento['nmfantasia'], '');
+				
 				$this->data['qrcode'] 		= $params['savename'];
 				$this->data['nrcode'] 		= $this->crypter->encrypt($hash);
-				$this->data['title'] 		= $this->lang->str(100119).' | '.$estabelecimento['nmfantasia'];
+				$this->data['title'] 		= $this->lang->str(100119);
 				$this->data['target']		= $this->controller.'/checkin';
 				$this->load->template($this->controller.'/checkin', $this->data);
 			}
