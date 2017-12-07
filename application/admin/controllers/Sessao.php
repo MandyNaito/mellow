@@ -30,10 +30,11 @@ class Sessao extends Home {
 			$hash = (!empty($nrcode) ? $this->crypter->decrypt($nrcode) : (!empty($qrcode) ? $this->crypter->decrypt($qrcode) : ''));
 			if(!empty($hash)){
 				$data = explode('-', $hash);
-				$cdusuario 			= $data[0];
-				$cdestabelecimento 	= $data[1];
+				$cdusuario = trim($data[0]);
 				
-				if(!empty($cdestabelecimento)){
+				if(!empty($data[1])){
+					$cdestabelecimento 	= trim($data[1]);
+				
 					$cdcomanda = $this->comanda->insert(array('cdusuario' => $cdusuario, 'cdestabelecimento' => $cdestabelecimento));
 					if(!empty($cdcomanda))
 						$this->session->set_flashdata('success_message', $this->lang->replaceStringTags(100141, array(1 => array('text' => $cdcomanda))));
