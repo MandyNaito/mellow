@@ -33,9 +33,13 @@ class Sessao extends Home {
 				$cdusuario 			= $data[0];
 				$cdestabelecimento 	= $data[1];
 				
-				$cdcomanda = $this->comanda->insert(array('cdusuario' => $cdusuario, 'cdestabelecimento' => $cdestabelecimento));
-				if(!empty($cdcomanda))
-					$this->session->set_flashdata('success_message', $this->lang->replaceStringTags(100141, array(1 => array('text' => $cdcomanda))));
+				if(!empty($cdestabelecimento)){
+					$cdcomanda = $this->comanda->insert(array('cdusuario' => $cdusuario, 'cdestabelecimento' => $cdestabelecimento));
+					if(!empty($cdcomanda))
+						$this->session->set_flashdata('success_message', $this->lang->replaceStringTags(100141, array(1 => array('text' => $cdcomanda))));
+					else
+						$this->session->set_flashdata('error_message', $this->lang->str(100140));
+				}
 				else
 					$this->session->set_flashdata('error_message', $this->lang->str(100140));
 			}
