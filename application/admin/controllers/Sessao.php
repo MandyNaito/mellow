@@ -27,7 +27,7 @@ class Sessao extends Home {
 		$qrcode = $this->input->post('qrtoken');
 		
 		if(!empty($nrcode) || !empty($qrcode)){
-			$hash = (!empty($nrcode) ? $this->crypter->decrypt($nrcode) : (!empty($qrcode) ? $this->encryption->decrypt($qrcode) : ''));
+			$hash = (!empty($nrcode) ? $this->crypter->decrypt($nrcode) : (!empty($qrcode) ? $this->crypter->decrypt($qrcode) : ''));
 			if(!empty($hash)){
 				$data = explode('-', $hash);
 				$cdusuario 			= $data[0];
@@ -39,6 +39,8 @@ class Sessao extends Home {
 				else
 					$this->session->set_flashdata('error_message', $this->lang->str(100140));
 			}
+			else
+				$this->session->set_flashdata('error_message', $this->lang->str(100140));
 		}
 		else
 			$this->session->set_flashdata('error_message', $this->lang->str(100140));
@@ -82,7 +84,7 @@ class Sessao extends Home {
 				
 				$hash = $this->session->userdata('logged_in')['cdusuario'].'-'.$cdestabelecimento;
 
-				$params['data'] 			= $this->encryption->encrypt($hash);
+				$params['data'] 			= $this->crypter->encrypt($hash);
 				$params['level'] 			= 'H';
 				$params['size']			 	= 10;
 				$params['savename']	 		= './upload/'.$this->controller.'/'.$hash.'.png';

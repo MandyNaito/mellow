@@ -2,7 +2,7 @@ function getCepData(cep){
 	var data;
 	
 	$.ajax({
-		url : site_url+'../ajax/consulta_cep/'+cep,
+		url : site_url+'/../ajax/consulta_cep/'+cep,
 		dataType: 'json',
 		async: false,
 		success: function (response) {

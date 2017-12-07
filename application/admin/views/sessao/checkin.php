@@ -43,7 +43,7 @@
 			
 			function verifyTab(bool) {
 				$.ajax({
-					url : site_url+'../ajax/verifica_comanda/',
+					url : site_url+'/../ajax/verifica_comanda/',
 					dataType: 'json',
 					beforeSend	: function () {
 						$('.card').waitMe('hide');
