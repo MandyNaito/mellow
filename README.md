@@ -1,6 +1,6 @@
 # Mellow Suíte  (c) MellowTeam - README
 
-## Instalação
+### Instalação
 
 Para fazer com que o sistema funcione, é necessário ao menos dois programas para instalar-lo; o Wampserver 3.0 e o MySQL Workbench. 	Através do menu de contexto do Wampserver, iniciar todos os serviços.
 	
