@@ -76,9 +76,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'opmy0019.servidorwebfacil.com:3306',
-	'username' => 'amand_root',
-	'password' => 'Ue0u7h2$',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'amanda_naito_tcc',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
